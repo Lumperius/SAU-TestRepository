@@ -6,7 +6,7 @@ namespace HomeWork_3
 {
     class CompartmentSleeper : Carriage
     {
-        public CompartmentSleeper(int humanCapacity, int baggageCapacity) : base(humanCapacity, baggageCapacity)
+        public CompartmentSleeper(int mass, int humanCapacity, int baggageCapacity) : base(mass, humanCapacity, baggageCapacity)
         {
 
         }

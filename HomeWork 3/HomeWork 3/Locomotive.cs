@@ -8,9 +8,9 @@ namespace HomeWork_3
     {
         private int _enginePower; 
         public int GetEnginePower() => _enginePower;
-        Locomotive(int humanCapacity, int baggageCapacity, ) : base(humanCapacity, baggageCapacity)
+        public Locomotive(int mass, int enginePower) : base (mass) 
         {
-
+            _enginePower = enginePower;
         }
     }
 }

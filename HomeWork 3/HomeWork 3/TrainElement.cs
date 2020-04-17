@@ -7,16 +7,12 @@ namespace HomeWork_3
     class TrainElement
 
     {
-        private int _humanCapacity;
-        private int _baggageCapacity;
+        protected int _mass;
 
-        public int GetHumanCapacity() => _humanCapacity;
-        public int GetBaggageCapacity() => _baggageCapacity;
-
-        public TrainElement(int humanCapacity, int baggageCapacity)
+        public int getMass() => _mass;
+        public TrainElement(int mass)
         {
-            _humanCapacity = humanCapacity;
-            _baggageCapacity = baggageCapacity;
+            _mass = mass;
         }
 
     }

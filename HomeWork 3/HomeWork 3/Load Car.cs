@@ -6,9 +6,13 @@ namespace HomeWork_3
 {
     class Load_Car : TrainElement
     {
-        Load_Car(int humanCapacity, int baggageCapacity) : base(humanCapacity, baggageCapacity)
-        {
+        protected int _maxLoadWeight;
 
+        public int getMaxLoadWeight => _maxLoadWeight;
+     
+        public Load_Car(int mass, int maxLoadWeight) : base(mass)
+        {
+            _maxLoadWeight = maxLoadWeight;
         }
     }
 }
