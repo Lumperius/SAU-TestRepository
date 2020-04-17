@@ -6,7 +6,7 @@ namespace HomeWork_3
 {
     class Carriage : TrainElement
     {
-        Carriage( int humanCapacity, int baggageCapacity) : base(humanCapacity, baggageCapacity)
+        public Carriage( int humanCapacity, int baggageCapacity) : base(humanCapacity, baggageCapacity)
         {
 
         }
