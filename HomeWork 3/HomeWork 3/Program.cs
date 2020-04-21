@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 
 namespace HomeWork_3
@@ -28,9 +29,42 @@ namespace HomeWork_3
         }
 
 
-        static void ComposeTrain( int trainCapacity, int numberOfCarriages)
+        static void GetTrainInfo( List<TrainElement> train)
         {
+            int PassangerCapacity = 0;
+            int BaggageCpapcity = 0;
+            int TrainMass = 0;
+            int MaxLoad = 0;
 
+
+            foreach (TrainElement car in train)
+            {
+                
+            }
+
+
+            foreach (TrainElement car in train)
+            {
+                TrainMass += car.getMass();
+
+                if ((car as TrainElement) == (car as Carriage))
+                { 
+                PassangerCapacity += (car as Carriage).GetHumanCapacity();
+                BaggageCpapcity += (car as Carriage).GetBaggageCapacity();
+                }
+
+                if ((car as TrainElement) == (car as LoadCar))
+                {
+                    MaxLoad += (car as LoadCar).GetMaxLoadWeight();
+                }
+            }
+
+            Console.WriteLine("The train contains " + train.Count + " cars");
+            Console.WriteLine("Train mass is " + TrainMass + " kilogramms");
+            Console.WriteLine("Passanger capacity is " + PassangerCapacity + " people");
+            Console.WriteLine("Baggage capacity is " + BaggageCpapcity + " kilogramms");
+            Console.WriteLine("Train's max load is " + MaxLoad + " kilogramms");
+            Console.WriteLine("The power of locomotive is " + (train.Last() as Locomotive).GetEnginePower() + " Watt");
         }
       
         
@@ -49,9 +83,8 @@ namespace HomeWork_3
             FirstClassSleeper FCS1 = new FirstClassSleeper(7000, 15, 100);
             FirstClassSleeper FCS2 = new FirstClassSleeper(8000, 20, 90);
 
-            Load_Car LC1 = new Load_Car(7000, 30000);
-            Load_Car LC2 = new Load_Car(9000, 35000);
-
+            LoadCar LC1 = new LoadCar(7000, 30000);
+            LoadCar LC2 = new LoadCar(9000, 35000);
 
             Locomotive Loco = new Locomotive(20000, 12000);
 
@@ -89,8 +122,10 @@ namespace HomeWork_3
 
                 }
             }
+
                         Train.Add(Loco);
 
+            GetTrainInfo(Train);
 
         }
     }

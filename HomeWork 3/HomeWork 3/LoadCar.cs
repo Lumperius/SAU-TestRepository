@@ -4,13 +4,13 @@ using System.Text;
 
 namespace HomeWork_3
 {
-    class Load_Car : TrainElement
+    class LoadCar : TrainElement
     {
         protected int _maxLoadWeight;
 
-        public int getMaxLoadWeight => _maxLoadWeight;
+        public int GetMaxLoadWeight() => _maxLoadWeight;
      
-        public Load_Car(int mass, int maxLoadWeight) : base(mass)
+        public LoadCar(int mass, int maxLoadWeight) : base(mass)
         {
             _maxLoadWeight = maxLoadWeight;
         }
