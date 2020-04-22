@@ -6,7 +6,7 @@ namespace HomeWork_3
 {
     class Carriage : TrainElement
     {
-        protected int _humanCapacity;
+        public int _humanCapacity;
         protected int _baggageCapacity;
 
         public int GetHumanCapacity() => _humanCapacity;
