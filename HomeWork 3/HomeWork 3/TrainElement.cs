@@ -4,12 +4,11 @@ using System.Text;
 
 namespace HomeWork_3
 {
-    class TrainElement : iInformative
+    abstract class TrainElement : iInformative
 
     {
         protected int _mass;
-        public byte ComfortLevel;
-
+        public byte comfortLevel;
         public int getMass() => _mass;
 
         public TrainElement(int mass)
@@ -17,8 +16,8 @@ namespace HomeWork_3
             _mass = mass;
         }
 
-        public void GetInfo(int carNumber)
-        { }
+        public abstract void GetInfo(int carNumber);
+        
 
     }
 }

@@ -4,13 +4,16 @@ using System.Text;
 
 namespace HomeWork_3
 {
-    class Carriage : TrainElement
+    abstract class Carriage : TrainElement, iInformative
     {
         public int _humanCapacity;
         protected int _baggageCapacity;
 
+
         public int GetHumanCapacity() => _humanCapacity;
         public int GetBaggageCapacity() => _baggageCapacity;
+
+        public override abstract void GetInfo(int carNumber);
 
         public Carriage(int mass, int humanCapacity, int baggageCapacity) : base(mass)
         {

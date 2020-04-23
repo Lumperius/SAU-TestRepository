@@ -60,10 +60,12 @@ namespace HomeWork_3
             Console.WriteLine("Baggage capacity is " + BaggageCpapcity + " kilogramms");
             Console.WriteLine("Train's max load is " + MaxLoad + " kilogramms");
             Console.WriteLine("The power of locomotive is " + (train.Last() as Locomotive).GetEnginePower() + " Watt");
+            Console.WriteLine("");
+
         }
-      
-  ///////////////////////////////////////////////////////////////////////////////////////////
-      
+
+        ///////////////////////////////////////////////////////////////////////////////////////////
+
         static void SelectCars(List<TrainElement> train, int Input)
         {
             bool CarIsFound = false;
@@ -89,6 +91,12 @@ namespace HomeWork_3
 
             int usersInput = RequestNumber();
 
+            if(usersInput > 150)
+            {
+                Console.WriteLine("Wow, this train is too big! Let's lower it to 100 cars.");
+                usersInput = 100;
+            }
+
             List < TrainElement > Train = new List<TrainElement>();
 
             EconomyClassSleeper ECS1 = new EconomyClassSleeper(10000, 60, 150);
@@ -107,7 +115,7 @@ namespace HomeWork_3
 
 
             Random rnd = new Random();
-            for (int i=0; i < usersInput + 1; i++)
+            for (int i=0; i < usersInput - 1; i++)
             {
                 int type = rnd.Next(1, 8);
                 switch (type)
@@ -141,17 +149,18 @@ namespace HomeWork_3
             }
 
 
-            Train.OrderBy(Train => Train.ComfortLevel);
+            Train.OrderBy(Train => Train.comfortLevel);
             Train.Add(Loco);
 
             Console.WriteLine("Train is generated!");
-            Console.WriteLine("Enter in 1 to get info about train, 2 to get info about choosen car, 3 to find cars according to amount of passangers");
-            Console.WriteLine("0 to exit the programm.");
+            Console.WriteLine("");
 
+            for (bool On = true; On == true;)
+            {
+                Console.WriteLine("Enter in (1) to get info about train, (2) to get info about choosen car," );
+                Console.WriteLine("(3) to find cars according to amount of passangers, (0) to exit the programm.");
+                Console.WriteLine("");
 
-               for(bool On = true; On == true;)
-               { 
-             
                 usersInput = RequestNumber();
              
                      switch(usersInput)
@@ -164,8 +173,13 @@ namespace HomeWork_3
                        case 2:
                            Console.WriteLine("Enter the number of car");
                            usersInput = RequestNumber();
-                           Train[usersInput].GetInfo(usersInput);
-                           break;
+                        if (usersInput > Train.Count )  
+                                { Console.WriteLine("Invalid Number."); }
+                           else {
+                                 Train[usersInput - 1].GetInfo(usersInput); 
+                                }
+                          
+                        break;
                      
 
                        case 3:
@@ -178,7 +192,7 @@ namespace HomeWork_3
 
                        case 0:
                            Console.WriteLine("Bye bye!");
-                            On = false;
+                           On = false;
                            break;
                      
 
@@ -187,7 +201,7 @@ namespace HomeWork_3
                            break;
                      }
              
-               }
+            }
         }
     }
 }
