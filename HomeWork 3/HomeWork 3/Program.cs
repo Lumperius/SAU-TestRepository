@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.IO;
 
 
 namespace HomeWork_3
@@ -30,7 +31,7 @@ namespace HomeWork_3
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
       
-        static void GetTrainInfo( List<TrainElement> train)
+        static void GetTrainInfo( List<TrainElement> train) //Function calcutes parametrs about whole train and displays it in console
         {
             int PassangerCapacity = 0;
             int BaggageCpapcity = 0;
@@ -38,23 +39,23 @@ namespace HomeWork_3
             int MaxLoad = 0;
 
 
-            foreach (TrainElement car in train)
+            foreach (TrainElement car in train) //Starting a cycle for TrainElements
             {
-                TrainMass += car.getMass();
+                TrainMass += car.getMass(); //Calulating mass of whole train
 
-                if ((car as TrainElement) == (car as Carriage))
+                if ((car as TrainElement) == (car as Carriage)) //Check if this TrainElement is also a Carriage(is it proper way to do this?)
                 { 
-                PassangerCapacity += (car as Carriage).GetHumanCapacity();
+                PassangerCapacity += (car as Carriage).GetHumanCapacity(); //Calculating passangers and baggage capacity
                 BaggageCpapcity += (car as Carriage).GetBaggageCapacity();
                 }
 
-                if ((car as TrainElement) == (car as LoadCar))
+                if ((car as TrainElement) == (car as LoadCar)) //Same for LoadCar
                 {
-                    MaxLoad += (car as LoadCar).GetMaxLoadWeight();
+                    MaxLoad += (car as LoadCar).GetMaxLoadWeight(); // Calculating max load
                 }
             }
 
-            Console.WriteLine("The train contains " + train.Count + " cars");
+            Console.WriteLine("The train contains " + train.Count + " cars"); //Displaying info
             Console.WriteLine("Train mass is " + TrainMass + " kilogramms");
             Console.WriteLine("Passanger capacity is " + PassangerCapacity + " people");
             Console.WriteLine("Baggage capacity is " + BaggageCpapcity + " kilogramms");
@@ -66,20 +67,20 @@ namespace HomeWork_3
 
         ///////////////////////////////////////////////////////////////////////////////////////////
 
-        static void SelectCars(List<TrainElement> train, int Input)
+        static void SelectCars(List<TrainElement> train, int Input) //Functions finds  cars that capable of containing given amount of people
         {
-            bool CarIsFound = false;
+            bool CarIsFound = false; // Bool to check if at least one car was found
 
             for (int i = 0; i < train.Count; i++)
             {
-                if ((train[i] as TrainElement) == (train[i] as Carriage) && (train[i] as Carriage).GetHumanCapacity() > Input)
+                if ((train[i] as TrainElement) == (train[i] as Carriage) && (train[i] as Carriage).GetHumanCapacity() > Input //Checks car is Carriage type and if its capability enough
                 {
-                    Console.WriteLine("№" + i);
+                    Console.WriteLine("№" + i); //Dsiplys cars and change bool
                     CarIsFound = true;
                 }
             }
 
-            if (!CarIsFound) { Console.WriteLine("There is no sufficient cars. =("); }
+            if (!CarIsFound) { Console.WriteLine("There is no sufficient cars, sorry =("); //Diplays sorry message if the bool is false
         }
 
   ///////////////////////////////////////////////////////////////////////////////////////////
@@ -87,17 +88,22 @@ namespace HomeWork_3
         static void Main(string[] args)
         {
             Console.WriteLine("Hello User!");
+
+            var Reader = new StreamReader("../../../TrainsTypesList.txt"); //Create StreamReader object
+
+            Console.WriteLine(Reader.ReadToEnd()); //a test
+
             Console.WriteLine("Enter the number of cars in train.");
+            int usersInput = RequestNumber(); // usersInput is used to hold last user's input, apparently
+            
 
-            int usersInput = RequestNumber();
-
-            if(usersInput > 150)
+            if(usersInput > 150) //This is limitation for train's lenght
             {
                 Console.WriteLine("Wow, this train is too big! Let's lower it to 100 cars.");
                 usersInput = 100;
             }
 
-            List < TrainElement > Train = new List<TrainElement>();
+            List < TrainElement > Train = new List<TrainElement>(); //Creating TrainElements objects
 
             EconomyClassSleeper ECS1 = new EconomyClassSleeper(10000, 60, 150);
             EconomyClassSleeper ECS2 = new EconomyClassSleeper(9000, 50, 140);
@@ -114,7 +120,7 @@ namespace HomeWork_3
             Locomotive Loco = new Locomotive(20000, 12000);
 
 
-            Random rnd = new Random();
+            Random rnd = new Random(); //fill the train with random cars
             for (int i=0; i < usersInput - 1; i++)
             {
                 int type = rnd.Next(1, 8);
@@ -149,13 +155,15 @@ namespace HomeWork_3
             }
 
 
-            Train.OrderBy(Train => Train.comfortLevel);
-            Train.Add(Loco);
+            Train.OrderBy(Train => Train.comfortLevel); // Order them by comfort level
+            Train.Add(Loco); // And add a locmotive at the end of the train
+            Train.Reverse(); // Reverse it
+            Train.Count(); // Finish the LINQ sequence
 
             Console.WriteLine("Train is generated!");
             Console.WriteLine("");
 
-            for (bool On = true; On == true;)
+            for (bool On = true; On == true;) //Start the  programm loop
             {
                 Console.WriteLine("Enter in (1) to get info about train, (2) to get info about choosen car," );
                 Console.WriteLine("(3) to find cars according to amount of passangers, (0) to exit the programm.");
@@ -163,17 +171,17 @@ namespace HomeWork_3
 
                 usersInput = RequestNumber();
              
-                     switch(usersInput)
+                     switch(usersInput) // Do the command according user's input
                      {
-                       case 1:
+                       case 1: //Get info about train
                            GetTrainInfo(Train);
                            break;
                      
 
-                       case 2:
+                       case 2: //Get info about chosen car
                            Console.WriteLine("Enter the number of car");
                            usersInput = RequestNumber();
-                        if (usersInput > Train.Count )  
+                        if (usersInput > Train.Count )  // Check if car is in range of the train
                                 { Console.WriteLine("Invalid Number."); }
                            else {
                                  Train[usersInput - 1].GetInfo(usersInput); 
@@ -182,7 +190,7 @@ namespace HomeWork_3
                         break;
                      
 
-                       case 3:
+                       case 3: //Find sufficient car
                            Console.WriteLine("Enter the amount of passangers");
                            usersInput = RequestNumber();
                            Console.WriteLine("Next carriages are sufficient:");
@@ -190,7 +198,7 @@ namespace HomeWork_3
                            break;
                      
 
-                       case 0:
+                       case 0: //Exit
                            Console.WriteLine("Bye bye!");
                            On = false;
                            break;
