@@ -1,1 +1,21 @@
 Hi
+
+ 
+                             Mass   Psg  Bge
+  EconomyClassSleeper ECS1 = 10000, 60,  150
+                      ECS2 = 9000,  50,  140
+
+
+  CompartmentSleeper   CS1 = 11000, 40,  130
+                       CS2 = 10000, 30,  140
+
+
+  FirstClassSleeper   FCS1 = 7000,  15,  100
+                      FCS2 = 8000,  20,  90
+
+                                   *MaxLoad
+  LoadCar              LC1 = 7000, 30000
+                       LC2 = 9000, 35000
+
+                                    *Power
+  Locomotive          Loco = 20000, 12000

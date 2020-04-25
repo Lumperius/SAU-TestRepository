@@ -60,7 +60,7 @@ namespace HomeWork_3
             Console.WriteLine("Passanger capacity is " + PassangerCapacity + " people");
             Console.WriteLine("Baggage capacity is " + BaggageCpapcity + " kilogramms");
             Console.WriteLine("Train's max load is " + MaxLoad + " kilogramms");
-            Console.WriteLine("The power of locomotive is " + (train.Last() as Locomotive).GetEnginePower() + " Watt");
+            Console.WriteLine("The power of locomotive is " + (train.First() as Locomotive).GetEnginePower() + " Watt");
             Console.WriteLine("");
 
         }
@@ -91,7 +91,7 @@ namespace HomeWork_3
 
             var Reader = new StreamReader("../../../TrainsTypesList.txt"); //Create StreamReader object
 
-            Console.WriteLine(Reader.ReadToEnd()); //a test
+            Console.WriteLine(Reader.ReadLine()); //a test
 
             Console.WriteLine("Enter the number of cars in train.");
             int usersInput = RequestNumber(); // usersInput is used to hold last user's input, apparently
@@ -165,6 +165,7 @@ namespace HomeWork_3
 
             for (bool On = true; On == true;) //Start the  programm loop
             {
+                Console.WriteLine("");
                 Console.WriteLine("Enter in (1) to get info about train, (2) to get info about choosen car," );
                 Console.WriteLine("(3) to find cars according to amount of passangers, (0) to exit the programm.");
                 Console.WriteLine("");
