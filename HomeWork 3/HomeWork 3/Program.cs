@@ -73,14 +73,14 @@ namespace HomeWork_3
 
             for (int i = 0; i < train.Count; i++)
             {
-                if ((train[i] as TrainElement) == (train[i] as Carriage) && (train[i] as Carriage).GetHumanCapacity() > Input //Checks car is Carriage type and if its capability enough
+                if ((train[i] as TrainElement) == (train[i] as Carriage) && (train[i] as Carriage).GetHumanCapacity() > Input) //Checks car as Carriage type and if its capability enough
                 {
                     Console.WriteLine("№" + i); //Dsiplys cars and change bool
                     CarIsFound = true;
                 }
             }
 
-            if (!CarIsFound) { Console.WriteLine("There is no sufficient cars, sorry =("); //Diplays sorry message if the bool is false
+            if (!CarIsFound) { Console.WriteLine("There is no sufficient cars, sorry =("); }//Diplays sorry message if the bool is false
         }
 
   ///////////////////////////////////////////////////////////////////////////////////////////
@@ -171,7 +171,7 @@ namespace HomeWork_3
 
                 usersInput = RequestNumber();
              
-                     switch(usersInput) // Do the command according user's input
+                     switch(usersInput) // Do the command according to user's input
                      {
                        case 1: //Get info about train
                            GetTrainInfo(Train);
