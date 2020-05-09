@@ -5,6 +5,7 @@ using System.Linq;
 using System.IO;
 
 
+
 namespace HomeWork_3
 {
     class Program
@@ -31,7 +32,7 @@ namespace HomeWork_3
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
       
-        static void GetTrainInfo( List<TrainElement> train) //Function calcutes parametrs about whole train and displays it in console
+        static void GetTrainInfo( List<TrainElement> train) //Function calcutes parameters about whole train and displays it in console
         {
             int PassangerCapacity = 0;
             int BaggageCpapcity = 0;
@@ -43,7 +44,7 @@ namespace HomeWork_3
             {
                 TrainMass += car.getMass(); //Calulating mass of whole train
 
-                if ((car as TrainElement) == (car as Carriage)) //Check if this TrainElement is also a Carriage(is it proper way to do this?)
+                if ((car as TrainElement) == (car as Carriage)) //Check if this TrainElement is also a Carriage
                 { 
                 PassangerCapacity += (car as Carriage).GetHumanCapacity(); //Calculating passangers and baggage capacity
                 BaggageCpapcity += (car as Carriage).GetBaggageCapacity();
@@ -75,7 +76,7 @@ namespace HomeWork_3
             {
                 if ((train[i] as TrainElement) == (train[i] as Carriage) && (train[i] as Carriage).GetHumanCapacity() > Input) //Checks car as Carriage type and if its capability enough
                 {
-                    Console.WriteLine("№" + i); //Dsiplys cars and change bool
+                    Console.WriteLine("№" + i); //Displays cars and change bool
                     CarIsFound = true;
                 }
             }
@@ -99,7 +100,7 @@ namespace HomeWork_3
 
             if(usersInput > 150) //This is limitation for train's lenght
             {
-                Console.WriteLine("Wow, this train is too big! Let's lower it to 100 cars.");
+                Console.WriteLine("Wow, this train is too big! Let's lower it's lenght to 100 cars.");
                 usersInput = 100;
             }
 
