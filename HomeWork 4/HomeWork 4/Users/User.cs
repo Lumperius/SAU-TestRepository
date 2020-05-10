@@ -18,6 +18,8 @@ namespace HomeWork_4
 
 
         public object CurrentTariff = default;
+        public object CurrentTerminal = default;
+
 
 
         public void Add (int summ)      => Account += summ;
@@ -39,6 +41,7 @@ namespace HomeWork_4
         public User(string name)
         {
             Name = name;
+            ID = Guid.NewGuid();
         }
 
     }

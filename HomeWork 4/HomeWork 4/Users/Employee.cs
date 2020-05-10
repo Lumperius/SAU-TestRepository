@@ -4,12 +4,12 @@ using System.Text;
 
 namespace HomeWork_4.Users 
 {
-    class Worker : User
+    class Employee : User
     {
         public string Position { get; }
         public int Wage { get; }
 
-        public Worker(string name, string position, int wage) : base(name)
+        public Employee(string name, string position, int wage) : base(name)
         {
             Position = position;
             Wage = wage;

@@ -6,7 +6,7 @@ namespace HomeWork_4
 {
     class Port 
     {
-        public Guid UserID { get; }
-        public string state = "off";
+        public Guid UserID { get; set; }
+        public bool IsConnected = false;
     }
 }
