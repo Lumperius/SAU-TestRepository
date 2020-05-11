@@ -1,6 +1,9 @@
-﻿using System;
+﻿using HomeWork_4.Terminals;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
+using System.Threading;
 
 namespace HomeWork_4
 {
@@ -11,9 +14,18 @@ namespace HomeWork_4
 
 
 
-        public void MakeCall<T>(T reciever, int duration)
+        public CallList MakeCall(string senderName, string recieverName, int duration)
         {
+            Console.WriteLine("Beep beep..");
+            Console.WriteLine("Call Started");
+            CallList CallInfo = new CallList();
 
+
+            Thread.Sleep(duration * 1000);
+            Console.WriteLine("Call Finished");
+
+
+            return CallInfo;
         }
 
 
@@ -21,7 +33,7 @@ namespace HomeWork_4
         {
             Model = model;
             Random rand = new Random();
-            Number = "375 " + rand.Next(100000, 999999).ToString();
+            Number = "+375 " + rand.Next(100000, 999999).ToString();
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using HomeWork_4.APS.Tariff;
 using HomeWork_4.Interfaces;
+using HomeWork_4.Terminals;
 using System;
 using System.Collections.Generic;
 using System.Dynamic;
@@ -17,9 +18,9 @@ namespace HomeWork_4
         public int Account { get; set; }
 
 
-        public object CurrentTariff = default;
-        public object CurrentTerminal = default;
-
+        public Tariff CurrentTariff = default;
+        public Terminal CurrentTerminal = default;
+        public CallList CallList = default;
 
 
         public void Add (int summ)      => Account += summ;
@@ -37,6 +38,8 @@ namespace HomeWork_4
                  { CurrentTariff = tariffList[input]; }
             else { Console.WriteLine("Incorrect input"); }
         }
+
+
 
         public User(string name)
         {
