@@ -9,7 +9,7 @@ namespace HomeWork_4.Users
         public string Position { get; }
         public int Wage { get; }
 
-        public Employee(string name, string position, int wage) : base(name)
+        public Employee(string name,int startAccount, string position, int wage) : base(name, startAccount)
         {
             Position = position;
             Wage = wage;

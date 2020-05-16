@@ -2,11 +2,23 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace HomeWork_4
-{
-    class Port 
+enum TerminalState
     {
-        public Guid UserID { get; set; }
-        public bool IsConnected = false;
+    off,
+    calling,
+    connected
+    }
+
+namespace HomeWork_4.APS
+{
+    class Port
+    {
+        public Guid PortID { get; set; }
+        public TerminalState state = 0;
+
+        public Port(Guid id)
+            {
+            PortID = id;
+            }
     }
 }

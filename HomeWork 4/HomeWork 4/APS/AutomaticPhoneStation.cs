@@ -3,14 +3,23 @@ using System.Collections.Generic;
 using HomeWork_4.Users;
 using System.Text;
 using HomeWork_4.Interfaces;
+using HomeWork_4.APS;
+using System.Threading;
 
 namespace HomeWork_4
 {
+    public delegate void Handler();
+
     class AutomaticPhoneStation : IInputable
     {
         public string CompanyName { get; set; }
 
-        List<User> Contracts;
+        public List<Port> Ports;
+
+        public List<string> Contracts;
+
+
+        public event Handler messageEvent;
 
         public User Authentication(List<User> users)
         {
@@ -22,7 +31,7 @@ namespace HomeWork_4
             while (true) { 
             int Input = RequestNumber();
 
-                if (Input <= users.Count) { return users[Input - 1]; }
+                if (Input <= users.Count && Input > 0) { return users[Input - 1]; }
                 else { Console.WriteLine("Incorrect number, try again"); }
                          }
         }
@@ -32,13 +41,25 @@ namespace HomeWork_4
             Console.WriteLine("Enter your name");
             string name = Console.ReadLine();
 
-            return new User(name);
+            Console.WriteLine($"Welcome {name}, you are gifted 50000 virtual coins to your acount");
+            return new User(name, 50000);
+        }
+
+
+        public void TakePayment(object obj)
+        {
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("\nEnd of the month!\n");
+            Console.ForegroundColor = ConsoleColor.White;
         }
 
         public AutomaticPhoneStation(string name)
         {
             CompanyName = name;
+            Ports = new List<Port>();
+            Contracts = new List<string>();
         }
+
 
     }
 }
