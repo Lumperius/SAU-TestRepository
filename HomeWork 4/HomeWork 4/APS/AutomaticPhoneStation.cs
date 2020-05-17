@@ -8,7 +8,9 @@ using System.Threading;
 
 namespace HomeWork_4
 {
-    public delegate void Handler();
+
+    delegate void StationDelegate(string str);
+
 
     class AutomaticPhoneStation : IInputable
     {
@@ -19,7 +21,14 @@ namespace HomeWork_4
         public List<string> Contracts;
 
 
-        public event Handler messageEvent;
+        public static event StationDelegate MessageEvent;
+
+        public static void MessageHandler(string str)
+        {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine(str);
+            Console.ForegroundColor = ConsoleColor.White;
+        }
 
         public User Authentication(List<User> users)
         {
@@ -34,6 +43,7 @@ namespace HomeWork_4
                 if (Input <= users.Count && Input > 0) { return users[Input - 1]; }
                 else { Console.WriteLine("Incorrect number, try again"); }
                          }
+
         }
 
         public User SignUp()
@@ -46,10 +56,31 @@ namespace HomeWork_4
         }
 
 
-        public void TakePayment(object obj)
+        public void TakePayment(object usersObj)
         {
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("\nEnd of the month!\n");
+            MessageEvent?.Invoke("\nEnd of the month\n");
+
+            if (usersObj is List<User>)
+            {
+                foreach(User user in (usersObj as List<User>))
+                {
+                    if(user is Employee)
+                    {
+                        int debtForMonth = user.CurrentDebt + user.CurrentTariff.MonthCost;
+                        user.Account -= debtForMonth;
+                        user.Account += (user as Employee).Wage;
+                        MessageEvent?.Invoke($"{user.Name} pays {debtForMonth} and gets {(user as Employee).Wage}, {user.Account} left.");
+                    }
+                    else 
+                    {
+                        int debtForMonth = user.CurrentDebt + user.CurrentTariff.MonthCost;
+                        user.Account -= debtForMonth;
+                        MessageEvent?.Invoke($"{user.Name} pays {debtForMonth}, {user.Account} left.");
+                    }
+                }
+            }
+
             Console.ForegroundColor = ConsoleColor.White;
         }
 

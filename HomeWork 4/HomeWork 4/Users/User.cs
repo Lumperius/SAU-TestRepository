@@ -16,7 +16,7 @@ namespace HomeWork_4
 
         public string Name { get; set; }
         public int Account { get; set; }
-        public int Debt { get; set; }
+        public int CurrentDebt { get; set; }
 
 
         public Tariff CurrentTariff = default;

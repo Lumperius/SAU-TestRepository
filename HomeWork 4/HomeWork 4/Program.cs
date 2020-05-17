@@ -7,33 +7,44 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using System.IO;
 
 namespace HomeWork_4
 {
     class Program : IInputable
-    {  
+    {
 
-        static Task Main(string[] args)
+        delegate void ErrorDelegate(string str);
+        static event ErrorDelegate ErrorEvent;
+
+        static void ErrorEventHandler(string str)
         {
-            
-            
-            AutomaticPhoneStation Station = new AutomaticPhoneStation("ReCall");
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine(str);
+            Console.ForegroundColor = ConsoleColor.White;
+        }
 
-                    
+        static void Main(string[] args)
+        {
+
+            ErrorEvent += ErrorEventHandler;
+
+        AutomaticPhoneStation Station = new AutomaticPhoneStation("ReCall");
+        AutomaticPhoneStation.MessageEvent += AutomaticPhoneStation.MessageHandler;
+
             List<Tariff> AvailableTariffs = new List<Tariff>()
             {
                 new Tariff("Buisness Tariff", 1000, 0, 3),
                 new Tariff("Social Tariff", 500, 5, 2),
                 new Tariff("Home Tariff", 100, 10, 4)
             };
-
             List<Terminal> Terminals = new List<Terminal>()
             {
                 new Terminal("Nokia"),
                 new Terminal("Samsung"),
                 new Terminal("Apple")
             };
-
+            Terminal.TermianlMessageEvent += Terminal.TerminalEventHandler;
 
 
             List<User> Users = new List<User>();
@@ -77,7 +88,7 @@ namespace HomeWork_4
             Console.WriteLine($"Hello {CurrentUser.Name}");
 
             TimerCallback tcb = new TimerCallback(Station.TakePayment);
-            Timer timer = new Timer(tcb, 1, 5000, 50000);
+            Timer timer = new Timer(tcb, Users, 5000, 20000);
 
 
             while (true)
@@ -100,8 +111,12 @@ namespace HomeWork_4
 
                     case 2:
                         {
-                            if (CurrentUser.CurrentTerminal.IsConnected == TerminalState.off) { Console.WriteLine("Termianl is disconected."); break; }
-                            if (CurrentUser.CurrentTerminal.IsConnected == TerminalState.calling) { Console.WriteLine("Cant't execute this during call."); break; }
+                            if (CurrentUser.CurrentTerminal.IsConnected == TerminalState.off)
+                                { ErrorEvent?.Invoke("Termianl is disconected."); break; }
+                            if (CurrentUser.CurrentTerminal.IsConnected == TerminalState.calling)
+                                { ErrorEvent?.Invoke("Cant't execute this during call."); break; }
+                            if (CurrentUser.Account <= 0 )
+                                { ErrorEvent?.Invoke("You don't have enough money on your account."); break; }
 
 
                             Console.WriteLine("How many seconds should the call last?");
@@ -115,10 +130,12 @@ namespace HomeWork_4
 
                             Input = RequestNumber();
                             User Reciever = Users[Input - 1];
-                            if (Reciever.CurrentTerminal.IsConnected != TerminalState.connected) { Console.WriteLine("Can't call this user."); break; }
+
+                            if (Reciever.CurrentTerminal.IsConnected != TerminalState.connected) 
+                            { ErrorEvent?.Invoke("Can't call this user."); break; }
 
 
-                            if (Reciever == CurrentUser) { Console.WriteLine("You can't call yourself"); break; }
+                            if (Reciever == CurrentUser) { ErrorEvent?.Invoke("You can't call yourself."); break; }
 
                             Task<CallList> task = Task<CallList>.Factory.StartNew(() => CurrentUser.CurrentTerminal.MakeCall(CurrentUser.Name, Reciever.Name, duration));
 
@@ -131,7 +148,7 @@ namespace HomeWork_4
                             if(CurrentUser is Employee) { CallPrice = (int)(0.9 * CallPrice); }
                             CurrentUser.CallList.TotalCost.Add(CallPrice);
 
-                            CurrentUser.Debt += CallPrice;
+                            CurrentUser.CurrentDebt += CallPrice;
                         }
                         break;
 
@@ -141,6 +158,7 @@ namespace HomeWork_4
 
                     case 4:
                         CurrentUser.SwitchPortState();
+                        Console.WriteLine($"Terminal is {CurrentUser.CurrentTerminal.IsConnected}");
                         break;
 
                     case 5:
