@@ -16,12 +16,12 @@ namespace HomeWork_4
     {
         public string CompanyName { get; set; }
 
-        public List<Port> Ports;
+        public List<Port> Ports;  //List of ports the statio have
 
-        public List<string> Contracts;
+        public List<string> Contracts;  //List of made contracts
 
 
-        public static event StationDelegate MessageEvent;
+        public static event StationDelegate MessageEvent;  //Station messages event
 
         public static void MessageHandler(string str)
         {
@@ -30,7 +30,7 @@ namespace HomeWork_4
             Console.ForegroundColor = ConsoleColor.White;
         }
 
-        public User Authentication(List<User> users)
+        public User Authentication(List<User> users)  //Authentication
         {
             for (int i = 0; i < users.Count; i++)
             {
@@ -46,7 +46,7 @@ namespace HomeWork_4
 
         }
 
-        public User SignUp()
+        public User SignUp() //Sing up a new user
         {
             Console.WriteLine("Enter your name");
             string name = Console.ReadLine();
@@ -56,19 +56,19 @@ namespace HomeWork_4
         }
 
 
-        public void TakePayment(object usersObj)
+        public void TakePayment(object usersObj)  //function called at the end of months, takes user's debt with discount for employees, pays wage to employees
         {
-            Console.ForegroundColor = ConsoleColor.Green;
             MessageEvent?.Invoke("\nEnd of the month\n");
 
             if (usersObj is List<User>)
             {
                 foreach(User user in (usersObj as List<User>))
                 {
-                    if(user is Employee)
+                    if(user is Employee)  //Check for employees
                     {
                         int debtForMonth = user.CurrentDebt + user.CurrentTariff.MonthCost;
-                        user.Account -= debtForMonth;
+                        user.Account -= (int)(debtForMonth * 0.9);  //Company provides 10% discount for employees
+                        user.CurrentDebt = 0;
                         user.Account += (user as Employee).Wage;
                         MessageEvent?.Invoke($"{user.Name} pays {debtForMonth} and gets {(user as Employee).Wage}, {user.Account} left.");
                     }
@@ -76,12 +76,13 @@ namespace HomeWork_4
                     {
                         int debtForMonth = user.CurrentDebt + user.CurrentTariff.MonthCost;
                         user.Account -= debtForMonth;
+                        user.CurrentDebt = 0;
                         MessageEvent?.Invoke($"{user.Name} pays {debtForMonth}, {user.Account} left.");
                     }
+
+                    user.TariffWasChanged = false;
                 }
             }
-
-            Console.ForegroundColor = ConsoleColor.White;
         }
 
         public AutomaticPhoneStation(string name)

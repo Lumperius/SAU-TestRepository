@@ -4,9 +4,9 @@ using System.Text;
 
 namespace HomeWork_4.Interfaces
 {
-    class IInputable
+    class IInputable 
     {
-        public static int RequestNumber() //Function requsts line, transforms it to int and returns the result
+        public static int RequestNumber() //Function requests line, transforms it into int and returns the result
         {
             var collectedLine = Console.ReadLine();
             int collectedNumber;

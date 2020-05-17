@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HomeWork_4.Terminals
 {
-    class CallList
+    class CallList //Users provided with CallList, that cotains information about calls
     {
         public List<int> Duration = default;
         public List<int> TotalCost = default;

@@ -18,7 +18,7 @@ namespace HomeWork_4.APS
 
         public Port(Guid id)
             {
-            PortID = id;
+            PortID = id;  //Every port gets ID of assigned terminal
             }
     }
 }

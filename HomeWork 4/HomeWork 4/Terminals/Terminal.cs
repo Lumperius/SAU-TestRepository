@@ -30,18 +30,14 @@ namespace HomeWork_4
 
         public CallList MakeCall(string senderName, string recieverName, int duration)
         {
-            Console.ForegroundColor = ConsoleColor.Red;
-
             TermianlMessageEvent?.Invoke("\nBeep beep..");
-            IsConnected = TerminalState.calling;
+            IsConnected = TerminalState.calling;  //Terminal switches to 'calling' state during the call
             TermianlMessageEvent?.Invoke("\nCall Started");
             CallList CallInfo = new CallList();
-            Thread.Sleep(duration * 1000);
+            Thread.Sleep(duration * 1000);  //Sleep imitates process of calling
             TermianlMessageEvent?.Invoke("\nCall Finished\n");
-            IsConnected = TerminalState.connected;
+            IsConnected = TerminalState.connected;  //Terminal switches back after call
            
-            Console.ForegroundColor = ConsoleColor.White;
-
 
             return CallInfo;
         }
@@ -51,7 +47,7 @@ namespace HomeWork_4
         {
             Model = model;
             Random rand = new Random();
-            Number = "+375 " + rand.Next(100000, 999999).ToString();
+            Number = "+375 " + rand.Next(100000, 999999).ToString();  //Generate random number
             IsConnected = TerminalState.off;
         }
     }

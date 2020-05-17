@@ -7,7 +7,7 @@ using HomeWork_4.Interfaces;
 
 namespace HomeWork_4.APS.Tariff
 {
-    class Tariff : IInformative
+    class Tariff 
     {
         public string TariffName { get; }
         public int MonthCost { get; }
