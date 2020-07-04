@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using GoodMoodProvider.Models;
+using GoodMoodProvider.ViesModels;
 
 namespace GoodMoodProvider.Controllers
 {
@@ -35,17 +36,12 @@ namespace GoodMoodProvider.Controllers
         }
       
         
-        [HttpPost]
-        public IActionResult Registration()
+        public IActionResult Show()
         {
             return View();
         }
 
-        [HttpGet]
-        public IActionResult Registration()
-        {
-            return View();
-        }
+
 
     }
 }

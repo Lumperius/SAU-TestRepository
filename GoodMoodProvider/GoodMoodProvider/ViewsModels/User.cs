@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace GoodMoodProvider.DataContexts
+namespace GoodMoodProvider.ViesModels
 {
     public class User
     {

@@ -3,14 +3,14 @@
     ViewData["Title"] = "Registration";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@model GoodMoodProvider.DataContexts.User
+@model GoodMoodProvider.ViesModels.User
 
 <h1>UserRegistration</h1>
 
 <div>
-    <form method="post">
+    <form asp-action="Registration" asp-controller="User" method="post">
 
-        <input name="Nickname">
+        <input type="text" name="Nickname">
         <label>Login</label>
         <hr>
         <input type="password" , name="Nickname">
@@ -18,16 +18,16 @@
         <input type="password" , name="Nickname">
         <label>Confirm password</label>
         <hr>
-        <input name="FirstName">
+        <input type="text" name="FirstName">
         <label>First name</label>
         <hr>
-        <input name="SecondName">
+        <input type="text" name="SecondName">
         <label>Second name</label>
         <hr>
         <input type="datetime" , name="Age">
         <label>Age</label>
         <hr>
-        <input name="Gender">
+        <input type="text" name="Gender">
         <label>Gender</label>
         <hr>
 
