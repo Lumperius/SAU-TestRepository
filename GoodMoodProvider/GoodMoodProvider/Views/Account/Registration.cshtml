@@ -3,9 +3,9 @@
     ViewData["Title"] = "Registration";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@model GoodMoodProvider.ViesModels.User
+@model UserViewModel
 
-<h1>UserRegistration</h1>
+<h1>Registration</h1>
 
 <div>
     <form asp-action="Registration" asp-controller="User" method="post">
@@ -13,24 +13,25 @@
         <input type="text" name="Nickname">
         <label>Login</label>
         <hr>
-        <input type="password" , name="Nickname">
+        <input type="password" , name="Password">
         <label>Password</label>
-        <input type="password" , name="Nickname">
+        <input type="password" , name="ConfirmPassword" >
         <label>Confirm password</label>
         <hr>
         <input type="text" name="FirstName">
-        <label>First name</label>
+        <label>First name*</label>
         <hr>
         <input type="text" name="SecondName">
-        <label>Second name</label>
+        <label>Second name*</label>
         <hr>
         <input type="datetime" , name="Age">
-        <label>Age</label>
+        <label>Age*</label>
         <hr>
-        <input type="text" name="Gender">
-        <label>Gender</label>
+        <label>Gender*</label>
+        <input type="radio" name="Male">          <input type="radio" name="Female">
         <hr>
 
         <button type="submit">Enter</button>
     </form>
+    (*)-optional
 </div>

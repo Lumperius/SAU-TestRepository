@@ -11,6 +11,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using GoodMoodProvider.Models;
 using GoodMoodProvider.DataContexts;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Http;
 
 namespace GoodMoodProvider
 {
@@ -28,8 +30,14 @@ namespace GoodMoodProvider
         {
             services.AddControllersWithViews();
 
-            services.AddDbContext<UserContext>(options =>
-            options.UseSqlServer(Configuration.GetConnectionString("GoodMoodProvider")));
+            var connString = Configuration.GetConnectionString("DefaultConnection");
+            services.AddDbContextPool<DataContext>(options =>
+            options.UseSqlServer(connString));
+
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                    .AddCookie(options => options.LoginPath = new PathString("/Account/Login"));
+
+            services.AddScoped<DataContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -49,6 +57,8 @@ namespace GoodMoodProvider
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 
