@@ -15,28 +15,51 @@ namespace GoodMoodProvider.Controllers
 {
     public class NewsController : Controller
     {
+        public readonly DataContext _context;
+
+        public NewsController(DataContext context)
+        {
+            var optionsBuilder = new DbContextOptionsBuilder<DataContexts.DataContext>();
+            var options = optionsBuilder
+                    .UseSqlServer(@"Server=DESKTOP-I8BJOOE;Database=GoodNewsDB;Trusted_Connection=True;MultipleActiveResultSets=true")
+                    .Options;
+            _context = new DataContext((DbContextOptions<DataContext>)options);
+        }
         public IActionResult Index()
         {
             return View();
         }
 
         [HttpGet]
-        public IActionResult NewsList(NewsViewModel model)
+        public IActionResult NewsList()
         {
-            var optionsBuilder = new DbContextOptionsBuilder<DataContexts.DataContext>();
+            return View(_context.News);
+        }
 
-            var options = optionsBuilder
-           .UseSqlServer(@"Server=DESKTOP-I8BJOOE;Database=GoodNewsDB;Trusted_Connection=True;MultipleActiveResultSets=true")
-           .Options;
 
-            using (DataContext DbData = new DataContext(options))
+        [HttpPost]
+        public IActionResult AddNews(NewsViewModel model)
+        {
+
+            var newNews = new News
             {
-                foreach(News item in DbData.News)
-                {
-
-                }
-            }
+                ID = new Guid(),
+                Article = model.Article,
+                Body = model.Body,
+                SourceSite = model.OriginSite,
+                Author = model.Author,
+                DatePosted = DateTime.Now
+            };
+            _context.News.Add(newNews);
+            _context.SaveChanges();
             return View();
         }
+
+        [HttpGet]
+        public IActionResult AddNews()
+        {
+            return View();
+        }
+
     }
 }

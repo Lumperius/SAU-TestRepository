@@ -9,7 +9,7 @@ namespace GoodMoodProvider.ViewsModels
     public class UserViewModel
     {
         [Required]
-        public string Nickname { get; set; }
+        public string Login { get; set; }
 
         [Required]
         public string Password { get; set; }

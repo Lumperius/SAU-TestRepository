@@ -9,7 +9,7 @@ namespace GoodMoodProvider.Models
     {
         public Guid ID { get; set; }
         public string Password { get; set; }
-        public string Nickname { get; set; }
+        public string Login { get; set; }
         public string Firstname { get; set; }
         public string SecondName { get; set; }
         public DateTime BirthDay { get; set; }

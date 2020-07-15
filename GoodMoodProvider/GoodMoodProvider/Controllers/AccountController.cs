@@ -37,14 +37,14 @@ namespace GoodMoodProvider.Controllers
                 User NewUser = new User();
                 NewUser.ID = new Guid();
                 NewUser.Password = model.Password;
-                NewUser.Nickname = model.Nickname;
+                NewUser.Login = model.Login;
                 NewUser.Firstname = model.Firstname;
                 NewUser.SecondName = model.SecondName;
                 NewUser.BirthDay = model.BirthDay;
                 NewUser.Gender = model.Gender;
                 NewUser.IsOnline = 1;
 
-                DbData.Users.Add(NewUser);
+                DbData.User.Add(NewUser);
 
                 DbData.SaveChanges();
 
@@ -71,13 +71,13 @@ namespace GoodMoodProvider.Controllers
                     .Options;
             using (DataContexts.DataContext DbData = new DataContexts.DataContext((DbContextOptions<DataContexts.DataContext>)options))
             {
-                    User user = DbData.Users.FirstOrDefault(x => 
-                    x.Nickname == model.Nickname && 
+                    User user = DbData.User.FirstOrDefault(x => 
+                    x.Login == model.Login && 
                     x.Password == model.Password);
             }
             if(User!=null)
             {
-                await Authenticate(model.Nickname);
+                await Authenticate(model.Login);
 
                 return RedirectToAction("Index", "Home");
             }

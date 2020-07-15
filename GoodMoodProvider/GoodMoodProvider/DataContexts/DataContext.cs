@@ -16,10 +16,12 @@ namespace GoodMoodProvider.DataContexts
         {
         }
 
-        public DbSet<User> Users { get; set; }
+        public DbSet<User> User { get; set; }
         public DbSet<News> News { get; set; }
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Role> Role { get; set; }
+        public DbSet<WordRating> WordsRating {get; set;}
+        public DbSet<UserRole> UserRoles { get; set; }
 
 
     }

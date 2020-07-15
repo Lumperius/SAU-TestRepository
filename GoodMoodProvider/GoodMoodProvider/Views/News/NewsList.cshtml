@@ -1,9 +1,31 @@
 ﻿
+@model IEnumerable<News>
+
 @{
     ViewData["Title"] = "NewsList";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@model GoodMoodProvider.ViewsModels.NewsViewModel
 
 
-<h1>NewsList</h1>
+<h2>NewsList</h2>
+<br>
+<br>
+@foreach (News news in Model)
+{
+    <h3>@news.Article</h3>
+    <br>
+
+    @news.Body
+    <br>
+
+    @if (news.Author != null)
+    {<i>By: </i>@news.Author}
+    @if (news.SourceSite != null)
+    {<i> from: </i> @news.SourceSite}
+    <br>
+
+    @news.DatePosted
+    <hr>
+    <hr>
+    <br>
+}
