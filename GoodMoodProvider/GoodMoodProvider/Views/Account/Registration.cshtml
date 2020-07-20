@@ -10,12 +10,12 @@
 <div>
     <form asp-action="Registration" asp-controller="Account" method="post">
 
-        <input type="text" name="Login">
+        <input type="text" name="Login" required>
         <label>Login</label>
         <hr>
-        <input type="password" , name="Password">
+        <input type="password" , name="Password" required>
         <label>Password</label>
-        <input type="password" , name="ConfirmPassword" >
+        <input type="password" , name="ConfirmPassword" required>
         <label>Confirm password</label>
         <hr>
         <input type="text" name="FirstName">

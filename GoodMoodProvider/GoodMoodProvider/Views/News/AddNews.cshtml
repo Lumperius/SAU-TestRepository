@@ -10,11 +10,11 @@
 <div>
     <form asp-action="AddNews" asp-controller="News" method="post">
        
-        <label>Add article</label>
-        <input type="text" name="Article">
+        <label>Enter article</label>
+        <input type="text" name="Article" required>
         <br>
-        <label>Add news</label>
-        <input type="text" name="Body">
+        <label>Enter news text</label>
+        <input type="text" name="Body" size="50" required>
         <br>
         <label>Enter name of author*</label>
         <input type="text" name="Author">

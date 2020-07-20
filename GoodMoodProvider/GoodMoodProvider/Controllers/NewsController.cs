@@ -10,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using GoodMoodProvider.ViewsModels;
 using GoodMoodProvider.Models;
+using Microsoft.CodeAnalysis.Differencing;
 
 namespace GoodMoodProvider.Controllers
 {
@@ -60,6 +61,40 @@ namespace GoodMoodProvider.Controllers
         {
             return View();
         }
+
+
+        [HttpPost]
+        public IActionResult EditNews(NewsViewModel model, Guid id)
+        {
+            var TargetNews = _context.News
+                .Where(N => N.ID == id)
+                .FirstOrDefault();
+
+            TargetNews.Article = model.Article;
+            TargetNews.Body = model.Body;
+            TargetNews.Author = model.Author;
+            TargetNews.SourceSite = model.OriginSite;
+
+            _context.SaveChanges();
+
+            return RedirectToAction("News/NewsList");
+        }
+
+
+        [HttpGet]
+        public IActionResult EditNews(Guid id)
+        {
+            var TargetNews = _context.News
+    .Where(N => N.ID == id)
+    .FirstOrDefault();
+            NewsViewModel EditNews = new NewsViewModel();
+            EditNews.Article = TargetNews.Article;
+            EditNews.Body = TargetNews.Body;
+            EditNews.Author = TargetNews.Author;
+            EditNews.OriginSite = TargetNews.SourceSite;
+            return View(EditNews);
+        }
+
 
     }
 }

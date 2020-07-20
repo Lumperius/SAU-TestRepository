@@ -8,10 +8,10 @@ namespace GoodMoodProvider.ViewsModels
 {
     public class NewsViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "Article is required")]
         public string Article { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Enter news")]
         public string Body { get; set; }
 
         public DateTime DatePublished { get; set; }

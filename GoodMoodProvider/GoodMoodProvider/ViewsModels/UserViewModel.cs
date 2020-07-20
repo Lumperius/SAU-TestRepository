@@ -8,14 +8,15 @@ namespace GoodMoodProvider.ViewsModels
 {
     public class UserViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "Login is required")]
+
         public string Login { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Password is required")]
         public string Password { get; set; }
 
         [Required]
-        [Compare("Password", ErrorMessage="Confirm the password")]
+        [Compare("Password", ErrorMessage="Password confirmation is required")]
         public string ConfirmPassword { get; set; }
 
         public string Firstname { get; set; }
