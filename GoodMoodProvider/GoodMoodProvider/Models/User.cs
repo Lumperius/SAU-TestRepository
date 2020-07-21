@@ -13,9 +13,14 @@ namespace GoodMoodProvider.Models
         public string Firstname { get; set; }
         public string SecondName { get; set; }
         public DateTime BirthDay { get; set; }
+        public int Age { get; set; }
+
         public string Gender { get; set; }
         public DateTime RegDate { get; set; }
-        public int IsOnline { get; set; }
+        public bool IsOnline { get; set; }
+
+        public List<UserRole> UserRoles { get; set; }
+        public List<Comment> Comments { get; set; }
 
     }
 }

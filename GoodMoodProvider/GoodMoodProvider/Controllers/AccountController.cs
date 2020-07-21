@@ -9,15 +9,23 @@ using GoodMoodProvider.ViewsModels;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using GoodMoodProvider.DataContexts;
+using GoodMoodProvider.DataContexts.Repositories.RepositoryInteface;
 
 namespace GoodMoodProvider.Controllers
 {
     public class AccountController : Controller
     {
+
+        private readonly DataContext _context;
+        private readonly IRepository<User> _userRepository;
+
         public IActionResult Index()
         {
             return View();
         }
+
+        /// /////////////////////////////////////////////////////////////
 
         [HttpGet]
         public IActionResult Registration()
@@ -42,7 +50,7 @@ namespace GoodMoodProvider.Controllers
                 NewUser.SecondName = model.SecondName;
                 NewUser.BirthDay = model.BirthDay;
                 NewUser.Gender = model.Gender;
-                NewUser.IsOnline = 1;
+                NewUser.IsOnline = true;
 
                 DbData.User.Add(NewUser);
 
@@ -67,7 +75,7 @@ namespace GoodMoodProvider.Controllers
         {
             var optionsBuilder = new DbContextOptionsBuilder<DataContexts.DataContext>();
             var options = optionsBuilder
-                    .UseSqlServer(@"Server=DESKTOP-I8BJOOE;Database=GoodNewsDB;Trusted_Connection=True;MultipleActiveResultSets=true")
+                    .UseSqlServer(@"Server=DESKTOP-I8BJOOE;Database=GoodNewsGoodNewsDB;Trusted_Connection=True;MultipleActiveResultSets=true")
                     .Options;
             using (DataContexts.DataContext DbData = new DataContexts.DataContext((DbContextOptions<DataContexts.DataContext>)options))
             {
@@ -85,6 +93,8 @@ namespace GoodMoodProvider.Controllers
             return View();
         }
 
+        /// /////////////////////////////////////////////////////////////
+
         private async Task Authenticate(string userNickname)
         {
             var claims = new List<Claim>()
@@ -97,6 +107,22 @@ namespace GoodMoodProvider.Controllers
 
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(id));
         }
+
+/// /////////////////////////////////////////////////////////////
+
+        [HttpGet]
+        public IActionResult DeleteUser()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult DeleteUser( Guid CurrentUserID)
+        {
+                _userRepository.DeleteAsync(CurrentUserID);
+            return RedirectToAction("Registration");
+        }
+
 
     }
 }

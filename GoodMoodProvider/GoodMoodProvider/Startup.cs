@@ -13,11 +13,16 @@ using GoodMoodProvider.Models;
 using GoodMoodProvider.DataContexts;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+using GoodMoodProvider.DataContexts.Repositories.RepositoryInteface;
+using GoodMoodProvider.DataContexts.Repositories;
+using GoodMoodProvider.DbInitializer;
 
 namespace GoodMoodProvider
 {
     public class Startup
     {
+        private readonly AdminInitializer _adminInitializer;
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -30,6 +35,8 @@ namespace GoodMoodProvider
         {
             services.AddControllersWithViews();
 
+            services.AddScoped<IRepository<User>, UserRepository>();
+
             var connString = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContextPool<DataContext>(options =>
             options.UseSqlServer(connString));
@@ -38,6 +45,8 @@ namespace GoodMoodProvider
                     .AddCookie(options => options.LoginPath = new PathString("/Account/Login"));
 
             services.AddScoped<DataContext>();
+
+            services.AddScoped<AdminInitializer>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -68,6 +77,8 @@ namespace GoodMoodProvider
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            
         }
     }
 }

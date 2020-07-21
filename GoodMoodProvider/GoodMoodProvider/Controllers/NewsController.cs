@@ -22,7 +22,7 @@ namespace GoodMoodProvider.Controllers
         {
             var optionsBuilder = new DbContextOptionsBuilder<DataContexts.DataContext>();
             var options = optionsBuilder
-                    .UseSqlServer(@"Server=DESKTOP-I8BJOOE;Database=GoodNewsDB;Trusted_Connection=True;MultipleActiveResultSets=true")
+                    .UseSqlServer(@"Server=DESKTOP-I8BJOOE;Database=GoodNewsGoodNewsData;Trusted_Connection=True;MultipleActiveResultSets=true")
                     .Options;
             _context = new DataContext((DbContextOptions<DataContext>)options);
         }

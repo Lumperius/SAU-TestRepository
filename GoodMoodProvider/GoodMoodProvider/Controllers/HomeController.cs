@@ -6,20 +6,25 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using GoodMoodProvider.Models;
+using GoodMoodProvider.DbInitializer;
 
 namespace GoodMoodProvider.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly AdminInitializer _adminInitializer;
 
-        public HomeController(ILogger<HomeController> logger)
+
+        public HomeController(ILogger<HomeController> logger, AdminInitializer adminInitializer)
         {
+            _adminInitializer = adminInitializer;
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
+            await _adminInitializer.InitializeAsync();
             return View();
         }
 

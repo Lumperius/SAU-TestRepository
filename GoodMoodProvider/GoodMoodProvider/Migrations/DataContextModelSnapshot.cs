@@ -31,7 +31,12 @@ namespace GoodMoodProvider.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
+                    b.Property<Guid?>("UserID")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("ID");
+
+                    b.HasIndex("UserID");
 
                     b.ToTable("Comments");
                 });
@@ -51,6 +56,9 @@ namespace GoodMoodProvider.Migrations
                     b.Property<string>("Body")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<Guid?>("CommentID")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<DateTime>("DatePosted")
                         .HasColumnType("datetime2");
 
@@ -67,6 +75,8 @@ namespace GoodMoodProvider.Migrations
                         .HasColumnType("float");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("CommentID");
 
                     b.ToTable("News");
                 });
@@ -91,6 +101,9 @@ namespace GoodMoodProvider.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<int>("Age")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("BirthDay")
                         .HasColumnType("datetime2");
 
@@ -100,10 +113,10 @@ namespace GoodMoodProvider.Migrations
                     b.Property<string>("Gender")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("IsOnline")
-                        .HasColumnType("int");
+                    b.Property<bool>("IsOnline")
+                        .HasColumnType("bit");
 
-                    b.Property<string>("Nickname")
+                    b.Property<string>("Login")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Password")
@@ -117,7 +130,7 @@ namespace GoodMoodProvider.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("Users");
+                    b.ToTable("User");
                 });
 
             modelBuilder.Entity("GoodMoodProvider.Models.UserRole", b =>
@@ -133,6 +146,10 @@ namespace GoodMoodProvider.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("RoleID");
+
+                    b.HasIndex("UserID");
 
                     b.ToTable("UserRoles");
                 });
@@ -152,6 +169,35 @@ namespace GoodMoodProvider.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("WordsRating");
+                });
+
+            modelBuilder.Entity("GoodMoodProvider.Models.Comment", b =>
+                {
+                    b.HasOne("GoodMoodProvider.Models.User", null)
+                        .WithMany("Comments")
+                        .HasForeignKey("UserID");
+                });
+
+            modelBuilder.Entity("GoodMoodProvider.Models.News", b =>
+                {
+                    b.HasOne("GoodMoodProvider.Models.Comment", null)
+                        .WithMany("News")
+                        .HasForeignKey("CommentID");
+                });
+
+            modelBuilder.Entity("GoodMoodProvider.Models.UserRole", b =>
+                {
+                    b.HasOne("GoodMoodProvider.Models.Role", null)
+                        .WithMany("UserRoles")
+                        .HasForeignKey("RoleID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("GoodMoodProvider.Models.User", null)
+                        .WithMany("UserRoles")
+                        .HasForeignKey("UserID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

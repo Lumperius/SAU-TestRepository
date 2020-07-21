@@ -12,5 +12,7 @@ namespace GoodMoodProvider.Models
         public Guid ID { get; set; }
         public string Body { get; set; }
         public DateTime Date { get; set; }
+
+        public List<News> News { get; set; }
     }
 }
