@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using GoodMoodProvider.DataContexts;
 using GoodMoodProvider.DataContexts.Repositories.RepositoryInteface;
+using GoodMoodProvider.DataContexts.Repositories;
 
 namespace GoodMoodProvider.Controllers
 {
@@ -20,12 +21,19 @@ namespace GoodMoodProvider.Controllers
         private readonly DataContext _context;
         private readonly IRepository<User> _userRepository;
 
+        public AccountController(DataContext context)
+        {
+            _context = context;
+            _userRepository = new UserRepository(_context);
+        }
+
         public IActionResult Index()
         {
             return View();
         }
 
-        /// /////////////////////////////////////////////////////////////
+
+
 
         [HttpGet]
         public IActionResult Registration()
@@ -42,17 +50,27 @@ namespace GoodMoodProvider.Controllers
                     .Options;
             using (DataContexts.DataContext DbData = new DataContexts.DataContext((DbContextOptions<DataContexts.DataContext>)options))
             {
-                User NewUser = new User();
-                NewUser.ID = new Guid();
-                NewUser.Password = model.Password;
-                NewUser.Login = model.Login;
-                NewUser.Firstname = model.Firstname;
-                NewUser.SecondName = model.SecondName;
-                NewUser.BirthDay = model.BirthDay;
-                NewUser.Gender = model.Gender;
-                NewUser.IsOnline = true;
+                User newUser = new User()
+                {
+                    ID = new Guid(),
+                    Password = model.Password,
+                    Login = model.Login,
+                    Firstname = model.Firstname,
+                    SecondName = model.SecondName,
+                    BirthDay = model.BirthDay,
+                    Gender = model.Gender,
+                    IsOnline = true,
+                };
+            var role = _context.Role.FirstOrDefault(R => R.Name == "User");
+            
+            _context.UserRoles.Add(new UserRole()
+                {
+                    ID = new Guid(),
+                    UserID = newUser.ID,
+                    RoleID = role.ID
+                });
 
-                DbData.User.Add(NewUser);
+            _context.User.Add(newUser);
 
                 DbData.SaveChanges();
 
@@ -61,7 +79,8 @@ namespace GoodMoodProvider.Controllers
             return View();
         }
 
-        ///////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
 
         [HttpGet]
         public IActionResult Login()
@@ -77,38 +96,55 @@ namespace GoodMoodProvider.Controllers
             var options = optionsBuilder
                     .UseSqlServer(@"Server=DESKTOP-I8BJOOE;Database=GoodNewsGoodNewsDB;Trusted_Connection=True;MultipleActiveResultSets=true")
                     .Options;
-            using (DataContexts.DataContext DbData = new DataContexts.DataContext((DbContextOptions<DataContexts.DataContext>)options))
-            {
-                    User user = DbData.User.FirstOrDefault(x => 
-                    x.Login == model.Login && 
-                    x.Password == model.Password);
-            }
+
+                    User user = _context.User
+                .Include(u => u.UserRoles)
+                .ThenInclude(u => u.Role)
+                .FirstOrDefault(x => 
+               x.Login == model.Login && 
+               x.Password == model.Password);
+          
             if(User!=null)
             {
-                await Authenticate(model.Login);
-
+                await Authenticate(user);
                 return RedirectToAction("Index", "Home");
             }
             ModelState.AddModelError("", "Icorrect login or password");
-            return View();
+            return RedirectToAction("Index", "Home");
         }
 
-        /// /////////////////////////////////////////////////////////////
 
-        private async Task Authenticate(string userNickname)
+
+
+        private async Task<IActionResult> Authenticate(User user)
         {
             var claims = new List<Claim>()
             {
-                new Claim(ClaimsIdentity.DefaultNameClaimType, userNickname)
+                new Claim(ClaimsIdentity.DefaultNameClaimType, user.Login)
             };
+
+
+            claims.AddRange(user.UserRoles
+                .Select(ur => new Claim(ClaimsIdentity.DefaultRoleClaimType, ur.Role.Name))
+                .ToList());
 
             var id = new ClaimsIdentity(claims,
                 "ApplicationCookie", ClaimsIdentity.DefaultNameClaimType, ClaimsIdentity.DefaultRoleClaimType);
 
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(id));
+            return RedirectToAction("Index", "Home");
+
         }
 
-/// /////////////////////////////////////////////////////////////
+
+        private async Task<IActionResult> Logout(string userNickname)
+        {
+            await HttpContext.SignOutAsync((CookieAuthenticationDefaults.AuthenticationScheme));
+            return RedirectToAction("Login");
+        }
+
+
+
 
         [HttpGet]
         public IActionResult DeleteUser()

@@ -8,8 +8,8 @@ namespace GoodMoodProvider.DataContexts.Repositories.RepositoryInteface
     interface IRepository<T>
     {
         public Task<int> DeleteAsync(Guid ID);
-        public Task<int> DeleteRangeAsync(Guid ID);
-        public Task<int> AddAsync();
-        public Task<int> AddRangeAsync();
+        public Task<int> DeleteRangeAsync(Guid[] ID);
+        public Task<int> AddAsync(T obj);
+        public Task<int> AddRangeAsync(T[] objs);
     }
 }

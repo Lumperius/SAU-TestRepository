@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GoodMoodProvider.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200721174253_init")]
+    [Migration("20200722102053_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

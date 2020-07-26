@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using GoodMoodProvider.ViewsModels;
 using GoodMoodProvider.Models;
+using Microsoft.Extensions.Options;
 
 namespace GoodMoodProvider.DataContexts
 

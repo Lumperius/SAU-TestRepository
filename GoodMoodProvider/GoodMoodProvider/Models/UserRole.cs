@@ -11,8 +11,8 @@ namespace GoodMoodProvider.Models
         public Guid UserID { get; set; }
         public Guid RoleID { get; set; }
 
-        public List<User> Users;
+        public User User;
 
-        public List<Role> Roles;
+        public Role Role;
     }
 }

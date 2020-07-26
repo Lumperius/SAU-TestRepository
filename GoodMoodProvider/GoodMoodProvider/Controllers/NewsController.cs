@@ -11,12 +11,15 @@ using Microsoft.Extensions.Options;
 using GoodMoodProvider.ViewsModels;
 using GoodMoodProvider.Models;
 using Microsoft.CodeAnalysis.Differencing;
+using Microsoft.AspNetCore.Authorization;
+using GoodMoodProvider.DataContexts.WorkingUnit;
 
 namespace GoodMoodProvider.Controllers
 {
     public class NewsController : Controller
     {
         public readonly DataContext _context;
+        public readonly WorkingUnit _workingUnit;
 
         public NewsController(DataContext context)
         {
@@ -25,13 +28,17 @@ namespace GoodMoodProvider.Controllers
                     .UseSqlServer(@"Server=DESKTOP-I8BJOOE;Database=GoodNewsGoodNewsData;Trusted_Connection=True;MultipleActiveResultSets=true")
                     .Options;
             _context = new DataContext((DbContextOptions<DataContext>)options);
+            _workingUnit = new WorkingUnit(_context);
         }
+       
+              
         public IActionResult Index()
         {
             return View();
         }
 
         [HttpGet]
+ //       [Authorize(Roles = "Admin, User")]
         public IActionResult NewsList()
         {
             return View(_context.News);
@@ -39,6 +46,7 @@ namespace GoodMoodProvider.Controllers
 
 
         [HttpPost]
+  //      [Authorize(Roles = "Admin")]
         public IActionResult AddNews(NewsViewModel model)
         {
 
@@ -57,6 +65,7 @@ namespace GoodMoodProvider.Controllers
         }
 
         [HttpGet]
+   //     [Authorize(Roles = "Admin")]
         public IActionResult AddNews()
         {
             return View();
@@ -64,6 +73,7 @@ namespace GoodMoodProvider.Controllers
 
 
         [HttpPost]
+   //     [Authorize(Roles = "Admin")]
         public IActionResult EditNews(NewsViewModel model, Guid id)
         {
             var TargetNews = _context.News
@@ -82,17 +92,32 @@ namespace GoodMoodProvider.Controllers
 
 
         [HttpGet]
-        public IActionResult EditNews(Guid id)
+     //   [Authorize(Roles = "Admin")]
+        public IActionResult EditNews()
         {
-            var TargetNews = _context.News
-    .Where(N => N.ID == id)
-    .FirstOrDefault();
-            NewsViewModel EditNews = new NewsViewModel();
-            EditNews.Article = TargetNews.Article;
-            EditNews.Body = TargetNews.Body;
-            EditNews.Author = TargetNews.Author;
-            EditNews.OriginSite = TargetNews.SourceSite;
-            return View(EditNews);
+            return View();
+        }
+
+
+
+
+        [HttpPost]
+     //   [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> DeleteNews(Guid id)
+        {
+            _context.News.Remove(await _context.News.FirstOrDefaultAsync(n => n.ID == id));
+            await _workingUnit.SaveDBAsync();
+
+            return RedirectToAction("News/NewsList");
+        }
+
+
+
+        [HttpGet]
+        [Authorize(Roles = "Admin")]
+        public IActionResult DeleteNews()
+        {
+            return View();
         }
 
 

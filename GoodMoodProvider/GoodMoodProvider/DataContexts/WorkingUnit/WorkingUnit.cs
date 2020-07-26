@@ -8,14 +8,15 @@ namespace GoodMoodProvider.DataContexts.WorkingUnit
     public class WorkingUnit 
     {
         private readonly DataContext _context;
-        
-   /*
-    public async Task<int> SaveDB()
+
+
+        public async Task SaveDBAsync()
         {
-            await _context.SaveChanges();
+            if (_context.ChangeTracker.HasChanges())
+                await _context.SaveChangesAsync();
         }
-    */    
-        
+
+
         public WorkingUnit(DataContext context)
         {
             _context = context;
