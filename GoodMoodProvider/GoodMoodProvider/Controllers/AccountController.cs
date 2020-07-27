@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using GoodMoodProvider.DataContexts;
 using GoodMoodProvider.DataContexts.Repositories.RepositoryInteface;
 using GoodMoodProvider.DataContexts.Repositories;
+using GoodMoodProvider.DataContexts.WorkingUnit;
 
 namespace GoodMoodProvider.Controllers
 {
@@ -20,11 +21,13 @@ namespace GoodMoodProvider.Controllers
 
         private readonly DataContext _context;
         private readonly IRepository<User> _userRepository;
+        private readonly WorkingUnit _workingUnit;
 
         public AccountController(DataContext context)
         {
             _context = context;
             _userRepository = new UserRepository(_context);
+            _workingUnit = new WorkingUnit(_context);
         }
 
         public IActionResult Index()
@@ -42,14 +45,8 @@ namespace GoodMoodProvider.Controllers
         }
 
         [HttpPost]
-        public IActionResult Registration(UserViewModel model)
+        public async Task<IActionResult> Registration(UserViewModel model)
         {
-            var optionsBuilder = new DbContextOptionsBuilder<DataContexts.DataContext>();
-            var options = optionsBuilder
-                    .UseSqlServer(@"Server=DESKTOP-I8BJOOE;Database=GoodNewsDB;Trusted_Connection=True;MultipleActiveResultSets=true")
-                    .Options;
-            using (DataContexts.DataContext DbData = new DataContexts.DataContext((DbContextOptions<DataContexts.DataContext>)options))
-            {
                 User newUser = new User()
                 {
                     ID = new Guid(),
@@ -61,21 +58,25 @@ namespace GoodMoodProvider.Controllers
                     Gender = model.Gender,
                     IsOnline = true,
                 };
-            var role = _context.Role.FirstOrDefault(R => R.Name == "User");
-            
-            _context.UserRoles.Add(new UserRole()
+            var role = _context.Role.FirstOrDefault(r => r.Name == "User");
+
+            await _context.User.AddAsync(newUser);
+
+            await _context.UserRoles.AddAsync(new UserRole()
                 {
                     ID = new Guid(),
                     UserID = newUser.ID,
                     RoleID = role.ID
                 });
 
-            _context.User.Add(newUser);
+            await _workingUnit.SaveDBAsync();
 
-                DbData.SaveChanges();
-
+            if (User != null)
+            {
+                await Authenticate(newUser);
+                return RedirectToAction("Index", "Home");
             }
-
+            ModelState.AddModelError("", "Icorrect login or password");
             return View();
         }
 
@@ -99,7 +100,6 @@ namespace GoodMoodProvider.Controllers
 
                     User user = _context.User
                 .Include(u => u.UserRoles)
-                .ThenInclude(u => u.Role)
                 .FirstOrDefault(x => 
                x.Login == model.Login && 
                x.Password == model.Password);
@@ -110,7 +110,7 @@ namespace GoodMoodProvider.Controllers
                 return RedirectToAction("Index", "Home");
             }
             ModelState.AddModelError("", "Icorrect login or password");
-            return RedirectToAction("Index", "Home");
+            return View();
         }
 
 
@@ -123,10 +123,10 @@ namespace GoodMoodProvider.Controllers
                 new Claim(ClaimsIdentity.DefaultNameClaimType, user.Login)
             };
 
-
             claims.AddRange(user.UserRoles
-                .Select(ur => new Claim(ClaimsIdentity.DefaultRoleClaimType, ur.Role.Name))
-                .ToList());
+                .Select(ur => new Claim(ClaimsIdentity.DefaultRoleClaimType, _context.Role
+                .FirstOrDefault(r => r.ID == ur.RoleID).Name))
+                  .ToList());
 
             var id = new ClaimsIdentity(claims,
                 "ApplicationCookie", ClaimsIdentity.DefaultNameClaimType, ClaimsIdentity.DefaultRoleClaimType);
@@ -137,12 +137,11 @@ namespace GoodMoodProvider.Controllers
         }
 
 
-        private async Task<IActionResult> Logout(string userNickname)
+        public async Task<IActionResult> Logout(string userNickname)
         {
             await HttpContext.SignOutAsync((CookieAuthenticationDefaults.AuthenticationScheme));
             return RedirectToAction("Login");
         }
-
 
 
 

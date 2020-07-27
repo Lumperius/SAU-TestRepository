@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using GoodMoodProvider.Models;
 using GoodMoodProvider.DbInitializer;
+using System.Security.Claims;
 
 namespace GoodMoodProvider.Controllers
 {
@@ -25,8 +26,12 @@ namespace GoodMoodProvider.Controllers
         public async Task<IActionResult> Index()
         {
             await _adminInitializer.InitializeAsync();
-            return View();
-        }
+
+            if (HttpContext.User.HasClaim(ClaimsIdentity.DefaultRoleClaimType, "User")
+             || HttpContext.User.HasClaim(ClaimsIdentity.DefaultRoleClaimType, "Admin"))
+            { return View(); }
+       else { return RedirectToAction( "Login" ,"Account"); }
+            }
 
         public IActionResult Privacy()
         {

@@ -23,11 +23,7 @@ namespace GoodMoodProvider.Controllers
 
         public NewsController(DataContext context)
         {
-            var optionsBuilder = new DbContextOptionsBuilder<DataContexts.DataContext>();
-            var options = optionsBuilder
-                    .UseSqlServer(@"Server=DESKTOP-I8BJOOE;Database=GoodNewsGoodNewsData;Trusted_Connection=True;MultipleActiveResultSets=true")
-                    .Options;
-            _context = new DataContext((DbContextOptions<DataContext>)options);
+            _context = context;
             _workingUnit = new WorkingUnit(_context);
         }
        
@@ -38,7 +34,7 @@ namespace GoodMoodProvider.Controllers
         }
 
         [HttpGet]
- //       [Authorize(Roles = "Admin, User")]
+        [Authorize(Roles = "Admin, User")]
         public IActionResult NewsList()
         {
             return View(_context.News);
@@ -46,7 +42,7 @@ namespace GoodMoodProvider.Controllers
 
 
         [HttpPost]
-  //      [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         public IActionResult AddNews(NewsViewModel model)
         {
 
@@ -65,7 +61,7 @@ namespace GoodMoodProvider.Controllers
         }
 
         [HttpGet]
-   //     [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         public IActionResult AddNews()
         {
             return View();
@@ -73,7 +69,7 @@ namespace GoodMoodProvider.Controllers
 
 
         [HttpPost]
-   //     [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         public IActionResult EditNews(NewsViewModel model, Guid id)
         {
             var TargetNews = _context.News
@@ -87,28 +83,28 @@ namespace GoodMoodProvider.Controllers
 
             _context.SaveChanges();
 
-            return RedirectToAction("News/NewsList");
+            return RedirectToAction("NewsList");
         }
 
 
         [HttpGet]
-     //   [Authorize(Roles = "Admin")]
-        public IActionResult EditNews()
+        [Authorize(Roles = "Admin")]
+        public IActionResult EditNews(NewsViewModel model)
         {
-            return View();
+            return View(model);
         }
 
 
 
 
         [HttpPost]
-     //   [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteNews(Guid id)
         {
             _context.News.Remove(await _context.News.FirstOrDefaultAsync(n => n.ID == id));
             await _workingUnit.SaveDBAsync();
 
-            return RedirectToAction("News/NewsList");
+            return RedirectToAction("NewsList");
         }
 
 
