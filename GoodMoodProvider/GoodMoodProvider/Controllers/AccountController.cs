@@ -13,6 +13,8 @@ using GoodMoodProvider.DataContexts;
 using GoodMoodProvider.DataContexts.Repositories.RepositoryInteface;
 using GoodMoodProvider.DataContexts.Repositories;
 using GoodMoodProvider.DataContexts.WorkingUnit;
+using Serilog.Core;
+using Serilog;
 
 namespace GoodMoodProvider.Controllers
 {
@@ -22,12 +24,12 @@ namespace GoodMoodProvider.Controllers
         private readonly DataContext _context;
         private readonly IRepository<User> _userRepository;
         private readonly WorkingUnit _workingUnit;
-
         public AccountController(DataContext context)
         {
             _context = context;
             _userRepository = new UserRepository(_context);
             _workingUnit = new WorkingUnit(_context);
+
         }
 
         public IActionResult Index()
@@ -47,7 +49,11 @@ namespace GoodMoodProvider.Controllers
         [HttpPost]
         public async Task<IActionResult> Registration(UserViewModel model)
         {
-                User newUser = new User()
+            if (!ModelState.IsValid)
+            {
+                return StatusCode(400);
+            }
+            User newUser = new User()
                 {
                     ID = new Guid(),
                     Password = model.Password,
@@ -70,6 +76,7 @@ namespace GoodMoodProvider.Controllers
                 });
 
             await _workingUnit.SaveDBAsync();
+            Log.Logger.Information($"Info|{DateTime.Now}|New user {newUser.Login}|{newUser.ID}");
 
             if (User != null)
             {
@@ -93,12 +100,8 @@ namespace GoodMoodProvider.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(UserViewModel model)
         {
-            var optionsBuilder = new DbContextOptionsBuilder<DataContexts.DataContext>();
-            var options = optionsBuilder
-                    .UseSqlServer(@"Server=DESKTOP-I8BJOOE;Database=GoodNewsGoodNewsDB;Trusted_Connection=True;MultipleActiveResultSets=true")
-                    .Options;
 
-                    User user = _context.User
+            User user = _context.User
                 .Include(u => u.UserRoles)
                 .FirstOrDefault(x => 
                x.Login == model.Login && 
@@ -109,7 +112,10 @@ namespace GoodMoodProvider.Controllers
                 await Authenticate(user);
                 return RedirectToAction("Index", "Home");
             }
+           
             ModelState.AddModelError("", "Icorrect login or password");
+            Log.Logger.Information($"Info|{DateTime.Now}|User logged in {user.Login}|{user.ID}");
+
             return View();
         }
 
@@ -130,16 +136,24 @@ namespace GoodMoodProvider.Controllers
 
             var id = new ClaimsIdentity(claims,
                 "ApplicationCookie", ClaimsIdentity.DefaultNameClaimType, ClaimsIdentity.DefaultRoleClaimType);
+            try
+            {
+                await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(id));
+            }
 
-            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(id));
+            catch(Exception ex)
+            {
+                throw ex;
+            }
             return RedirectToAction("Index", "Home");
 
         }
 
 
-        public async Task<IActionResult> Logout(string userNickname)
+        public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync((CookieAuthenticationDefaults.AuthenticationScheme));
+            Log.Logger.Information($"Info|{DateTime.Now}|User {HttpContext.User.Identity.Name} has left");
             return RedirectToAction("Login");
         }
 
@@ -155,6 +169,9 @@ namespace GoodMoodProvider.Controllers
         public IActionResult DeleteUser( Guid CurrentUserID)
         {
                 _userRepository.DeleteAsync(CurrentUserID);
+            Log.Logger.Information($"Info|{DateTime.Now}|" +
+                $"User {_context.User.FirstOrDefault(u => CurrentUserID == u.ID).Login} profile has been deleted|" +
+                $"{CurrentUserID}");
             return RedirectToAction("Registration");
         }
 

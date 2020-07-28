@@ -16,6 +16,14 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.3" />
+    <PackageReference Include="Serilog.AspNetCore" Version="3.4.0" />
+    <PackageReference Include="Serilog.Sinks.File" Version="4.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ContextLibrary\ContextLibrary.csproj" />
+    <ProjectReference Include="..\ModelsLibrary\ModelsLibrary.csproj" />
+    <ProjectReference Include="..\RepositoryLibrary\RepositoryLibrary.csproj" />
   </ItemGroup>
 
 

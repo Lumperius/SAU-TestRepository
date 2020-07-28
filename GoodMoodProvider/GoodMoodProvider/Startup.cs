@@ -17,6 +17,7 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 using GoodMoodProvider.DataContexts.Repositories.RepositoryInteface;
 using GoodMoodProvider.DataContexts.Repositories;
 using GoodMoodProvider.DbInitializer;
+using Microsoft.Extensions.Logging;
 
 namespace GoodMoodProvider
 {

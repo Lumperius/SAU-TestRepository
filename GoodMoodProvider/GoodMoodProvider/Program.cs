@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Serilog;
 
 namespace GoodMoodProvider
 {
@@ -14,12 +15,21 @@ namespace GoodMoodProvider
     {
         public static void Main(string[] args)
         {
-            BuildWebHost(args).Run();
+            Log.Logger = new LoggerConfiguration()
+                .MinimumLevel.Override("Microsoft", Serilog.Events.LogEventLevel.Warning)
+                .Enrich.FromLogContext()
+                .WriteTo.File("Logs/log.txt", rollingInterval: RollingInterval.Minute)
+                .CreateLogger();
+
+            CreateHostBuilder(args).Build().Run();
         }
 
-        public static IWebHost BuildWebHost(string[] args) =>
-        WebHost.CreateDefaultBuilder(args)
-            .UseStartup<Startup>()
-            .Build();
+        public static IHostBuilder CreateHostBuilder(string[] args) =>
+        Host.CreateDefaultBuilder(args)
+            .UseSerilog()
+            .ConfigureWebHostDefaults(WebBuilder =>
+            {
+                WebBuilder.UseStartup<Startup>();
+            });
     }
 }

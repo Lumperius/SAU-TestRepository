@@ -13,6 +13,7 @@ using GoodMoodProvider.Models;
 using Microsoft.CodeAnalysis.Differencing;
 using Microsoft.AspNetCore.Authorization;
 using GoodMoodProvider.DataContexts.WorkingUnit;
+using Serilog;
 
 namespace GoodMoodProvider.Controllers
 {
@@ -57,6 +58,7 @@ namespace GoodMoodProvider.Controllers
             };
             _context.News.Add(newNews);
             _context.SaveChanges();
+            Log.Logger.Information($"Info|{DateTime.Now}|News {newNews.Article} were added|{newNews.ID}");
             return View();
         }
 
@@ -72,17 +74,17 @@ namespace GoodMoodProvider.Controllers
         [Authorize(Roles = "Admin")]
         public IActionResult EditNews(NewsViewModel model, Guid id)
         {
-            var TargetNews = _context.News
+            var targetNews = _context.News
                 .Where(N => N.ID == id)
                 .FirstOrDefault();
 
-            TargetNews.Article = model.Article;
-            TargetNews.Body = model.Body;
-            TargetNews.Author = model.Author;
-            TargetNews.SourceSite = model.OriginSite;
+            targetNews.Article = model.Article;
+            targetNews.Body = model.Body;
+            targetNews.Author = model.Author;
+            targetNews.SourceSite = model.OriginSite;
 
             _context.SaveChanges();
-
+            Log.Logger.Information($"Info|{DateTime.Now}|News {targetNews.Article} were edited|{targetNews.ID}");
             return RedirectToAction("NewsList");
         }
 
@@ -103,7 +105,10 @@ namespace GoodMoodProvider.Controllers
         {
             _context.News.Remove(await _context.News.FirstOrDefaultAsync(n => n.ID == id));
             await _workingUnit.SaveDBAsync();
-
+          
+            Log.Logger.Information($"Info|{DateTime.Now}|" +
+                $"News {_context.News.FirstOrDefault(n => n.ID == id).Article} were deleted|" +
+                $"{id}");
             return RedirectToAction("NewsList");
         }
 

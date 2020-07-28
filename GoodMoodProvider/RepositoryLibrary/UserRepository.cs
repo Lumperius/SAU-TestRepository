@@ -4,8 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using GoodMoodProvider.DataContexts.Repositories.RepositoryInteface;
 using GoodMoodProvider.Models;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Internal;
 
 namespace GoodMoodProvider.DataContexts.Repositories
 {

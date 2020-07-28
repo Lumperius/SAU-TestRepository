@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace GoodMoodProvider.DataContexts.Repositories.RepositoryInteface
 {
-    interface IRepository<T>
+    public interface IRepository<T>
     {
         public Task<int> DeleteAsync(Guid ID);
         public Task<int> DeleteRangeAsync(Guid[] ID);

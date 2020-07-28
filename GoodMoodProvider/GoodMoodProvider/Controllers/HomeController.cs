@@ -8,6 +8,7 @@ using Microsoft.Extensions.Logging;
 using GoodMoodProvider.Models;
 using GoodMoodProvider.DbInitializer;
 using System.Security.Claims;
+using Serilog;
 
 namespace GoodMoodProvider.Controllers
 {
@@ -25,6 +26,7 @@ namespace GoodMoodProvider.Controllers
 
         public async Task<IActionResult> Index()
         {
+            Log.Information("Home was visited");
             await _adminInitializer.InitializeAsync();
 
             if (HttpContext.User.HasClaim(ClaimsIdentity.DefaultRoleClaimType, "User")

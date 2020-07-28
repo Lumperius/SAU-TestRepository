@@ -1,0 +1,71 @@
+2020-07-28 15:04:02.911 +03:00 [INF] Request starting HTTP/2.0 POST https://localhost:44311/Account/Registration application/x-www-form-urlencoded 296
+2020-07-28 15:04:02.929 +03:00 [INF] Executing endpoint 'GoodMoodProvider.Controllers.AccountController.Registration (GoodMoodProvider)'
+2020-07-28 15:04:02.946 +03:00 [INF] Route matched with {action = "Registration", controller = "Account"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Registration(GoodMoodProvider.ViewsModels.UserViewModel) on controller GoodMoodProvider.Controllers.AccountController (GoodMoodProvider).
+2020-07-28 15:04:02.992 +03:00 [INF] Entity Framework Core 3.1.5 initialized 'DataContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: MaxPoolSize=128 
+2020-07-28 15:04:03.055 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [r].[ID], [r].[Name]
+FROM [Role] AS [r]
+WHERE [r].[Name] = N'User'
+2020-07-28 15:04:03.522 +03:00 [INF] Executed DbCommand (10ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = Int32), @p2='?' (DbType = DateTime2), @p3='?' (Size = 4000), @p4='?' (Size = 4000), @p5='?' (DbType = Boolean), @p6='?' (Size = 4000), @p7='?' (Size = 4000), @p8='?' (DbType = DateTime2), @p9='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [User] ([ID], [Age], [BirthDay], [Firstname], [Gender], [IsOnline], [Login], [Password], [RegDate], [SecondName])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9);
+2020-07-28 15:04:03.575 +03:00 [INF] Executed DbCommand (40ms) [Parameters=[@p10='?' (DbType = Guid), @p11='?' (DbType = Guid), @p12='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [UserRoles] ([ID], [RoleID], [UserID])
+VALUES (@p10, @p11, @p12);
+2020-07-28 15:04:03.623 +03:00 [INF] Info|28.07.2020 15:04:03|New user ewq|d8e7b147-2409-479d-319c-08d832ee51fd
+2020-07-28 15:04:03.634 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__ur_RoleID_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [r].[ID], [r].[Name]
+FROM [Role] AS [r]
+WHERE [r].[ID] = @__ur_RoleID_0
+2020-07-28 15:04:03.647 +03:00 [INF] AuthenticationScheme: Cookies signed in.
+2020-07-28 15:04:03.647 +03:00 [INF] Executing RedirectResult, redirecting to /.
+2020-07-28 15:04:03.647 +03:00 [INF] Executed action GoodMoodProvider.Controllers.AccountController.Registration (GoodMoodProvider) in 694.9894ms
+2020-07-28 15:04:03.648 +03:00 [INF] Executed endpoint 'GoodMoodProvider.Controllers.AccountController.Registration (GoodMoodProvider)'
+2020-07-28 15:04:03.648 +03:00 [INF] Request finished in 738.6008ms 302 
+2020-07-28 15:04:03.655 +03:00 [INF] Request starting HTTP/2.0 GET https://localhost:44311/  
+2020-07-28 15:04:03.656 +03:00 [INF] Executing endpoint 'GoodMoodProvider.Controllers.HomeController.Index (GoodMoodProvider)'
+2020-07-28 15:04:03.656 +03:00 [INF] Route matched with {action = "Index", controller = "Home"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller GoodMoodProvider.Controllers.HomeController (GoodMoodProvider).
+2020-07-28 15:04:03.656 +03:00 [INF] Home was visited
+2020-07-28 15:04:03.658 +03:00 [INF] Entity Framework Core 3.1.5 initialized 'DataContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: MaxPoolSize=128 
+2020-07-28 15:04:03.676 +03:00 [INF] Executed DbCommand (14ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Role] AS [r]
+        WHERE [r].[Name] = N'Admin') THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2020-07-28 15:04:03.678 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Role] AS [r]
+        WHERE [r].[Name] = N'User') THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2020-07-28 15:04:03.679 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [User] AS [u]
+        WHERE [u].[Login] = N'CEO') THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2020-07-28 15:04:03.681 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [UserRoles] AS [u]
+        WHERE [u].[UserID] = (
+            SELECT TOP(1) [u0].[ID]
+            FROM [User] AS [u0]
+            WHERE [u0].[Login] = N'CEO')) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2020-07-28 15:04:03.681 +03:00 [INF] Executing ViewResult, running view Index.
+2020-07-28 15:04:03.683 +03:00 [INF] Executed ViewResult - view Index executed in 1.8469ms.
+2020-07-28 15:04:03.683 +03:00 [INF] Executed action GoodMoodProvider.Controllers.HomeController.Index (GoodMoodProvider) in 27.2432ms
+2020-07-28 15:04:03.683 +03:00 [INF] Executed endpoint 'GoodMoodProvider.Controllers.HomeController.Index (GoodMoodProvider)'
+2020-07-28 15:04:03.684 +03:00 [INF] Request finished in 28.5852ms 200 text/html; charset=utf-8
