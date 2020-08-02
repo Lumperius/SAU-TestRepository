@@ -21,13 +21,13 @@ using GoodMoodProvider;
 #nullable disable
 #nullable restore
 #line 2 "C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\GoodMoodProvider\Views\_ViewImports.cshtml"
-using GoodMoodProvider.Models;
+using ModelsLibrary;
 
 #line default
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"3b8183935363fd997ce92d265679f4d396c2841d", @"/Views/News/NewsList.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"f94e9bdde5d48c3ea5cadc5d228633fc43dc215b", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"1dfea078ce36ea26a590daf207b95f2f54fbe7b5", @"/Views/_ViewImports.cshtml")]
     public class Views_News_NewsList : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<IEnumerable<News>>
     {
         #pragma warning disable 1998

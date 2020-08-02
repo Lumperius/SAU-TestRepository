@@ -4,17 +4,18 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using GoodMoodProvider.Models;
 using GoodMoodProvider.ViewsModels;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using GoodMoodProvider.DataContexts;
-using GoodMoodProvider.DataContexts.Repositories.RepositoryInteface;
-using GoodMoodProvider.DataContexts.Repositories;
-using GoodMoodProvider.DataContexts.WorkingUnit;
 using Serilog.Core;
 using Serilog;
+using System.Xml;
+using ContextLibrary.DataContexts;
+using RepositoryLibrary.RepositoryInterface;
+using WorkingLibrary.DataContexts.WorkingUnit;
+using ModelsLibrary;
+using RepositoryLibrary;
 
 namespace GoodMoodProvider.Controllers
 {
@@ -27,8 +28,8 @@ namespace GoodMoodProvider.Controllers
         public AccountController(DataContext context)
         {
             _context = context;
-            _userRepository = new UserRepository(_context);
             _workingUnit = new WorkingUnit(_context);
+            _userRepository = new UserRepository(_context, _workingUnit);
 
         }
 
@@ -100,7 +101,6 @@ namespace GoodMoodProvider.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(UserViewModel model)
         {
-
             User user = _context.User
                 .Include(u => u.UserRoles)
                 .FirstOrDefault(x => 

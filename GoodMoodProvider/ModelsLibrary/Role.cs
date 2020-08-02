@@ -8,7 +8,7 @@ public enum userFeatures
 
 }
 
-namespace GoodMoodProvider.Models
+namespace ModelsLibrary
 {
     public class Role
     {

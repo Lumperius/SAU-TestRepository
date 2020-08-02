@@ -4,12 +4,15 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace GoodMoodProvider.Models
+namespace ModelsLibrary
 {
-    public class WordRating
+    public class Comment
     {
+        [Required]
         public Guid ID { get; set; }
-        public string Word { get; set; }
-        public double Rating { get; set; }
+        public string Body { get; set; }
+        public DateTime Date { get; set; }
+
+        public List<News> News { get; set; }
     }
 }

@@ -3,17 +3,17 @@ using System.Collections.Generic;
 using System.Data.Common;
 using System.Linq;
 using System.Threading.Tasks;
-using GoodMoodProvider.DataContexts;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Razor.Language;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using GoodMoodProvider.ViewsModels;
-using GoodMoodProvider.Models;
 using Microsoft.CodeAnalysis.Differencing;
 using Microsoft.AspNetCore.Authorization;
-using GoodMoodProvider.DataContexts.WorkingUnit;
 using Serilog;
+using ContextLibrary.DataContexts;
+using WorkingLibrary.DataContexts.WorkingUnit;
+using ModelsLibrary;
 
 namespace GoodMoodProvider.Controllers
 {

@@ -5,10 +5,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using GoodMoodProvider.Models;
 using GoodMoodProvider.DbInitializer;
 using System.Security.Claims;
 using Serilog;
+using ModelsLibrary;
 
 namespace GoodMoodProvider.Controllers
 {

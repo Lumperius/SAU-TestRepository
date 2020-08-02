@@ -21,13 +21,13 @@ using GoodMoodProvider;
 #nullable disable
 #nullable restore
 #line 2 "C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\GoodMoodProvider\Views\_ViewImports.cshtml"
-using GoodMoodProvider.Models;
+using ModelsLibrary;
 
 #line default
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"be497dccb2d8e59f3a57ff4a1a8e528e1cf4db15", @"/Views/Account/DeleteUser.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"f94e9bdde5d48c3ea5cadc5d228633fc43dc215b", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"1dfea078ce36ea26a590daf207b95f2f54fbe7b5", @"/Views/_ViewImports.cshtml")]
     public class Views_Account_DeleteUser : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("method", "post", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -67,7 +67,7 @@ using GoodMoodProvider.Models;
 #line hidden
 #nullable disable
             WriteLiteral("\r\n<div>\r\n    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "be497dccb2d8e59f3a57ff4a1a8e528e1cf4db153990", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "be497dccb2d8e59f3a57ff4a1a8e528e1cf4db153980", async() => {
                 WriteLiteral("\r\n        <label>  Are you sure you want to delete this profile?        </label>\r\n        <br />\r\n        <button type=\"submit\">Delete profile</button> \r\n    ");
             }
             );

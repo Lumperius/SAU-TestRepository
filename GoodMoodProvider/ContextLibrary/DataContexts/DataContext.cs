@@ -4,10 +4,10 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using GoodMoodProvider.Models;
 using Microsoft.Extensions.Options;
+using ModelsLibrary;
 
-namespace GoodMoodProvider.DataContexts
+namespace ContextLibrary.DataContexts
 
 {
     public class DataContext : DbContext

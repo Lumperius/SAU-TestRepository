@@ -21,13 +21,13 @@ using GoodMoodProvider;
 #nullable disable
 #nullable restore
 #line 2 "C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\GoodMoodProvider\Views\_ViewImports.cshtml"
-using GoodMoodProvider.Models;
+using ModelsLibrary;
 
 #line default
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"63aed4a99cf7fdb964a131daac5f0faa08235454", @"/Views/News/AddNews.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"f94e9bdde5d48c3ea5cadc5d228633fc43dc215b", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"1dfea078ce36ea26a590daf207b95f2f54fbe7b5", @"/Views/_ViewImports.cshtml")]
     public class Views_News_AddNews : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<GoodMoodProvider.ViewsModels.NewsViewModel>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("asp-action", "AddNews", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -69,7 +69,7 @@ using GoodMoodProvider.Models;
 #line hidden
 #nullable disable
             WriteLiteral("\r\n<h2>AddNews</h2> \r\n(*) - optional fields\r\n<div>\r\n    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "63aed4a99cf7fdb964a131daac5f0faa082354544637", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "63aed4a99cf7fdb964a131daac5f0faa082354544627", async() => {
                 WriteLiteral(@"
        
         <label>Enter article</label>

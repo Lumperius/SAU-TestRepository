@@ -1,6 +1,6 @@
 using System;
 
-namespace GoodMoodProvider.Models
+namespace ModelsLibrary
 {
     public class ErrorViewModel
     {

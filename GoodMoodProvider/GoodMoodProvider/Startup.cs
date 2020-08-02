@@ -9,21 +9,24 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
-using GoodMoodProvider.Models;
-using GoodMoodProvider.DataContexts;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection.Extensions;
-using GoodMoodProvider.DataContexts.Repositories.RepositoryInteface;
-using GoodMoodProvider.DataContexts.Repositories;
 using GoodMoodProvider.DbInitializer;
 using Microsoft.Extensions.Logging;
+using NewsUploader;
+using NewsUploader.Interfaces;
+using RepositoryLibrary.RepositoryInterface;
+using ModelsLibrary;
+using RepositoryLibrary;
+using ContextLibrary.DataContexts;
+using ContextLibrary.Interfaces;
+using WorkingLibrary.DataContexts.WorkingUnit;
 
 namespace GoodMoodProvider
 {
     public class Startup
     {
-        private readonly AdminInitializer _adminInitializer;
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -37,6 +40,7 @@ namespace GoodMoodProvider
             services.AddControllersWithViews();
 
             services.AddScoped<IRepository<User>, UserRepository>();
+            services.AddScoped<IRepository<News>, NewsRepository>();
 
             var connString = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContextPool<DataContext>(options =>
@@ -47,7 +51,12 @@ namespace GoodMoodProvider
 
             services.AddScoped<DataContext>();
 
+            services.AddScoped<INewsService, NewsService>();
+            services.AddScoped<IRssLoader, RssLoader>();
+            services.AddScoped<INewsParser, NewsParser>();
+
             services.AddScoped<AdminInitializer>();
+            services.AddTransient<IWorkingUnit, WorkingUnit>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

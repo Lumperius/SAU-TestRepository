@@ -158,11 +158,15 @@ C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\GoodMoodPro
 C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\GoodMoodProvider\bin\Debug\netcoreapp3.1\Serilog.Sinks.Console.dll
 C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\GoodMoodProvider\bin\Debug\netcoreapp3.1\Serilog.Sinks.Debug.dll
 C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\GoodMoodProvider\bin\Debug\netcoreapp3.1\Serilog.Sinks.File.dll
-C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\GoodMoodProvider\obj\Debug\netcoreapp3.1\GoodMoodProvider.csproj.CoreCompileInputs.cache
-C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\GoodMoodProvider\obj\Debug\netcoreapp3.1\GoodMoodProvider.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\GoodMoodProvider\bin\Debug\netcoreapp3.1\ContextLibrary.dll
 C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\GoodMoodProvider\bin\Debug\netcoreapp3.1\ModelsLibrary.dll
 C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\GoodMoodProvider\bin\Debug\netcoreapp3.1\RepositoryLibrary.dll
 C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\GoodMoodProvider\bin\Debug\netcoreapp3.1\ContextLibrary.pdb
 C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\GoodMoodProvider\bin\Debug\netcoreapp3.1\ModelsLibrary.pdb
 C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\GoodMoodProvider\bin\Debug\netcoreapp3.1\RepositoryLibrary.pdb
+C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\GoodMoodProvider\bin\Debug\netcoreapp3.1\System.ServiceModel.Syndication.dll
+C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\GoodMoodProvider\bin\Debug\netcoreapp3.1\NewsUploader.dll
+C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\GoodMoodProvider\bin\Debug\netcoreapp3.1\NewsUploader.pdb
+C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\GoodMoodProvider\obj\Debug\netcoreapp3.1\GoodMoodProvider.csproj.CoreCompileInputs.cache
+C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\GoodMoodProvider\obj\Debug\netcoreapp3.1\GoodMoodProvider.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\GoodMoodProvider\bin\Debug\netcoreapp3.1\HtmlAgilityPack.dll
