@@ -1,0 +1,6 @@
+2020-08-13 12:54:07.696 +03:00 [INF] Home was visited
+2020-08-13 12:54:11.121 +03:00 [INF] HTTP GET / responded 200 in 3782.0515 ms
+2020-08-13 12:54:30.603 +03:00 [INF] HTTP GET /News/LoadNews responded 302 in 18740.2977 ms
+2020-08-13 12:54:31.823 +03:00 [INF] HTTP GET /News/LoadNews responded 302 in 15959.1371 ms
+2020-08-13 12:54:31.840 +03:00 [WRN] NewsList was visited
+2020-08-13 12:54:32.041 +03:00 [INF] HTTP GET /News/NewsList responded 200 in 211.4566 ms

@@ -14,18 +14,23 @@ using Serilog;
 using ContextLibrary.DataContexts;
 using WorkingLibrary.DataContexts.WorkingUnit;
 using ModelsLibrary;
+using NewsUploader;
+using Serilog.Core;
 
 namespace GoodMoodProvider.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class NewsController : Controller
     {
-        public readonly DataContext _context;
-        public readonly WorkingUnit _workingUnit;
+        private readonly DataContext _context;
+        private readonly WorkingUnit _workingUnit;
+        private readonly NewsService _newsService;
 
         public NewsController(DataContext context)
         {
             _context = context;
             _workingUnit = new WorkingUnit(_context);
+            _newsService = new NewsService(_context);
         }
        
               
@@ -35,15 +40,22 @@ namespace GoodMoodProvider.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "Admin, User")]
+        public async Task<IActionResult> LoadNews()
+        {
+            await _newsService.LoadNewsInDb();
+            return RedirectToAction("NewsList");
+        }
+
+
+    [HttpGet]
         public IActionResult NewsList()
         {
+            Log.Warning("NewsList was visited");
             return View(_context.News);
         }
 
 
         [HttpPost]
-        [Authorize(Roles = "Admin")]
         public IActionResult AddNews(NewsViewModel model)
         {
 
@@ -63,7 +75,6 @@ namespace GoodMoodProvider.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "Admin")]
         public IActionResult AddNews()
         {
             return View();
@@ -71,7 +82,6 @@ namespace GoodMoodProvider.Controllers
 
 
         [HttpPost]
-        [Authorize(Roles = "Admin")]
         public IActionResult EditNews(NewsViewModel model, Guid id)
         {
             var targetNews = _context.News
@@ -90,7 +100,6 @@ namespace GoodMoodProvider.Controllers
 
 
         [HttpGet]
-        [Authorize(Roles = "Admin")]
         public IActionResult EditNews(NewsViewModel model)
         {
             return View(model);
@@ -100,7 +109,6 @@ namespace GoodMoodProvider.Controllers
 
 
         [HttpPost]
-        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteNews(Guid id)
         {
             _context.News.Remove(await _context.News.FirstOrDefaultAsync(n => n.ID == id));
@@ -115,7 +123,6 @@ namespace GoodMoodProvider.Controllers
 
 
         [HttpGet]
-        [Authorize(Roles = "Admin")]
         public IActionResult DeleteNews()
         {
             return View();

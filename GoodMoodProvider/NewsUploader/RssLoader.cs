@@ -1,14 +1,20 @@
-﻿using NewsUploader.Interfaces;
+﻿using Serilog;
+using NewsUploader.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.ServiceModel.Syndication;
 using System.Xml;
 using System.Xml.Schema;
+using System.Linq;
 
 namespace NewsUploader
 {
     public class RssLoader : IRssLoader
     {
+        public RssLoader()
+        {
+        }
+
         public List<SyndicationItem> ReadRss( List<string> siteUrls)
         {
             List<SyndicationItem> newsItems = new List<SyndicationItem>();
@@ -25,7 +31,7 @@ namespace NewsUploader
             }
             catch (Exception exRss)
             {
-                throw exRss;
+                Log.Error($"{DateTime.UtcNow} {exRss}");
             }
         
             return newsItems; 

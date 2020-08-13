@@ -22,6 +22,8 @@ using RepositoryLibrary;
 using ContextLibrary.DataContexts;
 using ContextLibrary.Interfaces;
 using WorkingLibrary.DataContexts.WorkingUnit;
+using GoodMoodProvider.DbInitializer.Interfaces;
+using Serilog;
 
 namespace GoodMoodProvider
 {
@@ -42,6 +44,9 @@ namespace GoodMoodProvider
             services.AddScoped<IRepository<User>, UserRepository>();
             services.AddScoped<IRepository<News>, NewsRepository>();
 
+            services.AddTransient<IAdminInitializer, AdminInitializer>();
+
+
             var connString = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContextPool<DataContext>(options =>
             options.UseSqlServer(connString));
@@ -50,13 +55,12 @@ namespace GoodMoodProvider
                     .AddCookie(options => options.LoginPath = new PathString("/Account/Login"));
 
             services.AddScoped<DataContext>();
+            services.AddScoped<IWorkingUnit, WorkingUnit>();
 
             services.AddScoped<INewsService, NewsService>();
             services.AddScoped<IRssLoader, RssLoader>();
             services.AddScoped<INewsParser, NewsParser>();
 
-            services.AddScoped<AdminInitializer>();
-            services.AddTransient<IWorkingUnit, WorkingUnit>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -74,6 +78,8 @@ namespace GoodMoodProvider
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+
+            app.UseSerilogRequestLogging();
 
             app.UseRouting();
 

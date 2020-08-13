@@ -16,6 +16,7 @@ using RepositoryLibrary.RepositoryInterface;
 using WorkingLibrary.DataContexts.WorkingUnit;
 using ModelsLibrary;
 using RepositoryLibrary;
+using GoodMoodProvider.DbInitializer.Interfaces;
 
 namespace GoodMoodProvider.Controllers
 {
@@ -25,12 +26,12 @@ namespace GoodMoodProvider.Controllers
         private readonly DataContext _context;
         private readonly IRepository<User> _userRepository;
         private readonly WorkingUnit _workingUnit;
+
         public AccountController(DataContext context)
         {
             _context = context;
             _workingUnit = new WorkingUnit(_context);
             _userRepository = new UserRepository(_context, _workingUnit);
-
         }
 
         public IActionResult Index()

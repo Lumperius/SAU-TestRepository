@@ -34,6 +34,11 @@ namespace RepositoryLibrary
             await _context.SaveChangesAsync();
         }
 
+        public Task Clear()
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task DeleteAsync(Guid id)
         {
             if(_context.User.Any(U => U.ID == id))

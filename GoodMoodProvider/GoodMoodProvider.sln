@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ModelsLibrary", "ModelsLibr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContextLibrary", "ContextLibrary\ContextLibrary.csproj", "{582C49A5-8675-4BD0-82CD-313177863FFC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewsUploader", "NewsUploader\NewsUploader.csproj", "{AACDE732-BE3F-453E-8CB0-30A1E4473FFE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NewsUploader", "NewsUploader\NewsUploader.csproj", "{AACDE732-BE3F-453E-8CB0-30A1E4473FFE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logger", "Logger\Logger.csproj", "{0E757600-4645-4E72-A381-E6F1D1CC960A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{AACDE732-BE3F-453E-8CB0-30A1E4473FFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AACDE732-BE3F-453E-8CB0-30A1E4473FFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AACDE732-BE3F-453E-8CB0-30A1E4473FFE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E757600-4645-4E72-A381-E6F1D1CC960A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E757600-4645-4E72-A381-E6F1D1CC960A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E757600-4645-4E72-A381-E6F1D1CC960A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E757600-4645-4E72-A381-E6F1D1CC960A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

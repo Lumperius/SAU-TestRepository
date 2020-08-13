@@ -2798,6 +2798,7 @@
         "dependencies": {
           "HtmlAgilityPack": "1.11.24",
           "RepositoryLibrary": "1.0.0",
+          "Serilog.AspNetCore": "3.4.0",
           "System.ServiceModel.Syndication": "4.7.0"
         },
         "compile": {
@@ -2805,7 +2806,10 @@
         },
         "runtime": {
           "bin/placeholder/NewsUploader.dll": {}
-        }
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
       },
       "RepositoryLibrary/1.0.0": {
         "type": "project",

@@ -48,5 +48,12 @@ namespace RepositoryLibrary
                 _context.News.RemoveRange(_context.News.Where(n => n.ID == id.FirstOrDefault(i => i == n.ID)));
             await _context.SaveChangesAsync();
         }
+
+        public async Task Clear()
+        {
+            _context.News.RemoveRange(_context.News.Where( n => n.ID != null));
+            await _context.SaveChangesAsync();
+        }
+
     }
 }

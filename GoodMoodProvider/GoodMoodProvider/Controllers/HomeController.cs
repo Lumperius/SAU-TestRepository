@@ -9,19 +9,18 @@ using GoodMoodProvider.DbInitializer;
 using System.Security.Claims;
 using Serilog;
 using ModelsLibrary;
+using GoodMoodProvider.DbInitializer.Interfaces;
 
 namespace GoodMoodProvider.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-        private readonly AdminInitializer _adminInitializer;
+        private readonly IAdminInitializer _adminInitializer;
 
 
-        public HomeController(ILogger<HomeController> logger, AdminInitializer adminInitializer)
+        public HomeController( IAdminInitializer adminInitializer)
         {
             _adminInitializer = adminInitializer;
-            _logger = logger;
         }
 
         public async Task<IActionResult> Index()
@@ -46,8 +45,8 @@ namespace GoodMoodProvider.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
       
-        
-        public IActionResult Show()
+        [HttpGet]
+        public IActionResult Feed()
         {
             return View();
         }

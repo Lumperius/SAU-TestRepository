@@ -1,4 +1,5 @@
 ﻿using ContextLibrary.DataContexts;
+using GoodMoodProvider.DbInitializer.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Internal;
 using ModelsLibrary;
@@ -10,7 +11,7 @@ using WorkingLibrary.DataContexts.WorkingUnit;
 
 namespace GoodMoodProvider.DbInitializer
 {
-    public class AdminInitializer 
+    public class AdminInitializer : IAdminInitializer
     {
         private readonly DataContext _context;
         private readonly WorkingUnit _workingUnit;

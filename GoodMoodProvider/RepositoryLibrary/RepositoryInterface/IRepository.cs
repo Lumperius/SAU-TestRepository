@@ -11,5 +11,7 @@ namespace RepositoryLibrary.RepositoryInterface
         public Task DeleteRangeAsync(IEnumerable<Guid> ID);
         public Task AddAsync(T obj);
         public Task AddRangeAsync(IEnumerable<T> objs);
+        public Task Clear();
+
     }
 }

@@ -191,6 +191,10 @@
               "target": "Package",
               "version": "[1.11.24, )"
             },
+            "Serilog.AspNetCore": {
+              "target": "Package",
+              "version": "[3.4.0, )"
+            },
             "System.ServiceModel.Syndication": {
               "target": "Package",
               "version": "[4.7.0, )"

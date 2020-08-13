@@ -15,7 +15,7 @@
     <h3>@news.Article</h3>
     <br>
 
-    @news.Body
+    @Html.Raw(System.Web.HttpUtility.HtmlDecode(@news.Body))
     <br>
 
     @if (news.Author != null)

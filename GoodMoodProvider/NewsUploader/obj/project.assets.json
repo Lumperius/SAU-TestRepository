@@ -8857,6 +8857,7 @@
     ".NETCoreApp,Version=v3.1": [
       "HtmlAgilityPack >= 1.11.24",
       "RepositoryLibrary >= 1.0.0",
+      "Serilog.AspNetCore >= 3.4.0",
       "System.ServiceModel.Syndication >= 4.7.0"
     ]
   },
@@ -8904,6 +8905,10 @@
           "HtmlAgilityPack": {
             "target": "Package",
             "version": "[1.11.24, )"
+          },
+          "Serilog.AspNetCore": {
+            "target": "Package",
+            "version": "[3.4.0, )"
           },
           "System.ServiceModel.Syndication": {
             "target": "Package",
