@@ -22,6 +22,13 @@ namespace NewsUploader
         private readonly IRssLoader _rssLoader;
         private readonly INewsParser _newsParser;
         private readonly IWorkingUnit _workingUnit;
+        private readonly List<string> urls = new List<string>()
+            {
+              "https://news.tut.by/rss/all.rss",
+    //          "http://Onliner.by/feed",
+    //          "https://S13.ru/rss"
+            };
+
 
         public NewsService(DataContext context)
         {
@@ -32,16 +39,11 @@ namespace NewsUploader
             _newsParser = new NewsParser();
         }
 
+
+
         public async Task LoadNewsInDb()
         {
             List<News> parsedNewsList = new List<News>();
-            List<string> urls = new List<string>()
-            {
-              "https://news.tut.by/rss/all.rss",
-              "http://Onliner.by/feed",
-    //          "https://S13.ru/rss"
-            };
-
 
             List<SyndicationItem> newsItems = _rssLoader.ReadRss(urls); //Get rss feed
             foreach(SyndicationItem item in newsItems) //Add item's info to model
@@ -63,7 +65,8 @@ namespace NewsUploader
                 
                 if (item.Links.FirstOrDefault().Uri.Host.Contains("S13.ru")) 
                     parsedNews.Body = _newsParser.S13ParseNews(item.Links.FirstOrDefault()?.Uri.AbsoluteUri);
-
+                HtmlCleaner.CleanHtml(parsedNews.Body);
+                if(parsedNews.Body != null)
                 parsedNewsList.Add(parsedNews);  //Add model's object to list
             }
 

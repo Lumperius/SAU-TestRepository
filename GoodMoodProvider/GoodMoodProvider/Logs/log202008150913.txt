@@ -1,0 +1,2 @@
+2020-08-15 09:13:23.884 +03:00 [INF] Home was visited
+2020-08-15 09:13:30.645 +03:00 [INF] HTTP GET / responded 302 in 7396.0192 ms

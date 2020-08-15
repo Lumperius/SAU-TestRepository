@@ -57,6 +57,7 @@ namespace GoodMoodProvider
             services.AddScoped<DataContext>();
             services.AddScoped<IWorkingUnit, WorkingUnit>();
 
+            services.AddScoped<IHtmlCleaner, HtmlCleaner>();
             services.AddScoped<INewsService, NewsService>();
             services.AddScoped<IRssLoader, RssLoader>();
             services.AddScoped<INewsParser, NewsParser>();

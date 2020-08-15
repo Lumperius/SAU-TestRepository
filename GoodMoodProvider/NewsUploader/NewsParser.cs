@@ -26,8 +26,7 @@ namespace NewsUploader
                 .Where(d => d.Id == "article_body")
                 .FirstOrDefault()?
                 .InnerHtml;
-
-            return listContent;
+            return HtmlCleaner.CleanHtml( listContent);          
         }
 
 
@@ -42,8 +41,7 @@ namespace NewsUploader
                 .Where(d => d.Attributes.FirstOrDefault().Value == "news-text")
                 .FirstOrDefault()?
                 .InnerHtml;
-
-            return listContent;
+            return HtmlCleaner.CleanHtml(listContent);
         }
 
         public string S13ParseNews(string newsUrl)
@@ -56,8 +54,7 @@ namespace NewsUploader
                 .Where(d => d.Attributes["class"].Value == "adcd1194b61eedc58d59107552c8674a1 b880x90")
                 .FirstOrDefault()?
                 .InnerHtml;
-
-            return listContent;
+            return HtmlCleaner.CleanHtml(listContent);
         }
 
 

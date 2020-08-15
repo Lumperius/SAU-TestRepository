@@ -1,3 +1,0 @@
-2020-08-13 11:23:47.458 +03:00 [INF] HTTP GET /User/Registration responded 404 in 141.8204 ms
-2020-08-13 11:23:48.026 +03:00 [INF] Home was visited
-2020-08-13 11:23:51.834 +03:00 [INF] HTTP GET / responded 200 in 4521.9079 ms

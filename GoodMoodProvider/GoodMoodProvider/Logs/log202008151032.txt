@@ -1,0 +1,3 @@
+2020-08-15 10:32:38.192 +03:00 [INF] HTTP GET /News/LoadNews responded 302 in 139105.1084 ms
+2020-08-15 10:32:38.232 +03:00 [WRN] NewsList was visited
+2020-08-15 10:32:51.619 +03:00 [INF] HTTP GET /News/NewsList responded 200 in 13405.2724 ms
