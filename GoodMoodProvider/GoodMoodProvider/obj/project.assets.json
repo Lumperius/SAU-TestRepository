@@ -2765,9 +2765,9 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
         "dependencies": {
-          "Microsoft.EntityFrameworkCore": "3.1.5",
-          "Microsoft.EntityFrameworkCore.SqlServer": "3.1.5",
-          "Microsoft.VisualStudio.Web.CodeGeneration.Design": "3.1.3",
+          "Microsoft.EntityFrameworkCore": "3.1.7",
+          "Microsoft.EntityFrameworkCore.SqlServer": "3.1.7",
+          "Microsoft.VisualStudio.Web.CodeGeneration.Design": "3.1.4",
           "ModelsLibrary": "1.0.0",
           "Serilog.AspNetCore": "3.4.0",
           "Serilog.Sinks.File": "4.1.0"
@@ -2816,9 +2816,9 @@
         "framework": ".NETCoreApp,Version=v3.1",
         "dependencies": {
           "ContextLibrary": "1.0.0",
-          "Microsoft.EntityFrameworkCore": "3.1.5",
-          "Microsoft.EntityFrameworkCore.SqlServer": "3.1.5",
-          "Microsoft.VisualStudio.Web.CodeGeneration.Design": "3.1.3",
+          "Microsoft.EntityFrameworkCore": "3.1.7",
+          "Microsoft.EntityFrameworkCore.SqlServer": "3.1.7",
+          "Microsoft.VisualStudio.Web.CodeGeneration.Design": "3.1.4",
           "ModelsLibrary": "1.0.0",
           "Serilog.AspNetCore": "3.4.0",
           "Serilog.Sinks.File": "4.1.0"
@@ -9070,5 +9070,61 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.200\\RuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1605",
+      "level": "Error",
+      "message": "Detected package downgrade: Microsoft.EntityFrameworkCore from 3.1.7 to 3.1.5. Reference the package directly from the project to select a different version. \r\n GoodMoodProvider -> RepositoryLibrary -> Microsoft.EntityFrameworkCore (>= 3.1.7) \r\n GoodMoodProvider -> Microsoft.EntityFrameworkCore (>= 3.1.5)",
+      "libraryId": "Microsoft.EntityFrameworkCore",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v3.1"
+      ]
+    },
+    {
+      "code": "NU1605",
+      "level": "Error",
+      "message": "Detected package downgrade: Microsoft.VisualStudio.Web.CodeGeneration.Design from 3.1.4 to 3.1.3. Reference the package directly from the project to select a different version. \r\n GoodMoodProvider -> RepositoryLibrary -> Microsoft.VisualStudio.Web.CodeGeneration.Design (>= 3.1.4) \r\n GoodMoodProvider -> Microsoft.VisualStudio.Web.CodeGeneration.Design (>= 3.1.3)",
+      "libraryId": "Microsoft.VisualStudio.Web.CodeGeneration.Design",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v3.1"
+      ]
+    },
+    {
+      "code": "NU1605",
+      "level": "Error",
+      "message": "Detected package downgrade: Microsoft.EntityFrameworkCore.SqlServer from 3.1.7 to 3.1.5. Reference the package directly from the project to select a different version. \r\n GoodMoodProvider -> RepositoryLibrary -> Microsoft.EntityFrameworkCore.SqlServer (>= 3.1.7) \r\n GoodMoodProvider -> Microsoft.EntityFrameworkCore.SqlServer (>= 3.1.5)",
+      "libraryId": "Microsoft.EntityFrameworkCore.SqlServer",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v3.1"
+      ]
+    },
+    {
+      "code": "NU1605",
+      "level": "Error",
+      "message": "Detected package downgrade: Microsoft.EntityFrameworkCore from 3.1.7 to 3.1.5. Reference the package directly from the project to select a different version. \r\n GoodMoodProvider -> ContextLibrary -> Microsoft.EntityFrameworkCore (>= 3.1.7) \r\n GoodMoodProvider -> Microsoft.EntityFrameworkCore (>= 3.1.5)",
+      "libraryId": "Microsoft.EntityFrameworkCore",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v3.1"
+      ]
+    },
+    {
+      "code": "NU1605",
+      "level": "Error",
+      "message": "Detected package downgrade: Microsoft.VisualStudio.Web.CodeGeneration.Design from 3.1.4 to 3.1.3. Reference the package directly from the project to select a different version. \r\n GoodMoodProvider -> ContextLibrary -> Microsoft.VisualStudio.Web.CodeGeneration.Design (>= 3.1.4) \r\n GoodMoodProvider -> Microsoft.VisualStudio.Web.CodeGeneration.Design (>= 3.1.3)",
+      "libraryId": "Microsoft.VisualStudio.Web.CodeGeneration.Design",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v3.1"
+      ]
+    },
+    {
+      "code": "NU1605",
+      "level": "Error",
+      "message": "Detected package downgrade: Microsoft.EntityFrameworkCore.SqlServer from 3.1.7 to 3.1.5. Reference the package directly from the project to select a different version. \r\n GoodMoodProvider -> ContextLibrary -> Microsoft.EntityFrameworkCore.SqlServer (>= 3.1.7) \r\n GoodMoodProvider -> Microsoft.EntityFrameworkCore.SqlServer (>= 3.1.5)",
+      "libraryId": "Microsoft.EntityFrameworkCore.SqlServer",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v3.1"
+      ]
+    }
+  ]
 }

@@ -33,6 +33,7 @@ namespace NewsUploader
 
             htmlText = Regex.Replace(htmlText, @"<p>?</p>", "", RegexOptions.Singleline);  //Remove empty blocks
 
+            htmlText = Regex.Replace(htmlText, @"\n{2,}", "", RegexOptions.Singleline);  //Remove empty strings
 
             return htmlText;
         }
