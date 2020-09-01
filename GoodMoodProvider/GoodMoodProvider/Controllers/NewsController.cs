@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Razor.Language;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
-using GoodMoodProvider.ViewsModels;
 using Microsoft.CodeAnalysis.Differencing;
 using Microsoft.AspNetCore.Authorization;
 using Serilog;
@@ -16,6 +15,7 @@ using WorkingLibrary.DataContexts.WorkingUnit;
 using ModelsLibrary;
 using NewsUploader;
 using Serilog.Core;
+using ModelsLibrary.ViewModels;
 
 namespace GoodMoodProvider.Controllers
 {

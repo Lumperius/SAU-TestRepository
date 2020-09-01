@@ -22,6 +22,7 @@ namespace ContextLibrary.DataContexts
         public DbSet<Role> Role { get; set; }
         public DbSet<WordRating> WordsRating {get; set;}
         public DbSet<UserRole> UserRoles { get; set; }
+        public DbSet<Token> Tokeens { get; set; }
 
 
     }

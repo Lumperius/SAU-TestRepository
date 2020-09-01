@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "pIoRlnQ0g5VOAEembXFIoouG5davzCcrpespY01ZizL4VGIerOQE+D9TR8Al34nO6n3wxfc7WMu/waYL2ebzvQ==",
+  "dgSpecHash": "74SN37XGFS36JMBA+fvZXG6sTZwUaZsGYsIRRDWCtav3z+QKMVIruL/sVhn4gAselvRJzKeStFRGWsBuU8Ps1w==",
   "success": true,
   "projectFilePath": "C:\\Users\\Lenovo\\Documents\\GitHub\\SAU-TestRepository\\GoodMoodProvider\\APIGoodMoodProvider\\APIGoodMoodProvider\\APIGoodMoodProvider.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Lenovo\\.nuget\\packages\\hangfire.aspnetcore\\1.7.12\\hangfire.aspnetcore.1.7.12.nupkg.sha512",
+    "C:\\Users\\Lenovo\\.nuget\\packages\\hangfire.core\\1.7.12\\hangfire.core.1.7.12.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\htmlagilitypack\\1.11.24\\htmlagilitypack.1.11.24.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\microsoft.aspnet.webapi.client\\4.0.20710\\microsoft.aspnet.webapi.client.4.0.20710.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\microsoft.aspnet.webapi.core\\4.0.20710\\microsoft.aspnet.webapi.core.4.0.20710.nupkg.sha512",
@@ -55,7 +57,7 @@
     "C:\\Users\\Lenovo\\.nuget\\packages\\microsoft.net.http\\2.0.20710\\microsoft.net.http.2.0.20710.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\microsoft.netcore.platforms\\2.1.2\\microsoft.netcore.platforms.2.1.2.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\microsoft.netcore.targets\\1.1.0\\microsoft.netcore.targets.1.1.0.nupkg.sha512",
-    "C:\\Users\\Lenovo\\.nuget\\packages\\microsoft.openapi\\1.2.2\\microsoft.openapi.1.2.2.nupkg.sha512",
+    "C:\\Users\\Lenovo\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\microsoft.visualstudio.web.codegeneration\\3.1.4\\microsoft.visualstudio.web.codegeneration.3.1.4.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\microsoft.visualstudio.web.codegeneration.contracts\\3.1.4\\microsoft.visualstudio.web.codegeneration.contracts.3.1.4.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\microsoft.visualstudio.web.codegeneration.core\\3.1.4\\microsoft.visualstudio.web.codegeneration.core.3.1.4.nupkg.sha512",

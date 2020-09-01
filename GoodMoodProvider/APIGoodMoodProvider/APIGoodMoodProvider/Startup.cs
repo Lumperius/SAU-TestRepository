@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
@@ -44,8 +45,17 @@ namespace APIGoodMoodProvider
             services.AddControllers();
             services.AddSwaggerGen(x =>
             {
-                x.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo() { Title = "GMP API", Version = "v1" });
+                x.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo()
+                {
+                    Title = "GMP API",
+                    Version = "v1"
+                });
+     //           var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}Documentation.xml";
+     //           var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+     //           x.IncludeXmlComments(xmlPath);
             });
+
+
 
             services.AddScoped<IRepository<User>, UserRepository>();
             services.AddScoped<IRepository<News>, NewsRepository>();

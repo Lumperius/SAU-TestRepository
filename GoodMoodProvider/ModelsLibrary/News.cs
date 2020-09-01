@@ -10,6 +10,7 @@ namespace ModelsLibrary
         public Guid ID { get; set; }
         public string Article { get; set; }
         public string Body { get; set; }
+        public string PlainText { get; set; }
         public string SourceSite { get; set; }
         public string Author { get; set; }
         public DateTime DatePosted { get; set; }

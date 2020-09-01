@@ -13,7 +13,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContextLibrary", "ContextLi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NewsUploader", "NewsUploader\NewsUploader.csproj", "{AACDE732-BE3F-453E-8CB0-30A1E4473FFE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logger", "Logger\Logger.csproj", "{0E757600-4645-4E72-A381-E6F1D1CC960A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Logger", "Logger\Logger.csproj", "{0E757600-4645-4E72-A381-E6F1D1CC960A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "APIGoodMoodProvider", "APIGoodMoodProvider\APIGoodMoodProvider\APIGoodMoodProvider.csproj", "{1F00BAB7-398A-4095-A0FC-CAF56C742A16}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserService", "UserService\UserService.csproj", "{450A49AB-D0CD-48CD-AC3C-C0F2028AB67E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +49,14 @@ Global
 		{0E757600-4645-4E72-A381-E6F1D1CC960A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0E757600-4645-4E72-A381-E6F1D1CC960A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0E757600-4645-4E72-A381-E6F1D1CC960A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F00BAB7-398A-4095-A0FC-CAF56C742A16}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F00BAB7-398A-4095-A0FC-CAF56C742A16}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F00BAB7-398A-4095-A0FC-CAF56C742A16}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F00BAB7-398A-4095-A0FC-CAF56C742A16}.Release|Any CPU.Build.0 = Release|Any CPU
+		{450A49AB-D0CD-48CD-AC3C-C0F2028AB67E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{450A49AB-D0CD-48CD-AC3C-C0F2028AB67E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{450A49AB-D0CD-48CD-AC3C-C0F2028AB67E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{450A49AB-D0CD-48CD-AC3C-C0F2028AB67E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

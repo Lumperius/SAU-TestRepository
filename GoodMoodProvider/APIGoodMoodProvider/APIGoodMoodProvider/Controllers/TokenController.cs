@@ -1,9 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Security.Claims;
+using System.Text;
 using System.Threading.Tasks;
+using ContextLibrary.DataContexts;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
+using ModelsLibrary;
 
 namespace APIGoodMoodProvider.Controllers
 {
@@ -12,36 +20,78 @@ namespace APIGoodMoodProvider.Controllers
     [ApiController]
     public class TokenController : ControllerBase
     {
-        // GET: api/Default
+        private readonly DataContext _context;
+        private readonly IConfiguration _config;
+
+        public TokenController(DataContext context, IConfiguration _configuration)
+        {
+            _context = context;
+        }
+
+        /// <summary>
+        /// Get method for [User]
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Nothing yet =(</returns>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public async Task<IActionResult> Get(Guid id)
         {
-            return new string[] { "value1", "value2" };
+            return Ok();
         }
 
-        // GET: api/Default/5
-        [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
-        {
-            return "value";
-        }
-
-        // POST: api/Default
+        /// <summary>
+        /// Post method for [User]
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task<IActionResult> Post(Token token)
         {
+            return Ok(token);
+        }
+        private string BuildToken(User user)
+        {
+            var claims = new[]
+            {
+                new Claim(JwtRegisteredClaimNames.Sub, user.Login),
+                new Claim(JwtRegisteredClaimNames.Email, user.Email),
+                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString("D")),
+            };
+
+
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["JWT:Key"]));
+            var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+
+
+
+            var token = new JwtSecurityToken(_config["JWT:Issuer"],
+                _config["JWT:Issuer"],
+                claims,
+                expires: DateTime.Now.AddMinutes(30),
+                signingCredentials: credentials);
+
+            return new JwtSecurityTokenHandler().WriteToken(token);
         }
 
-        // PUT: api/Default/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+
+
+        /// <summary>
+        /// Delete method for [User]
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpDelete]
+        public async Task<IActionResult> Delete()
         {
+            return Ok();
         }
 
-        // DELETE: api/ApiWithActions/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpPatch]
+        public async Task<IActionResult> Patch()
         {
+            return Ok();
         }
+
     }
 }
+

@@ -39,7 +39,7 @@ namespace APIGoodMoodProvider.Initializer
 
             if (!await _context.User.AnyAsync(U => U.Login == "CEO"))
             {
-                await _context.User.AddAsync(new User() { Login = "CEO", ID = new Guid(), Password = "qwerty", IsOnline = true });
+                await _context.User.AddAsync(new User() { Login = "CEO", ID = new Guid(), Password = "qwerty"});
                 await _context.User.ToListAsync();
                 await _workingUnit.SaveDBAsync();
             }

@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using GoodMoodProvider.ViewsModels;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -17,6 +16,9 @@ using WorkingLibrary.DataContexts.WorkingUnit;
 using ModelsLibrary;
 using RepositoryLibrary;
 using GoodMoodProvider.DbInitializer.Interfaces;
+using ModelsLibrary.ViewModels;
+using UserService.Interfaces;
+using UserService;
 
 namespace GoodMoodProvider.Controllers
 {
@@ -26,9 +28,11 @@ namespace GoodMoodProvider.Controllers
         private readonly DataContext _context;
         private readonly IRepository<User> _userRepository;
         private readonly WorkingUnit _workingUnit;
+        private readonly IEncrypter _encrypter;
 
         public AccountController(DataContext context)
         {
+            _encrypter = new Encrypter();
             _context = context;
             _workingUnit = new WorkingUnit(_context);
             _userRepository = new UserRepository(_context, _workingUnit);
@@ -38,9 +42,6 @@ namespace GoodMoodProvider.Controllers
         {
             return View();
         }
-
-
-
 
         [HttpGet]
         public IActionResult Registration()
@@ -57,19 +58,15 @@ namespace GoodMoodProvider.Controllers
             }
             User newUser = new User()
                 {
-                    ID = new Guid(),
-                    Password = model.Password,
-                    Login = model.Login,
-                    Firstname = model.Firstname,
-                    SecondName = model.SecondName,
-                    BirthDay = model.BirthDay,
-                    Gender = model.Gender,
-                    IsOnline = true,
+                  ID = new Guid(),
+                  Password = _encrypter.EncryptString(model.Password),
+                  Login = model.Login,
+                  Email = model.Email
                 };
+
             var role = _context.Role.FirstOrDefault(r => r.Name == "User");
 
             await _context.User.AddAsync(newUser);
-
             await _context.UserRoles.AddAsync(new UserRole()
                 {
                     ID = new Guid(),
@@ -85,7 +82,6 @@ namespace GoodMoodProvider.Controllers
                 await Authenticate(newUser);
                 return RedirectToAction("Index", "Home");
             }
-            ModelState.AddModelError("", "Icorrect login or password");
             return View();
         }
 
@@ -105,8 +101,8 @@ namespace GoodMoodProvider.Controllers
             User user = _context.User
                 .Include(u => u.UserRoles)
                 .FirstOrDefault(x => 
-               x.Login == model.Login && 
-               x.Password == model.Password);
+                   x.Login == model.Login && 
+                   x.Password == _encrypter.EncryptString(model.Password));
           
             if(User!=null)
             {
@@ -154,7 +150,7 @@ namespace GoodMoodProvider.Controllers
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync((CookieAuthenticationDefaults.AuthenticationScheme));
-            Log.Logger.Information($"Info|{DateTime.Now}|User {HttpContext.User.Identity.Name} has left");
+            Log.Logger.Information($"Info|{DateTime.Now}|User {HttpContext.User.Identity.Name} has left application");
             return RedirectToAction("Login");
         }
 
@@ -175,7 +171,5 @@ namespace GoodMoodProvider.Controllers
                 $"{CurrentUserID}");
             return RedirectToAction("Registration");
         }
-
-
     }
 }

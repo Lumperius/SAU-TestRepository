@@ -24,6 +24,9 @@ using ContextLibrary.Interfaces;
 using WorkingLibrary.DataContexts.WorkingUnit;
 using GoodMoodProvider.DbInitializer.Interfaces;
 using Serilog;
+using Hangfire;
+using UserService.Interfaces;
+using UserService;
 
 namespace GoodMoodProvider
 {
@@ -46,17 +49,17 @@ namespace GoodMoodProvider
 
             services.AddTransient<IAdminInitializer, AdminInitializer>();
 
-
             var connString = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContextPool<DataContext>(options =>
-            options.UseSqlServer(connString));
+            options.UseSqlServer(connString, b => b.MigrationsAssembly("APIGoodMoodProvider")));
 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                     .AddCookie(options => options.LoginPath = new PathString("/Account/Login"));
 
             services.AddScoped<DataContext>();
             services.AddScoped<IWorkingUnit, WorkingUnit>();
-
+           
+            services.AddScoped<IEncrypter, Encrypter>();
             services.AddScoped<IHtmlCleaner, HtmlCleaner>();
             services.AddScoped<INewsService, NewsService>();
             services.AddScoped<IRssLoader, RssLoader>();
@@ -95,7 +98,10 @@ namespace GoodMoodProvider
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
 
-            
+//            RecurringJob.AddOrUpdate(
+//() => _newsHandler.LoadNewsInDb(),
+//Cron.Hourly);
+
         }
     }
 }
