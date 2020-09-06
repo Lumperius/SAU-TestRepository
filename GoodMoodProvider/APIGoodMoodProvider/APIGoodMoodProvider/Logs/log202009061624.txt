@@ -1,0 +1,6 @@
+2020-09-06 16:24:37.514 +03:00 [ERR] Error|06.09.2020 16:24:37|System.ArgumentNullException: String reference not set to an instance of a String. (Parameter 's')
+   at System.Text.Encoding.GetBytes(String s)
+   at UserService.UserHandler.BuildToken(User user) in C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\UserService\UserHandler.cs:line 74
+   at UserService.UserHandler.Authenticate(AuthenticationRequest request) in C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\UserService\UserHandler.cs:line 39
+   at APIGoodMoodProvider.Controllers.UserController.Authenticate(AuthenticationRequest request) in C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\APIGoodMoodProvider\APIGoodMoodProvider\Controllers\UserController.cs:line 63
+2020-09-06 16:24:37.568 +03:00 [INF] HTTP POST /api/User/authenticate responded 400 in 52323.2757 ms

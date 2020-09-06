@@ -15,11 +15,11 @@ namespace GoodMoodProvider.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.5")
+                .HasAnnotation("ProductVersion", "3.1.7")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("GoodMoodProvider.Models.Comment", b =>
+            modelBuilder.Entity("ModelsLibrary.Comment", b =>
                 {
                     b.Property<Guid>("ID")
                         .ValueGeneratedOnAdd()
@@ -41,7 +41,7 @@ namespace GoodMoodProvider.Migrations
                     b.ToTable("Comments");
                 });
 
-            modelBuilder.Entity("GoodMoodProvider.Models.News", b =>
+            modelBuilder.Entity("ModelsLibrary.News", b =>
                 {
                     b.Property<Guid>("ID")
                         .ValueGeneratedOnAdd()
@@ -65,6 +65,9 @@ namespace GoodMoodProvider.Migrations
                     b.Property<double>("FinalRating")
                         .HasColumnType("float");
 
+                    b.Property<string>("PlainText")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("SourceSite")
                         .HasColumnType("nvarchar(max)");
 
@@ -81,7 +84,7 @@ namespace GoodMoodProvider.Migrations
                     b.ToTable("News");
                 });
 
-            modelBuilder.Entity("GoodMoodProvider.Models.Role", b =>
+            modelBuilder.Entity("ModelsLibrary.Role", b =>
                 {
                     b.Property<Guid>("ID")
                         .ValueGeneratedOnAdd()
@@ -95,26 +98,14 @@ namespace GoodMoodProvider.Migrations
                     b.ToTable("Role");
                 });
 
-            modelBuilder.Entity("GoodMoodProvider.Models.User", b =>
+            modelBuilder.Entity("ModelsLibrary.User", b =>
                 {
                     b.Property<Guid>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("Age")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("BirthDay")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Firstname")
+                    b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Gender")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsOnline")
-                        .HasColumnType("bit");
 
                     b.Property<string>("Login")
                         .HasColumnType("nvarchar(max)");
@@ -122,10 +113,10 @@ namespace GoodMoodProvider.Migrations
                     b.Property<string>("Password")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("RegDate")
-                        .HasColumnType("datetime2");
+                    b.Property<string>("RefreshToken")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("SecondName")
+                    b.Property<string>("Token")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ID");
@@ -133,7 +124,7 @@ namespace GoodMoodProvider.Migrations
                     b.ToTable("User");
                 });
 
-            modelBuilder.Entity("GoodMoodProvider.Models.UserRole", b =>
+            modelBuilder.Entity("ModelsLibrary.UserRole", b =>
                 {
                     b.Property<Guid>("ID")
                         .ValueGeneratedOnAdd()
@@ -154,7 +145,7 @@ namespace GoodMoodProvider.Migrations
                     b.ToTable("UserRoles");
                 });
 
-            modelBuilder.Entity("GoodMoodProvider.Models.WordRating", b =>
+            modelBuilder.Entity("ModelsLibrary.WordRating", b =>
                 {
                     b.Property<Guid>("ID")
                         .ValueGeneratedOnAdd()
@@ -171,29 +162,29 @@ namespace GoodMoodProvider.Migrations
                     b.ToTable("WordsRating");
                 });
 
-            modelBuilder.Entity("GoodMoodProvider.Models.Comment", b =>
+            modelBuilder.Entity("ModelsLibrary.Comment", b =>
                 {
-                    b.HasOne("GoodMoodProvider.Models.User", null)
+                    b.HasOne("ModelsLibrary.User", null)
                         .WithMany("Comments")
                         .HasForeignKey("UserID");
                 });
 
-            modelBuilder.Entity("GoodMoodProvider.Models.News", b =>
+            modelBuilder.Entity("ModelsLibrary.News", b =>
                 {
-                    b.HasOne("GoodMoodProvider.Models.Comment", null)
+                    b.HasOne("ModelsLibrary.Comment", null)
                         .WithMany("News")
                         .HasForeignKey("CommentID");
                 });
 
-            modelBuilder.Entity("GoodMoodProvider.Models.UserRole", b =>
+            modelBuilder.Entity("ModelsLibrary.UserRole", b =>
                 {
-                    b.HasOne("GoodMoodProvider.Models.Role", null)
+                    b.HasOne("ModelsLibrary.Role", null)
                         .WithMany("UserRoles")
                         .HasForeignKey("RoleID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("GoodMoodProvider.Models.User", null)
+                    b.HasOne("ModelsLibrary.User", null)
                         .WithMany("UserRoles")
                         .HasForeignKey("UserID")
                         .OnDelete(DeleteBehavior.Cascade)

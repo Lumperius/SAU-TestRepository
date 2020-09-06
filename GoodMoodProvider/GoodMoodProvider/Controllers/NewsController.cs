@@ -47,7 +47,7 @@ namespace GoodMoodProvider.Controllers
         }
 
 
-    [HttpGet]
+        [HttpGet]
         public IActionResult NewsList()
         {
             Log.Warning("NewsList was visited");

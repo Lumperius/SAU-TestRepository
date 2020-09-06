@@ -37,6 +37,7 @@
           "Serilog.AspNetCore": "3.4.0",
           "Serilog.Sinks.File": "4.1.0",
           "System.ServiceModel.Syndication": "4.7.0",
+          "UserService": "1.0.0",
           "Microsoft.AspNetCore.Antiforgery": "3.1.0.0",
           "Microsoft.AspNetCore.Authentication.Abstractions": "3.1.0.0",
           "Microsoft.AspNetCore.Authentication.Cookies": "3.1.0.0",
@@ -2508,6 +2509,17 @@
           "ContextLibrary.dll": {}
         }
       },
+      "Logger/1.0.0": {
+        "dependencies": {
+          "Serilog.AspNetCore": "3.4.0"
+        },
+        "runtime": {
+          "Logger.dll": {}
+        },
+        "compile": {
+          "Logger.dll": {}
+        }
+      },
       "ModelsLibrary/1.0.0": {
         "runtime": {
           "ModelsLibrary.dll": {}
@@ -2545,6 +2557,20 @@
         },
         "compile": {
           "RepositoryLibrary.dll": {}
+        }
+      },
+      "UserService/1.0.0": {
+        "dependencies": {
+          "ContextLibrary": "1.0.0",
+          "Logger": "1.0.0",
+          "ModelsLibrary": "1.0.0",
+          "RepositoryLibrary": "1.0.0"
+        },
+        "runtime": {
+          "UserService.dll": {}
+        },
+        "compile": {
+          "UserService.dll": {}
         }
       },
       "Microsoft.AspNetCore.Antiforgery/3.1.0.0": {
@@ -5359,6 +5385,11 @@
       "serviceable": false,
       "sha512": ""
     },
+    "Logger/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
     "ModelsLibrary/1.0.0": {
       "type": "project",
       "serviceable": false,
@@ -5370,6 +5401,11 @@
       "sha512": ""
     },
     "RepositoryLibrary/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "UserService/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

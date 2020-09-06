@@ -1,5 +1,6 @@
 ﻿using ContextLibrary.DataContexts;
 using ContextLibrary.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using ModelsLibrary;
 using RepositoryLibrary.RepositoryInterface;
 using System;
@@ -14,19 +15,17 @@ namespace RepositoryLibrary
     public class NewsRepository : IRepository<News>
     {
         private readonly DataContext _context;
-        private readonly IWorkingUnit _workingUnit;
 
-        public NewsRepository(DataContext context, IWorkingUnit workingUnit)
+        public NewsRepository(DataContext context)
         {
             _context = context;
-            _workingUnit = workingUnit;
         }
 
 
         public async Task AddAsync(News news)
         {
             await _context.News.AddAsync(news);
-            await _workingUnit.SaveDBAsync();
+            await _context.SaveChangesAsync();
         }
 
         public async Task AddRangeAsync(IEnumerable<News> news)
@@ -55,5 +54,14 @@ namespace RepositoryLibrary
             await _context.SaveChangesAsync();
         }
 
+        public async Task<News> GetByIdAsync(Guid id)
+        {
+           return await _context.News.FirstOrDefaultAsync(n => n.ID == id);
+        }
+
+        public async Task<IEnumerable<News>> GetAllAsync()
+        {
+            return await _context.News.ToListAsync();
+        }
     }
 }

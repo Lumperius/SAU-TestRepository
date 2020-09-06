@@ -187,3 +187,7 @@ C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\GoodMoodPro
 C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\GoodMoodProvider\bin\Debug\netcoreapp3.1\pt\Hangfire.Core.resources.dll
 C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\GoodMoodProvider\bin\Debug\netcoreapp3.1\zh-TW\Hangfire.Core.resources.dll
 C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\GoodMoodProvider\bin\Debug\netcoreapp3.1\zh\Hangfire.Core.resources.dll
+C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\GoodMoodProvider\bin\Debug\netcoreapp3.1\Logger.dll
+C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\GoodMoodProvider\bin\Debug\netcoreapp3.1\UserService.dll
+C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\GoodMoodProvider\bin\Debug\netcoreapp3.1\UserService.pdb
+C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\GoodMoodProvider\bin\Debug\netcoreapp3.1\Logger.pdb

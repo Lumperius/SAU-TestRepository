@@ -1,0 +1,6 @@
+2020-09-06 16:11:37.429 +03:00 [INF] Home was visited
+2020-09-06 16:11:40.826 +03:00 [INF] 1 changes were applied.
+2020-09-06 16:11:40.976 +03:00 [INF] 2 changes were applied.
+2020-09-06 16:11:41.098 +03:00 [INF] HTTP GET / responded 302 in 4021.6695 ms
+2020-09-06 16:11:41.184 +03:00 [WRN] NewsList was visited
+2020-09-06 16:11:41.640 +03:00 [INF] HTTP GET /News/NewsList responded 200 in 481.0768 ms

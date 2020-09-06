@@ -17,7 +17,7 @@
     "optimize": false,
     "keyFile": "",
     "emitEntryPoint": true,
-    "xmlDoc": false,
+    "xmlDoc": true,
     "debugType": "portable"
   },
   "targets": {
@@ -2697,6 +2697,12 @@
         }
       },
       "UserService/1.0.0": {
+        "dependencies": {
+          "ContextLibrary": "1.0.0",
+          "Logger": "1.0.0",
+          "ModelsLibrary": "1.0.0",
+          "RepositoryLibrary": "1.0.0"
+        },
         "runtime": {
           "UserService.dll": {}
         },

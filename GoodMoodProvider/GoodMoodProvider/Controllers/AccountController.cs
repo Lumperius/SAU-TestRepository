@@ -26,16 +26,14 @@ namespace GoodMoodProvider.Controllers
     {
 
         private readonly DataContext _context;
-        private readonly IRepository<User> _userRepository;
-        private readonly WorkingUnit _workingUnit;
+        private readonly IUnitOfWork _unitOfWork;
         private readonly IEncrypter _encrypter;
 
-        public AccountController(DataContext context)
+        public AccountController(DataContext context, IUnitOfWork unitOfWork)
         {
             _encrypter = new Encrypter();
             _context = context;
-            _workingUnit = new WorkingUnit(_context);
-            _userRepository = new UserRepository(_context, _workingUnit);
+            _unitOfWork = unitOfWork;
         }
 
         public IActionResult Index()
@@ -52,10 +50,6 @@ namespace GoodMoodProvider.Controllers
         [HttpPost]
         public async Task<IActionResult> Registration(UserViewModel model)
         {
-            if (!ModelState.IsValid)
-            {
-                return StatusCode(400);
-            }
             User newUser = new User()
                 {
                   ID = new Guid(),
@@ -66,15 +60,15 @@ namespace GoodMoodProvider.Controllers
 
             var role = _context.Role.FirstOrDefault(r => r.Name == "User");
 
-            await _context.User.AddAsync(newUser);
-            await _context.UserRoles.AddAsync(new UserRole()
+            await _unitOfWork.UserRepository.AddAsync(newUser);
+            await _unitOfWork.UserRoleRepository.AddAsync(new UserRole()
                 {
                     ID = new Guid(),
                     UserID = newUser.ID,
                     RoleID = role.ID
                 });
 
-            await _workingUnit.SaveDBAsync();
+            await _unitOfWork.SaveDBAsync();
             Log.Logger.Information($"Info|{DateTime.Now}|New user {newUser.Login}|{newUser.ID}");
 
             if (User != null)
@@ -104,7 +98,7 @@ namespace GoodMoodProvider.Controllers
                    x.Login == model.Login && 
                    x.Password == _encrypter.EncryptString(model.Password));
           
-            if(User!=null)
+            if(user!=null)
             {
                 await Authenticate(user);
                 return RedirectToAction("Index", "Home");
@@ -163,9 +157,9 @@ namespace GoodMoodProvider.Controllers
         }
 
         [HttpPost]
-        public IActionResult DeleteUser( Guid CurrentUserID)
+        public async Task<IActionResult> DeleteUser( Guid CurrentUserID)
         {
-                _userRepository.DeleteAsync(CurrentUserID);
+                await _unitOfWork.UserRepository.DeleteAsync(CurrentUserID);
             Log.Logger.Information($"Info|{DateTime.Now}|" +
                 $"User {_context.User.FirstOrDefault(u => CurrentUserID == u.ID).Login} profile has been deleted|" +
                 $"{CurrentUserID}");

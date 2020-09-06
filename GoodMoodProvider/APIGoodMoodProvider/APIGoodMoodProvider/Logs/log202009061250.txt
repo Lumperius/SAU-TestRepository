@@ -1,0 +1,2 @@
+2020-09-06 12:50:46.430 +03:00 [INF] HTTP GET /swagger/news/newslist responded 404 in 1.1311 ms
+2020-09-06 12:50:52.253 +03:00 [INF] HTTP GET /swagger/news/newsList responded 404 in 0.0757 ms

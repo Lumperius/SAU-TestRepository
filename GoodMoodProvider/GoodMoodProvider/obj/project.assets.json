@@ -2888,6 +2888,22 @@
           "Microsoft.AspNetCore.App"
         ]
       },
+      "Logger/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "dependencies": {
+          "Serilog.AspNetCore": "3.4.0"
+        },
+        "compile": {
+          "bin/placeholder/Logger.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Logger.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
+      },
       "ModelsLibrary/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
@@ -2942,6 +2958,12 @@
       "UserService/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
+        "dependencies": {
+          "ContextLibrary": "1.0.0",
+          "Logger": "1.0.0",
+          "ModelsLibrary": "1.0.0",
+          "RepositoryLibrary": "1.0.0"
+        },
         "compile": {
           "bin/placeholder/UserService.dll": {}
         },
@@ -9272,6 +9294,11 @@
       "type": "project",
       "path": "../ContextLibrary/ContextLibrary.csproj",
       "msbuildProject": "../ContextLibrary/ContextLibrary.csproj"
+    },
+    "Logger/1.0.0": {
+      "type": "project",
+      "path": "../Logger/Logger.csproj",
+      "msbuildProject": "../Logger/Logger.csproj"
     },
     "ModelsLibrary/1.0.0": {
       "type": "project",

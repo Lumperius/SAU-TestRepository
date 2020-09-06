@@ -51,10 +51,9 @@ namespace GoodMoodProvider
 
             var connString = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContextPool<DataContext>(options =>
-            options.UseSqlServer(connString, b => b.MigrationsAssembly("APIGoodMoodProvider")));
-
-            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-                    .AddCookie(options => options.LoginPath = new PathString("/Account/Login"));
+               options.UseSqlServer(connString, b => b.MigrationsAssembly("GoodMoodProvider")));
+               services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+              .AddCookie(options => options.LoginPath = new PathString("/Account/Login"));
 
             services.AddScoped<DataContext>();
             services.AddScoped<IWorkingUnit, WorkingUnit>();
@@ -88,7 +87,6 @@ namespace GoodMoodProvider
             app.UseRouting();
 
             app.UseAuthentication();
-
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

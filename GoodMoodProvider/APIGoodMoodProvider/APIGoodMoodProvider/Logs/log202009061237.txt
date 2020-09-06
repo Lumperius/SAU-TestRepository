@@ -1,0 +1,2 @@
+2020-09-06 12:37:06.439 +03:00 [INF] HTTP GET /Account/Login?ReturnUrl=%2Fnews%2FnewsList responded 404 in 0.0287 ms
+2020-09-06 12:37:28.007 +03:00 [INF] HTTP GET /Account/Login?ReturnUrl=%2Fnews%2FnewsList responded 404 in 0.0308 ms

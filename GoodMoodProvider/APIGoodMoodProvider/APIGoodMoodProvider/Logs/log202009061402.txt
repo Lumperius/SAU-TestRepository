@@ -1,0 +1,1 @@
+2020-09-06 14:02:29.562 +03:00 [INF] HTTP GET /news/newsList responded 200 in 3603.9107 ms

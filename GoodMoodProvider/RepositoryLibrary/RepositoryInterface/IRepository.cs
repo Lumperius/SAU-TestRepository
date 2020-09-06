@@ -7,6 +7,8 @@ namespace RepositoryLibrary.RepositoryInterface
 {
     public interface IRepository<T> 
     {
+        public Task<T> GetByIdAsync(Guid ID);
+        public Task<IEnumerable<T>> GetAllAsync();
         public Task DeleteAsync(Guid ID);
         public Task DeleteRangeAsync(IEnumerable<Guid> ID);
         public Task AddAsync(T obj);

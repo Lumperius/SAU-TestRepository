@@ -1,1 +1,0 @@
-2020-08-19 14:24:38.609 +03:00 [INF] HTTP GET /swagger/index responded 404 in 0.0894 ms

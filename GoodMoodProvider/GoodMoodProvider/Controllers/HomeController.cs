@@ -30,7 +30,7 @@ namespace GoodMoodProvider.Controllers
 
             if (HttpContext.User.HasClaim(ClaimsIdentity.DefaultRoleClaimType, "User")
              || HttpContext.User.HasClaim(ClaimsIdentity.DefaultRoleClaimType, "Admin"))
-            { return RedirectToAction( "LoadNews", "News"); }
+            { return RedirectToAction( "NewsList", "News"); }
        else { return RedirectToAction( "Login" ,"Account"); }
             }
 

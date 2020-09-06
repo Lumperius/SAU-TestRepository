@@ -26,6 +26,8 @@ using NewsUploader.Interfaces;
 using RepositoryLibrary;
 using RepositoryLibrary.RepositoryInterface;
 using Serilog;
+using UserService;
+using UserService.Interfaces;
 using WorkingLibrary.DataContexts.WorkingUnit;
 
 namespace APIGoodMoodProvider
@@ -50,12 +52,10 @@ namespace APIGoodMoodProvider
                     Title = "GMP API",
                     Version = "v1"
                 });
-     //           var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}Documentation.xml";
-     //           var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
-     //           x.IncludeXmlComments(xmlPath);
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                x.IncludeXmlComments(xmlPath);
             });
-
-
 
             services.AddScoped<IRepository<User>, UserRepository>();
             services.AddScoped<IRepository<News>, NewsRepository>();
@@ -65,18 +65,20 @@ namespace APIGoodMoodProvider
 
             var connString = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContextPool<DataContext>(options =>
-            options.UseSqlServer(connString));
+               options.UseSqlServer(connString, b => b.MigrationsAssembly("APIGoodMoodProvider")));
+
 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                     .AddCookie(options => options.LoginPath = new PathString("/Account/Login"));
 
             services.AddScoped<DataContext>();
             services.AddScoped<IWorkingUnit, WorkingUnit>();
-
-            services.AddScoped<IHtmlCleaner, HtmlCleaner>();
+           
             services.AddScoped<INewsService, NewsService>();
+            services.AddScoped<IHtmlCleaner, HtmlCleaner>();
             services.AddScoped<IRssLoader, RssLoader>();
-            services.AddScoped<INewsParser, NewsParser>();
+            services.AddScoped<INewsParser, NewsParser>(); 
+            services.AddScoped<IUserHandler, UserHandler>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -101,7 +103,6 @@ namespace APIGoodMoodProvider
             });
 
             app.UseAuthorization();
-
             app.UseAuthorization();
 
             app.UseSerilogRequestLogging();

@@ -1,0 +1,7 @@
+2020-09-06 15:44:05.506 +03:00 [ERR] Error|06.09.2020 15:44:05|System.ArgumentNullException: Value cannot be null. (Parameter 'value')
+   at System.Security.Claims.Claim..ctor(String type, String value, String valueType, String issuer, String originalIssuer, ClaimsIdentity subject, String propertyKey, String propertyValue)
+   at System.Security.Claims.Claim..ctor(String type, String value)
+   at UserService.UserHandler.BuildToken(User user) in C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\UserService\UserHandler.cs:line 54
+   at UserService.UserHandler.Authenticate(AuthenticationRequest request) in C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\UserService\UserHandler.cs:line 36
+   at APIGoodMoodProvider.Controllers.UserController.Authenticate(AuthenticationRequest request) in C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\APIGoodMoodProvider\APIGoodMoodProvider\Controllers\UserController.cs:line 63
+2020-09-06 15:44:05.578 +03:00 [INF] HTTP POST /api/User/authenticate responded 400 in 14147.3583 ms

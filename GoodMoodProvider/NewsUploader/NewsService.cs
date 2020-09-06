@@ -18,10 +18,9 @@ namespace NewsUploader
     public class NewsService : INewsService
     {
         private readonly DataContext _context;
-        private readonly IRepository<News> _newsRepository;
         private readonly IRssLoader _rssLoader;
         private readonly INewsParser _newsParser;
-        private readonly IWorkingUnit _workingUnit;
+        private readonly IUnitOfWork _unitOfWork;
         private readonly List<string> urls = new List<string>()
             {
               "https://news.tut.by/rss/all.rss",
@@ -30,11 +29,10 @@ namespace NewsUploader
             };
 
 
-        public NewsService(DataContext context)
+        public NewsService(DataContext context, IUnitOfWork unitOfWork)
         {
             _context = context;
-            _workingUnit = new WorkingUnit(context);
-            _newsRepository = new NewsRepository(context, _workingUnit);
+            _unitOfWork = unitOfWork;
             _rssLoader = new RssLoader();
             _newsParser = new NewsParser();
         }
@@ -71,9 +69,9 @@ namespace NewsUploader
             }
 
 
-            await _newsRepository.Clear(); //Clear whole news database info
-            await _newsRepository.AddRangeAsync(parsedNewsList); //Add list to database
-            await _workingUnit.SaveDBAsync(); //Save changes    
+            await _unitOfWork.NewsRepository.Clear(); //Clear whole news database info
+            await _unitOfWork.NewsRepository.AddRangeAsync(parsedNewsList); //Add list to database
+            await _unitOfWork.SaveDBAsync(); //Save changes    
             
         }
     }

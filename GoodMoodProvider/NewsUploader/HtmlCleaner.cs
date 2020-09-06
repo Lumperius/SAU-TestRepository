@@ -10,10 +10,6 @@ namespace NewsUploader
 {
     public class HtmlCleaner : IHtmlCleaner
     {
-        public static string GetPlainText(string htmlText)
-        {
-            return htmlText;
-        }
         public static string CleanHtml(string htmlText)
         {
            if(htmlText == null) { return null; }
@@ -37,5 +33,14 @@ namespace NewsUploader
 
             return htmlText;
         }
+
+        public static string GetPlainText(string htmlText)
+        {
+            htmlText = Regex.Replace(htmlText, "@<.+?>", "", RegexOptions.Singleline);  //Remove all tags
+
+            return htmlText;
+
+        }
+
     }
 }

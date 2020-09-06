@@ -1,4 +1,5 @@
 ﻿using ContextLibrary.DataContexts;
+using ContextLibrary.Interfaces;
 using GoodMoodProvider.DbInitializer.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Internal;
@@ -7,6 +8,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using UserService;
+using UserService.Interfaces;
 using WorkingLibrary.DataContexts.WorkingUnit;
 
 namespace GoodMoodProvider.DbInitializer
@@ -14,12 +17,14 @@ namespace GoodMoodProvider.DbInitializer
     public class AdminInitializer : IAdminInitializer
     {
         private readonly DataContext _context;
-        private readonly WorkingUnit _workingUnit;
+        private readonly IWorkingUnit _workingUnit;
+        private readonly IEncrypter _encrypter;
 
-        public AdminInitializer(DataContext context)
+        public AdminInitializer(DataContext context, IEncrypter encrypter, IWorkingUnit workingUnit)
         {
             _context = context;
-            _workingUnit = new WorkingUnit(_context);
+            _workingUnit = workingUnit;
+            _encrypter = encrypter;
         }
 
         public async Task InitializeAsync()
@@ -41,7 +46,8 @@ namespace GoodMoodProvider.DbInitializer
 
             if (!await _context.User.AnyAsync(U => U.Login == "CEO"))
             {
-                await _context.User.AddAsync(new User() { Login = "CEO", ID = new Guid(), Password = "qwerty"});
+                await _context.User.AddAsync(new User()
+                { Login = "CEO", ID = new Guid(), Password = _encrypter.EncryptString("qwerty"), Email = "Admin@cool.wow"});
                 await _context.User.ToListAsync();
                 await _workingUnit.SaveDBAsync();
             }

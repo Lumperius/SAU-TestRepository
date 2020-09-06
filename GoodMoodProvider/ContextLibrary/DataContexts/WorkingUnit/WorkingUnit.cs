@@ -1,5 +1,6 @@
 ﻿using ContextLibrary.DataContexts;
 using ContextLibrary.Interfaces;
+using Serilog;
 using Serilog.Core;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,6 @@ namespace WorkingLibrary.DataContexts.WorkingUnit
     public class WorkingUnit : IWorkingUnit
     {
         private readonly DataContext _context;
-        private readonly Logger _logger;
 
         public async Task SaveDBAsync()
         {
@@ -21,13 +21,13 @@ namespace WorkingLibrary.DataContexts.WorkingUnit
                 if (_context.ChangeTracker.HasChanges())
                 { 
                      changesNumber = await _context.SaveChangesAsync();
-                    _logger.Information($"{changesNumber} changes were applied.");
+                    Log.Information($"{changesNumber} changes were applied.");
                 }
             }
 
             catch (Exception ex)
             {
-                _logger.Error(ex.Message);
+                Log.Error(ex.Message);
                 throw ex;            
             }
         }
@@ -40,13 +40,13 @@ namespace WorkingLibrary.DataContexts.WorkingUnit
                 if (_context.ChangeTracker.HasChanges())
                 {
                     changesNumber = _context.SaveChanges();
-                    _logger.Information($"{changesNumber} changes were applied.");
+                    Log.Information($"{changesNumber} changes were applied.");
                 }
             }
 
             catch (Exception ex)
             {
-                _logger.Error($"Error occured while saving changes to database:{ex.Message}");
+                Log.Error($"Error occured while saving changes to database:{ex.Message}");
                 throw ex;
             }
         }

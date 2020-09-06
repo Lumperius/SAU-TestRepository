@@ -176,3 +176,4 @@ C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\APIGoodMood
 C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\APIGoodMoodProvider\APIGoodMoodProvider\obj\Debug\netcoreapp3.1\APIGoodMoodProvider.csproj.CoreCompileInputs.cache
 C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\APIGoodMoodProvider\APIGoodMoodProvider\obj\Debug\netcoreapp3.1\APIGoodMoodProvider.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\APIGoodMoodProvider\APIGoodMoodProvider\obj\Debug\netcoreapp3.1\APIGoodMoodProvider.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\APIGoodMoodProvider\APIGoodMoodProvider\bin\Debug\netcoreapp3.1\APIGoodMoodProvider.xml

@@ -1,0 +1,5 @@
+2020-09-06 13:47:02.230 +03:00 [INF] Home was visited
+2020-09-06 13:47:07.525 +03:00 [INF] 1 changes were applied.
+2020-09-06 13:47:09.224 +03:00 [INF] 2 changes were applied.
+2020-09-06 13:47:09.392 +03:00 [INF] HTTP GET / responded 302 in 7572.8320 ms
+2020-09-06 13:47:10.071 +03:00 [INF] HTTP GET /Account/Login responded 200 in 526.5218 ms
