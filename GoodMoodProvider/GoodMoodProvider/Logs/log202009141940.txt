@@ -1,0 +1,4 @@
+2020-09-14 19:40:28.997 +03:00 [INF] Home was visited
+2020-09-14 19:40:32.156 +03:00 [INF] HTTP GET / responded 302 in 3488.5389 ms
+2020-09-14 19:40:32.256 +03:00 [WRN] NewsList was visited
+2020-09-14 19:40:32.914 +03:00 [INF] HTTP GET /News/NewsList responded 200 in 691.4161 ms

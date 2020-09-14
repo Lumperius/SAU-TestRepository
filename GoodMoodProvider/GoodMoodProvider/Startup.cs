@@ -20,8 +20,6 @@ using RepositoryLibrary.RepositoryInterface;
 using ModelsLibrary;
 using RepositoryLibrary;
 using ContextLibrary.DataContexts;
-using ContextLibrary.Interfaces;
-using WorkingLibrary.DataContexts.WorkingUnit;
 using GoodMoodProvider.DbInitializer.Interfaces;
 using Serilog;
 using Hangfire;
@@ -46,6 +44,9 @@ namespace GoodMoodProvider
 
             services.AddScoped<IRepository<User>, UserRepository>();
             services.AddScoped<IRepository<News>, NewsRepository>();
+            services.AddScoped<IRepository<Role>, RoleRepository>();
+            services.AddScoped<IRepository<UserRole>, UserRoleRepository>();
+
 
             services.AddTransient<IAdminInitializer, AdminInitializer>();
 
@@ -56,13 +57,15 @@ namespace GoodMoodProvider
               .AddCookie(options => options.LoginPath = new PathString("/Account/Login"));
 
             services.AddScoped<DataContext>();
-            services.AddScoped<IWorkingUnit, WorkingUnit>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
            
             services.AddScoped<IEncrypter, Encrypter>();
-            services.AddScoped<IHtmlCleaner, HtmlCleaner>();
             services.AddScoped<INewsService, NewsService>();
+            services.AddScoped<IHtmlCleaner, HtmlCleaner>();
             services.AddScoped<IRssLoader, RssLoader>();
+            services.AddScoped<INewsRater, NewsRater>();
             services.AddScoped<INewsParser, NewsParser>();
+            services.AddScoped<IUserHandler, UserHandler>();
 
         }
 
@@ -95,11 +98,6 @@ namespace GoodMoodProvider
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
-
-//            RecurringJob.AddOrUpdate(
-//() => _newsHandler.LoadNewsInDb(),
-//Cron.Hourly);
-
         }
     }
 }

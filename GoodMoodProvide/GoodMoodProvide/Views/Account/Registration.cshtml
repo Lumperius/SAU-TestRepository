@@ -1,0 +1,37 @@
+﻿
+@{
+    ViewData["Title"] = "Registration";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model GoodMoodProvider.ViewsModels.UserViewModel
+
+<h1>Registration</h1>
+
+<div>
+    <form asp-action="Registration" asp-controller="Account" method="post">
+
+        <input type="text" name="Nickname">
+        <label>Login</label>
+        <hr>
+        <input type="password" , name="Password">
+        <label>Password</label>
+        <input type="password" , name="ConfirmPassword" >
+        <label>Confirm password</label>
+        <hr>
+        <input type="text" name="FirstName">
+        <label>First name*</label>
+        <hr>
+        <input type="text" name="SecondName">
+        <label>Second name*</label>
+        <hr>
+        <input type="datetime" , name="Age">
+        <label>Age*</label>
+        <hr>
+        <label>Gender*</label>
+        <input type="radio" name="Gender">         
+        <hr>
+
+        <button type="submit">Enter</button>
+    </form>
+    (*)-optional
+</div>

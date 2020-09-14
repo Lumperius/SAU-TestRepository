@@ -15,23 +15,21 @@ namespace NewsUploader
         {
         }
 
-        public List<SyndicationItem> ReadRss( List<string> siteUrls)
+        public List<SyndicationItem> ReadRss( string siteRssUrl)
         {
             List<SyndicationItem> newsItems = new List<SyndicationItem>();
             try
             {
-                foreach (string url in siteUrls)
+                using (XmlReader reader = XmlReader.Create(siteRssUrl))
                 {
-                    using (XmlReader reader = XmlReader.Create(url))
-                    {
-                        var feed = SyndicationFeed.Load(reader);
-                        newsItems.AddRange(feed.Items);
-                    }
+                    var feed = SyndicationFeed.Load(reader);
+                    newsItems.AddRange(feed.Items);
                 }
             }
             catch (Exception exRss)
             {
                 Log.Error($"{DateTime.UtcNow} {exRss}");
+                throw exRss;
             }
         
             return newsItems; 

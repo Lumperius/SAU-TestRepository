@@ -11,20 +11,21 @@ namespace RepositoryLibrary
     public class UnitOfWork : IUnitOfWork
     {
         private readonly DataContext _context;
-       
-        public NewsRepository NewsRepository { get; set; }
-        public UserRepository UserRepository { get; set; }
-        public RoleRepository RoleRepository { get; set; }
-        public UserRoleRepository UserRoleRepository { get; set; }
+
+        public IRepository<News> NewsRepository { get; set; }
+        public IRepository<User> UserRepository { get; set; }
+        public IRepository<Role> RoleRepository { get; set; }
+        public IRepository<UserRole> UserRoleRepository { get; set; }
 
 
-        public UnitOfWork(DataContext context)
+        public UnitOfWork(DataContext context, IRepository<News> newsRepository,
+            IRepository<User> userRepository, IRepository<Role> roleRepository, IRepository<UserRole> userRoleRepository)
         {
             _context = context;
-            NewsRepository = new NewsRepository(context);
-            UserRepository = new UserRepository(context);
-            RoleRepository = new RoleRepository(context);
-            UserRoleRepository = new UserRoleRepository(context);
+            NewsRepository = newsRepository;
+            UserRepository = userRepository;
+            RoleRepository = roleRepository;
+            UserRoleRepository = userRoleRepository;
         }
 
         public void SaveDB()

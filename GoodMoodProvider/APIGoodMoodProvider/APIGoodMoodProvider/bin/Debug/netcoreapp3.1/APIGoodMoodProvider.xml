@@ -4,44 +4,46 @@
         <name>APIGoodMoodProvider</name>
     </assembly>
     <members>
-        <member name="M:APIGoodMoodProvider.Controllers.NewsController.GetAllNews">
+        <member name="M:APIGoodMoodProvider.Controllers.RefreshTokenController.Get(System.Guid)">
             <summary>
-            Get all news in database
+            Get method for [User]
             </summary>
+            <param name="id"></param>
+            <returns>Nothing yet =(</returns>
+        </member>
+        <member name="M:APIGoodMoodProvider.Controllers.RefreshTokenController.Post(System.String)">
+            <summary>
+            Post method for [User]
+            </summary>
+            <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="T:APIGoodMoodProvider.Controllers.UserController">
+        <member name="M:APIGoodMoodProvider.Controllers.RefreshTokenController.Delete">
             <summary>
-            Controller for user related actions
+            Delete method for [User]
             </summary>
-        </member>
-        <member name="M:APIGoodMoodProvider.Controllers.UserController.#ctor(ContextLibrary.DataContexts.DataContext,RepositoryLibrary.RepositoryInterface.IRepository{ModelsLibrary.User},UserService.Interfaces.IUserHandler)">
-            <summary>
-            Contructor for user controller
-            </summary>
-            <param name="context"></param>
-            <param name="userRepository"></param>
-            <param name="userHandler"></param>
-        </member>
-        <member name="M:APIGoodMoodProvider.Controllers.UserController.Authenticate(ModelsLibrary.Requests.AuthenticationRequest)">
-            <summary>
-            Authenticates user 
-            </summary>
-            <param name="request"></param>
+            <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="M:APIGoodMoodProvider.Controllers.UserController.Register(ModelsLibrary.Requests.RegistrationRequest)">
+        <member name="M:APIGoodMoodProvider.Controllers.TokenController.GetById(System.Guid)">
             <summary>
-            Registers user and redirescts him to authentication
+            Get method for [User]
             </summary>
-            <param name="request"></param>
+            <param name="id">Id of user</param>
+            <returns>Nothing yet =(</returns>
+        </member>
+        <member name="M:APIGoodMoodProvider.Controllers.TokenController.Post(System.String)">
+            <summary>
+            Post method for [User]
+            </summary>
+            <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="M:APIGoodMoodProvider.Controllers.UserController.RevokeToken(ModelsLibrary.Requests.AuthenticationRequest)">
+        <member name="M:APIGoodMoodProvider.Controllers.TokenController.Delete">
             <summary>
-            Refreshes token if refresh token is viable
+            Delete method for [User]
             </summary>
-            <param name="request"></param>
+            <param name="id"></param>
             <returns></returns>
         </member>
         <member name="M:APIGoodMoodProvider.Controllers.UserController.Get(System.Guid)">
@@ -55,7 +57,7 @@
             <summary>
             Post method for [User]
             </summary>
-            <param name="user"></param>
+            <param name="id"></param>
             <returns></returns>
         </member>
         <member name="M:APIGoodMoodProvider.Controllers.UserController.Delete(System.Guid)">
@@ -63,13 +65,6 @@
             Delete method for [User]
             </summary>
             <param name="id"></param>
-            <returns></returns>
-        </member>
-        <member name="M:APIGoodMoodProvider.Controllers.UserController.Put(ModelsLibrary.User)">
-            <summary>
-            Put method for [User]
-            </summary>
-            <param name="user"></param>
             <returns></returns>
         </member>
     </members>

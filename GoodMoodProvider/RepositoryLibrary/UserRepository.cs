@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ContextLibrary.DataContexts;
-using ContextLibrary.Interfaces;
-using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Internal;
 using ModelsLibrary;
 using RepositoryLibrary.RepositoryInterface;
-using WorkingLibrary.DataContexts.WorkingUnit;
 
 namespace RepositoryLibrary
 {
@@ -21,16 +20,23 @@ namespace RepositoryLibrary
         }
 
 
-        public async Task AddAsync(User user)
+        public async Task<int> AddAsync(User user)
         {
             await _context.User.AddAsync(user);
-            await _context.SaveChangesAsync();
+
+            return await _context.SaveChangesAsync();
         }
 
-        public async Task AddRangeAsync(IEnumerable<User> users)
+        public async Task<int> AddRangeAsync(User[] users)
         {
             await _context.User.AddRangeAsync(users);
-            await _context.SaveChangesAsync();
+
+            return await _context.SaveChangesAsync();
+        }
+
+        public Task AddRangeAsync(IEnumerable<User> objs)
+        {
+            throw new NotImplementedException();
         }
 
         public Task Clear()
@@ -38,29 +44,50 @@ namespace RepositoryLibrary
             throw new NotImplementedException();
         }
 
-        public async Task DeleteAsync(Guid id)
+        public async Task<int> DeleteAsync(Guid id)
         {
             if(_context.User.Any(U => U.ID == id))
            _context.User.Remove( _context.User.FirstOrDefault( U => U.ID == id));          
-            await _context.SaveChangesAsync();
+
+            return await _context.SaveChangesAsync();
         }
 
-        public async Task DeleteRangeAsync(IEnumerable<Guid> id)
+        public async Task<int> DeleteRangeAsync(Guid[] id)
         {
             if (_context.User.Any(U => U.ID == id.FirstOrDefault(i => i == U.ID)))
                 _context.User.RemoveRange(_context.User.Where(u => u.ID == id.FirstOrDefault( i => i == u.ID)));
-             await _context.SaveChangesAsync();
+
+            return await _context.SaveChangesAsync();
         }
 
-        public async Task<User> GetByIdAsync(Guid id)
+        public Task DeleteRangeAsync(IEnumerable<Guid> id)
         {
-            return await _context.User.FirstOrDefaultAsync(n => n.ID == id);
+            throw new NotImplementedException();
         }
 
-        public async Task<IEnumerable<User>> GetAllAsync()
+        public Task<IEnumerable<User>> GetAllAsync()
         {
-            return await _context.User.ToListAsync();
+            throw new NotImplementedException();
         }
 
+        public Task<User> GetByIdAsync(Guid id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task PutAsync(User obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        Task IRepository<User>.AddAsync(User obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        Task IRepository<User>.DeleteAsync(Guid id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

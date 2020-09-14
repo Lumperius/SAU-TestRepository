@@ -1,5 +1,4 @@
 ﻿using ContextLibrary.DataContexts;
-using ContextLibrary.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using ModelsLibrary;
 using RepositoryLibrary.RepositoryInterface;
@@ -8,7 +7,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WorkingLibrary.DataContexts.WorkingUnit;
 
 namespace RepositoryLibrary
 {
@@ -62,6 +60,12 @@ namespace RepositoryLibrary
         public async Task<IEnumerable<News>> GetAllAsync()
         {
             return await _context.News.ToListAsync();
+        }
+
+        public async Task PutAsync(News news)
+        {
+            News oldNews = await _context.News.FirstOrDefaultAsync(n => n.ID == news.ID);
+            oldNews = news;
         }
     }
 }

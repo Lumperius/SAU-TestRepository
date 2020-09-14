@@ -1,5 +1,4 @@
 ﻿using ContextLibrary.DataContexts;
-using ContextLibrary.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using ModelsLibrary;
 using RepositoryLibrary.RepositoryInterface;
@@ -62,6 +61,11 @@ namespace RepositoryLibrary
             return await _context.Role.ToListAsync();
         }
 
+        public async Task PutAsync(Role role)
+        {
+            Role oldRole = await _context.Role.FirstOrDefaultAsync(r => r.ID == role.ID);
+            oldRole = role;
+        }
     }
 
 }

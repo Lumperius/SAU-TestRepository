@@ -177,3 +177,7 @@ C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\APIGoodMood
 C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\APIGoodMoodProvider\APIGoodMoodProvider\obj\Debug\netcoreapp3.1\APIGoodMoodProvider.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\APIGoodMoodProvider\APIGoodMoodProvider\obj\Debug\netcoreapp3.1\APIGoodMoodProvider.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\APIGoodMoodProvider\APIGoodMoodProvider\bin\Debug\netcoreapp3.1\APIGoodMoodProvider.xml
+C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\APIGoodMoodProvider\APIGoodMoodProvider\bin\Debug\netcoreapp3.1\Hangfire.SqlServer.dll
+C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\APIGoodMoodProvider\APIGoodMoodProvider\bin\Debug\netcoreapp3.1\System.Data.SqlClient.dll
+C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\APIGoodMoodProvider\APIGoodMoodProvider\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netstandard2.0\System.Data.SqlClient.dll
+C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\APIGoodMoodProvider\APIGoodMoodProvider\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Data.SqlClient.dll

@@ -12,7 +12,6 @@ using Serilog;
 using System.Xml;
 using ContextLibrary.DataContexts;
 using RepositoryLibrary.RepositoryInterface;
-using WorkingLibrary.DataContexts.WorkingUnit;
 using ModelsLibrary;
 using RepositoryLibrary;
 using GoodMoodProvider.DbInitializer.Interfaces;

@@ -20,8 +20,8 @@
 
     @if (news.Author != null)
     {<i>By: </i>@news.Author}
-    @if (news.SourceSite != null)
-    {<i> from: </i> <a href="@news.SourceSite"></a>}
+    @if (news.Source != null)
+    {<i> from: </i> <a href="@news.Source"></a>}
     <br>
 
     @news.DatePosted

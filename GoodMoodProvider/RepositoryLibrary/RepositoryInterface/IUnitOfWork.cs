@@ -8,10 +8,10 @@ namespace RepositoryLibrary.RepositoryInterface
 {
     public interface IUnitOfWork
     {
-        public NewsRepository NewsRepository {get; set;}
-        public UserRepository UserRepository { get; set; }
-        public RoleRepository RoleRepository { get; set; }
-        public UserRoleRepository UserRoleRepository { get; set; }
+        public IRepository<News> NewsRepository {get; set;}
+        public IRepository<User> UserRepository { get; set; }
+        public IRepository<Role> RoleRepository { get; set; }
+        public IRepository<UserRole> UserRoleRepository { get; set; }
 
         public void SaveDB();
         public Task SaveDBAsync();

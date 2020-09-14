@@ -7,7 +7,7 @@ namespace NewsUploader.Interfaces
 {
     public interface IRssLoader
     {
-        public List<SyndicationItem> ReadRss(List<string> urls);
+        public List<SyndicationItem> ReadRss(string url);
 
     }
 }

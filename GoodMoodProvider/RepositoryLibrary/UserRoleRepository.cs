@@ -1,6 +1,7 @@
 ﻿using ContextLibrary.DataContexts;
 using Microsoft.EntityFrameworkCore;
 using ModelsLibrary;
+using RepositoryLibrary.RepositoryInterface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace RepositoryLibrary
 {
-    public class UserRoleRepository
+    public class UserRoleRepository : IRepository<UserRole>
     {
         private readonly DataContext _context;
         public UserRoleRepository(DataContext context)
@@ -57,5 +58,10 @@ namespace RepositoryLibrary
             return await _context.UserRoles.ToListAsync();
         }
 
+        public async Task PutAsync(UserRole userRole)
+        {
+            UserRole oldUserRole = await _context.UserRoles.FirstOrDefaultAsync(n => n.ID == userRole.ID);
+            oldUserRole = userRole;
+        }
     }
 }

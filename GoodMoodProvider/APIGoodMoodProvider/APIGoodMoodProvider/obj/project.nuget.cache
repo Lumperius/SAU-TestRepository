@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "xTSKKlaF4APBxxHNqT3oDfjqs+MqUQMUaG4EBxLTnVFctHWtQV3WiLMU/eCn+SN5LgahCmuqBDm6SIVZaj6cqg==",
+  "dgSpecHash": "ijtcwAY32t+qrRudYrQ6rp682PSATZH5UrjnKv03uM7+wajnYVJ4MyxBLbs6qLPpEkZ1ff71YVAbMcYBkjuxYA==",
   "success": true,
   "projectFilePath": "C:\\Users\\Lenovo\\Documents\\GitHub\\SAU-TestRepository\\GoodMoodProvider\\APIGoodMoodProvider\\APIGoodMoodProvider\\APIGoodMoodProvider.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Lenovo\\.nuget\\packages\\hangfire.aspnetcore\\1.7.12\\hangfire.aspnetcore.1.7.12.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\hangfire.core\\1.7.12\\hangfire.core.1.7.12.nupkg.sha512",
+    "C:\\Users\\Lenovo\\.nuget\\packages\\hangfire.sqlserver\\1.7.12\\hangfire.sqlserver.1.7.12.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\htmlagilitypack\\1.11.24\\htmlagilitypack.1.11.24.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\microsoft.aspnet.webapi.client\\4.0.20710\\microsoft.aspnet.webapi.client.4.0.20710.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\microsoft.aspnet.webapi.core\\4.0.20710\\microsoft.aspnet.webapi.core.4.0.20710.nupkg.sha512",
@@ -124,6 +125,7 @@
     "C:\\Users\\Lenovo\\.nuget\\packages\\system.composition.typedparts\\1.0.31\\system.composition.typedparts.1.0.31.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\system.configuration.configurationmanager\\4.5.0\\system.configuration.configurationmanager.4.5.0.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\system.console\\4.3.0\\system.console.4.3.0.nupkg.sha512",
+    "C:\\Users\\Lenovo\\.nuget\\packages\\system.data.sqlclient\\4.4.0\\system.data.sqlclient.4.4.0.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\system.diagnostics.debug\\4.3.0\\system.diagnostics.debug.4.3.0.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\system.diagnostics.diagnosticsource\\4.7.1\\system.diagnostics.diagnosticsource.4.7.1.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\system.diagnostics.tools\\4.3.0\\system.diagnostics.tools.4.3.0.nupkg.sha512",
