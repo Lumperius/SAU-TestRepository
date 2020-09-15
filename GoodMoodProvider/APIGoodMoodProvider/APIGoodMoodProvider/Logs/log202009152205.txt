@@ -1,0 +1,2 @@
+2020-09-15 22:05:26.442 +03:00 [INF] HTTP GET /swagger/index.html responded 200 in 438.7780 ms
+2020-09-15 22:05:27.975 +03:00 [INF] HTTP GET /swagger/v1/swagger.json responded 200 in 523.2600 ms

@@ -26,16 +26,16 @@ using RepositoryLibrary;
 using RepositoryLibrary.RepositoryInterface;
 using Serilog;
 using Swashbuckle.AspNetCore.Swagger;
+using UserService;
+using UserService.Interfaces;
 
 namespace APIGoodMoodProvider
 {
     public class Startup
     {
-        private readonly INewsService _newsHandler;
-        public Startup(IConfiguration configuration, INewsService newsService)
+        public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
-            _newsHandler = newsService;
         }
 
         public IConfiguration Configuration { get; }
@@ -50,11 +50,13 @@ namespace APIGoodMoodProvider
 
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, "XmlDocumentation", xmlFile);
-                x.IncludeXmlComments(xmlPath);
+                //x.IncludeXmlComments(xmlPath);
             });
 
             services.AddScoped<IRepository<User>, UserRepository>();
             services.AddScoped<IRepository<News>, NewsRepository>();
+            services.AddScoped<IRepository<Role>, RoleRepository>();
+            services.AddScoped<IRepository<UserRole>, UserRoleRepository>();
 
 
             var connString = Configuration.GetConnectionString("DefaultConnection");
@@ -66,13 +68,16 @@ namespace APIGoodMoodProvider
 
             services.AddTransient<IAdminInitializer, AdminInitializer>();
 
-            services.AddScoped< DataContext>();
+            services.AddScoped<DataContext>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
-            services.AddScoped<IHtmlCleaner, HtmlCleaner>();
+            services.AddScoped<IEncrypter, Encrypter>();
             services.AddScoped<INewsService, NewsService>();
+            services.AddScoped<IHtmlCleaner, HtmlCleaner>();
             services.AddScoped<IRssLoader, RssLoader>();
+            services.AddScoped<INewsRater, NewsRater>();
             services.AddScoped<INewsParser, NewsParser>();
+            services.AddScoped<IUserHandler, UserHandler>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -83,8 +88,8 @@ namespace APIGoodMoodProvider
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseHangfireServer();
-            app.UseHangfireDashboard();
+          //  app.UseHangfireServer();
+          //  app.UseHangfireDashboard();
 
             app.UseSerilogRequestLogging();
 
@@ -95,7 +100,7 @@ namespace APIGoodMoodProvider
             var swaggerOptions = new SwaggerOptions();
             Configuration.GetSection(nameof(SwaggerOptions)).Bind(swaggerOptions);
 
-            app.UseSwagger(options => { options.RouteTemplate = "swagger/swagger.json"/*swaggerOptions.JsonRoute*/; });
+            app.UseSwagger(options => { options.RouteTemplate = "swagger/{documentName}/swagger.json"/*swaggerOptions.JsonRoute*/; });
             app.UseSwaggerUI(options =>
             {
                 options.SwaggerEndpoint("v1/swagger.json"/*swaggerOptions.UIEndpoint*/, "GMPjson" /*swaggerOptions.Description*/);

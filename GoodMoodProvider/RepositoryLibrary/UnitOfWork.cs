@@ -30,7 +30,7 @@ namespace RepositoryLibrary
 
         public void SaveDB()
         {
-           _context.SaveChangesAsync();
+           _context.SaveChanges();
         }
 
         public async Task SaveDBAsync()

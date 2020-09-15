@@ -27,12 +27,13 @@ namespace NewsUploader
     //          "https://S13.ru/rss"
             };
 
-        public NewsService(DataContext context, IUnitOfWork unitOfWork, INewsRater newsRater)
+        public NewsService(DataContext context, IUnitOfWork unitOfWork, INewsRater newsRater,
+            IRssLoader rssLoader, INewsParser newsParser)
         {
             _context = context;
             _unitOfWork = unitOfWork;
-            _rssLoader = new RssLoader();
-            _newsParser = new NewsParser();
+            _rssLoader = rssLoader;
+            _newsParser = newsParser;
             _newsRater = newsRater;
         }
 

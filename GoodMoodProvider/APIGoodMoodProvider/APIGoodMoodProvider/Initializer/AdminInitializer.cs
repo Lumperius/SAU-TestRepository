@@ -37,7 +37,6 @@ namespace APIGoodMoodProvider.Initializer
                 await _unitOfWork.SaveDBAsync();
             }
 
-
             if (!await _context.User.AnyAsync(U => U.Login == "CEO"))
             {
                 await _context.User.AddAsync(new User() { Login = "CEO", ID = new Guid(), Password = "qwerty"});
@@ -62,10 +61,7 @@ namespace APIGoodMoodProvider.Initializer
                     RoleID = _context.Role.FirstOrDefault(R => R.Name == "User").ID
                 });
                 await _unitOfWork.SaveDBAsync();
-
             }
-
         }
-
     }
 }
