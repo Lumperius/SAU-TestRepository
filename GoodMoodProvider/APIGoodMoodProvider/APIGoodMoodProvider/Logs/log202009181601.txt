@@ -1,0 +1,5 @@
+2020-09-18 16:01:44.208 +03:00 [WRN] Failed to process the job '4': an exception occurred. Retry attempt 2 of 10 will be performed in 00:01:14.
+System.IO.FileNotFoundException: Could not find file 'C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\SideResourses\ASFINN-ru.json'.
+File name: 'C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\SideResourses\ASFINN-ru.json'
+   at NewsUploader.NewsService.RateNewsInDb() in C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\NewsUploader\NewsService.cs:line 111
+   at System.Runtime.CompilerServices.TaskAwaiter.GetResult()

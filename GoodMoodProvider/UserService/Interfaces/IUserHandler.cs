@@ -9,7 +9,7 @@ namespace UserService.Interfaces
 {
     public interface IUserHandler
     {
-        public AuthenticationResponse Authenticate(AuthenticationRequest request);
+        public AuthenticationResponse Authenticate(Guid userId);
         public User Register(RegistrationRequest request);
 
     }

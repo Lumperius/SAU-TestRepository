@@ -5,6 +5,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using System.IO;
 using APIGoodMoodProvider.Initializer;
+using APIGoodMoodProvider.Options;
 using ContextLibrary.DataContexts;
 using Hangfire;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -25,7 +26,6 @@ using NewsUploader.Interfaces;
 using RepositoryLibrary;
 using RepositoryLibrary.RepositoryInterface;
 using Serilog;
-using Swashbuckle.AspNetCore.Swagger;
 using UserService;
 using UserService.Interfaces;
 
@@ -43,14 +43,16 @@ namespace APIGoodMoodProvider
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson(options =>
+    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+);
             services.AddSwaggerGen(x =>
             {
                 x.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo() { Title = "GMP API", Version = "v1" });
 
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-                var xmlPath = Path.Combine(AppContext.BaseDirectory, "XmlDocumentation", xmlFile);
-                //x.IncludeXmlComments(xmlPath);
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                x.IncludeXmlComments(xmlPath);
             });
 
             services.AddScoped<IRepository<User>, UserRepository>();
@@ -58,10 +60,19 @@ namespace APIGoodMoodProvider
             services.AddScoped<IRepository<Role>, RoleRepository>();
             services.AddScoped<IRepository<UserRole>, UserRoleRepository>();
 
-
             var connString = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContextPool<DataContext>(options =>
             options.UseSqlServer(connString));
+
+
+            services.AddHangfire(config =>
+            {
+                config.SetDataCompatibilityLevel(CompatibilityLevel.Version_170)
+                .UseSimpleAssemblyNameTypeSerializer()
+                .UseDefaultTypeSerializer()
+                .UseSqlServerStorage(connString);
+            });
+
 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                     .AddCookie(options => options.LoginPath = new PathString("/AccountMVC/Login"));
@@ -88,8 +99,8 @@ namespace APIGoodMoodProvider
                 app.UseDeveloperExceptionPage();
             }
 
-          //  app.UseHangfireServer();
-          //  app.UseHangfireDashboard();
+            app.UseHangfireServer();
+            app.UseHangfireDashboard();
 
             app.UseSerilogRequestLogging();
 
@@ -97,13 +108,13 @@ namespace APIGoodMoodProvider
 
             app.UseRouting();
 
-            var swaggerOptions = new SwaggerOptions();
+            var swaggerOptions = new Options.SwaggerOptions();
             Configuration.GetSection(nameof(SwaggerOptions)).Bind(swaggerOptions);
 
-            app.UseSwagger(options => { options.RouteTemplate = "swagger/{documentName}/swagger.json"/*swaggerOptions.JsonRoute*/; });
+            app.UseSwagger(options => { options.RouteTemplate = swaggerOptions.JsonRoute; });
             app.UseSwaggerUI(options =>
             {
-                options.SwaggerEndpoint("v1/swagger.json"/*swaggerOptions.UIEndpoint*/, "GMPjson" /*swaggerOptions.Description*/);
+                options.SwaggerEndpoint(swaggerOptions.UIEndpoint, swaggerOptions.Description);
             });
 
             app.UseAuthorization();

@@ -10,17 +10,27 @@ using System.Security.Claims;
 using Serilog;
 using ModelsLibrary;
 using GoodMoodProvider.DbInitializer.Interfaces;
+using RepositoryLibrary;
+using RepositoryLibrary.RepositoryInterface;
+using UserService.Interfaces;
+using ModelsLibrary.Requests;
+using ContextLibrary.DataContexts;
 
 namespace GoodMoodProvider.Controllers
 {
     public class UserOfficeController : Controller
     {
+        private readonly IUnitOfWork _unitOfWork;
+        private readonly IUserHandler _userHandler;
+        private readonly DataContext _context;
 
-
-        public UserOfficeController( IAdminInitializer adminInitializer)
+        public UserOfficeController( IAdminInitializer adminInitializer, IUnitOfWork unitOfWork, IUserHandler userHandler,
+            DataContext context)
         {
+            _unitOfWork = unitOfWork;
+            _userHandler = userHandler;
+            _context = context;
         }
-
         public IActionResult Index(User currentUser)
         {
             return View(currentUser);

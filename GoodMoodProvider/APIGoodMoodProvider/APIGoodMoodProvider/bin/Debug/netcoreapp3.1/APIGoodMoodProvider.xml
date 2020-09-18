@@ -4,27 +4,6 @@
         <name>APIGoodMoodProvider</name>
     </assembly>
     <members>
-        <member name="M:APIGoodMoodProvider.Controllers.RefreshTokenController.Get(System.Guid)">
-            <summary>
-            Get method for [User]
-            </summary>
-            <param name="id"></param>
-            <returns>Nothing yet =(</returns>
-        </member>
-        <member name="M:APIGoodMoodProvider.Controllers.RefreshTokenController.Post(System.String)">
-            <summary>
-            Post method for [User]
-            </summary>
-            <param name="id"></param>
-            <returns></returns>
-        </member>
-        <member name="M:APIGoodMoodProvider.Controllers.RefreshTokenController.Delete">
-            <summary>
-            Delete method for [User]
-            </summary>
-            <param name="id"></param>
-            <returns></returns>
-        </member>
         <member name="M:APIGoodMoodProvider.Controllers.TokenController.GetById(System.Guid)">
             <summary>
             Get method for [User]

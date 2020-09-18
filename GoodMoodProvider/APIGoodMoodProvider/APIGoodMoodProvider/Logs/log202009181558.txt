@@ -1,0 +1,15 @@
+2020-09-18 15:58:22.179 +03:00 [ERR] An exception occurred while iterating over the results of a query for context type 'ContextLibrary.DataContexts.DataContext'.
+System.InvalidOperationException: A second operation started on this context before a previous operation completed. This is usually caused by different threads using the same instance of DbContext. For more information on how to avoid threading issues with DbContext, see https://go.microsoft.com/fwlink/?linkid=2097913.
+   at Microsoft.EntityFrameworkCore.Internal.ConcurrencyDetector.EnterCriticalSection()
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+System.InvalidOperationException: A second operation started on this context before a previous operation completed. This is usually caused by different threads using the same instance of DbContext. For more information on how to avoid threading issues with DbContext, see https://go.microsoft.com/fwlink/?linkid=2097913.
+   at Microsoft.EntityFrameworkCore.Internal.ConcurrencyDetector.EnterCriticalSection()
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+2020-09-18 15:58:22.500 +03:00 [ERR] 18.09.2020 15:58:22|Error|System.InvalidOperationException: A second operation started on this context before a previous operation completed. This is usually caused by different threads using the same instance of DbContext. For more information on how to avoid threading issues with DbContext, see https://go.microsoft.com/fwlink/?linkid=2097913.
+   at Microsoft.EntityFrameworkCore.Internal.ConcurrencyDetector.EnterCriticalSection()
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at RepositoryLibrary.UserRepository.GetByIdAsync(Guid id) in C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\RepositoryLibrary\UserRepository.cs:line 56
+   at APIGoodMoodProvider.Controllers.UserController.Authenticate(AuthenticationRequest request) in C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\APIGoodMoodProvider\APIGoodMoodProvider\Controllers\UserController.cs:line 48
+2020-09-18 15:58:22.559 +03:00 [INF] HTTP POST /api/User/Authenticate responded 400 in 10529.1715 ms

@@ -1,0 +1,19 @@
+2020-09-18 17:17:36.143 +03:00 [INF] Start installing Hangfire SQL objects...
+2020-09-18 17:17:37.905 +03:00 [INF] Hangfire SQL objects installed.
+2020-09-18 17:17:37.963 +03:00 [INF] Starting Hangfire Server using job storage: 'SQL Server: DESKTOP-I8BJOOE@GoodNewsDataBase'
+2020-09-18 17:17:37.963 +03:00 [INF] Using the following options for SQL Server job storage: Queue poll interval: 00:00:15.
+2020-09-18 17:17:37.964 +03:00 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2020-09-18 17:17:38.883 +03:00 [INF] Server desktop-i8bjooe:12092:5e6a372f successfully announced in 837,8165 ms
+2020-09-18 17:17:38.901 +03:00 [INF] Server desktop-i8bjooe:12092:5e6a372f is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2020-09-18 17:17:39.069 +03:00 [INF] HTTP GET /swagger/index.html responded 200 in 394.7448 ms
+2020-09-18 17:17:40.030 +03:00 [INF] Server desktop-i8bjooe:12092:5e6a372f all the dispatchers started
+2020-09-18 17:17:40.621 +03:00 [INF] HTTP GET /swagger/v1/swagger.json responded 200 in 273.3978 ms
+2020-09-18 17:17:49.559 +03:00 [WRN] Failed to process the job '6': an exception occurred. Retry attempt 4 of 10 will be performed in 00:01:52.
+System.IO.FileNotFoundException: Could not find file 'C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\SideResourses\ASFINN-ru.json'.
+File name: 'C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\SideResourses\ASFINN-ru.json'
+   at NewsUploader.NewsService.RateNewsInDb() in C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\NewsUploader\NewsService.cs:line 111
+   at System.Runtime.CompilerServices.TaskAwaiter.GetResult()

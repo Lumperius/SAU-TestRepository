@@ -31,30 +31,36 @@ namespace UserService
             _encrypter = new Encrypter();
 
         }
-        public AuthenticationResponse Authenticate(AuthenticationRequest request)
+        public AuthenticationResponse Authenticate(Guid userId)
         {
-            User user = _context.User
-                 .Include( u => u.UserRoles)
-                 .FirstOrDefault(u => u.Login == request.Login
-                 && u.Password == _encrypter.EncryptString(request.Password))
-                 ;
-
-            if(user == null) { return null; }
-            var token = BuildToken(user);
-            var refreshToken = BuildRefreshToken(user);
-
-            user.Token = token;
-            user.RefreshToken = refreshToken;
-
-            var response = new AuthenticationResponse()
+            try
             {
-                Id = user.ID,
-                Login = user.Login,
-                Token = token,
-                RefreshToken = refreshToken
-            };
+                User user = _context.User
+                  .Include(u => u.UserRoles)
+                  .FirstOrDefault(u => u.ID == userId);
 
-            return response;
+                if (user == null) { return null; }
+                var token = BuildToken(user);
+                var refreshToken = BuildRefreshToken(user);
+
+                user.Token = token;
+                user.RefreshToken = refreshToken;
+
+                var response = new AuthenticationResponse()
+                {
+                    Id = user.ID,
+                    Login = user.Login,
+                    Token = token,
+                    RefreshToken = refreshToken
+                };
+
+                _unitOfWork.UserRepository.PutAsync(user);
+                return response;
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
         }
         private string BuildToken(User user)
         { 
@@ -67,7 +73,7 @@ namespace UserService
             
             claims.AddRange(user.UserRoles
     .Select(ur => new Claim(ClaimsIdentity.DefaultRoleClaimType, _context.Role
-    .FirstOrDefault(r => r.ID == ur.RoleID).Name))
+    .FirstOrDefault(r => r.ID == ur.RoleID).Name))?
     
     .ToList());
 
@@ -116,7 +122,7 @@ namespace UserService
 
 
             var refreshToken = new JwtSecurityToken(_config["JWT:Issuer"],
-                _config["JWT:Issuer"],
+                _config["JWT:Audience"],
                 claims,
                 expires: DateTime.Now.AddMinutes(300),
                 signingCredentials: credentials);
@@ -124,5 +130,25 @@ namespace UserService
             return new JwtSecurityTokenHandler().WriteToken(refreshToken);
         }
 
+        public async Task RefreshToken(string refreshToken, Guid userId)
+        {
+            try
+            {
+                var handler = new JwtSecurityTokenHandler();
+                if (!handler.CanReadToken(refreshToken))
+                {
+                    var decodedToken = handler.ReadJwtToken(refreshToken);
+                    if (decodedToken.ValidTo < DateTime.Now)
+                    {
+                        var user = await _unitOfWork.UserRepository.GetByIdAsync(userId);
+                        Authenticate(userId);
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

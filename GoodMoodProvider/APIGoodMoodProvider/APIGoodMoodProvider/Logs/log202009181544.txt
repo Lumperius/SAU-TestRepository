@@ -1,0 +1,15 @@
+2020-09-18 15:44:20.562 +03:00 [INF] Start installing Hangfire SQL objects...
+2020-09-18 15:44:22.501 +03:00 [INF] Hangfire SQL objects installed.
+2020-09-18 15:44:22.540 +03:00 [INF] Starting Hangfire Server using job storage: 'SQL Server: DESKTOP-I8BJOOE@GoodNewsDataBase'
+2020-09-18 15:44:22.540 +03:00 [INF] Using the following options for SQL Server job storage: Queue poll interval: 00:00:15.
+2020-09-18 15:44:22.540 +03:00 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2020-09-18 15:44:23.577 +03:00 [INF] HTTP GET /swagger/index.html responded 200 in 235.5740 ms
+2020-09-18 15:44:23.937 +03:00 [INF] Server desktop-i8bjooe:8540:13b19f99 successfully announced in 1308,5864 ms
+2020-09-18 15:44:23.976 +03:00 [INF] Server desktop-i8bjooe:8540:13b19f99 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2020-09-18 15:44:24.053 +03:00 [INF] 2 servers were removed due to timeout
+2020-09-18 15:44:24.508 +03:00 [INF] Server desktop-i8bjooe:8540:13b19f99 all the dispatchers started
+2020-09-18 15:44:25.015 +03:00 [INF] HTTP GET /swagger/v1/swagger.json responded 200 in 254.9082 ms

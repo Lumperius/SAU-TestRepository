@@ -1,0 +1,29 @@
+2020-09-18 15:55:00.080 +03:00 [INF] Start installing Hangfire SQL objects...
+2020-09-18 15:55:03.101 +03:00 [INF] Hangfire SQL objects installed.
+2020-09-18 15:55:03.133 +03:00 [INF] Starting Hangfire Server using job storage: 'SQL Server: DESKTOP-I8BJOOE@GoodNewsDataBase'
+2020-09-18 15:55:03.133 +03:00 [INF] Using the following options for SQL Server job storage: Queue poll interval: 00:00:15.
+2020-09-18 15:55:03.134 +03:00 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2020-09-18 15:55:03.867 +03:00 [INF] Server desktop-i8bjooe:10976:20bac6f2 successfully announced in 679,3906 ms
+2020-09-18 15:55:03.880 +03:00 [INF] Server desktop-i8bjooe:10976:20bac6f2 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2020-09-18 15:55:03.974 +03:00 [INF] HTTP GET /swagger/index.html responded 200 in 254.2090 ms
+2020-09-18 15:55:04.566 +03:00 [INF] Server desktop-i8bjooe:10976:20bac6f2 all the dispatchers started
+2020-09-18 15:55:05.034 +03:00 [INF] HTTP GET /swagger/v1/swagger.json responded 200 in 233.5675 ms
+2020-09-18 15:55:43.284 +03:00 [ERR] An exception occurred while iterating over the results of a query for context type 'ContextLibrary.DataContexts.DataContext'.
+System.InvalidOperationException: A second operation started on this context before a previous operation completed. This is usually caused by different threads using the same instance of DbContext. For more information on how to avoid threading issues with DbContext, see https://go.microsoft.com/fwlink/?linkid=2097913.
+   at Microsoft.EntityFrameworkCore.Internal.ConcurrencyDetector.EnterCriticalSection()
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+System.InvalidOperationException: A second operation started on this context before a previous operation completed. This is usually caused by different threads using the same instance of DbContext. For more information on how to avoid threading issues with DbContext, see https://go.microsoft.com/fwlink/?linkid=2097913.
+   at Microsoft.EntityFrameworkCore.Internal.ConcurrencyDetector.EnterCriticalSection()
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+2020-09-18 15:55:43.493 +03:00 [ERR] 18.09.2020 15:55:43|Error|System.InvalidOperationException: A second operation started on this context before a previous operation completed. This is usually caused by different threads using the same instance of DbContext. For more information on how to avoid threading issues with DbContext, see https://go.microsoft.com/fwlink/?linkid=2097913.
+   at Microsoft.EntityFrameworkCore.Internal.ConcurrencyDetector.EnterCriticalSection()
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at RepositoryLibrary.UserRepository.GetByIdAsync(Guid id) in C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\RepositoryLibrary\UserRepository.cs:line 56
+   at APIGoodMoodProvider.Controllers.UserController.Authenticate(AuthenticationRequest request) in C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\APIGoodMoodProvider\APIGoodMoodProvider\Controllers\UserController.cs:line 48
+2020-09-18 15:55:43.570 +03:00 [INF] HTTP POST /api/User/Authenticate responded 400 in 11915.0814 ms

@@ -1,1 +1,0 @@
-2020-09-06 14:45:35.684 +03:00 [INF] HTTP GET /user/authenticate responded 404 in 1.1469 ms
