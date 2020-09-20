@@ -1,0 +1,36 @@
+2020-09-20 14:21:09.103 +03:00 [WRN] Failed to process the job '68': an exception occurred. Retry attempt 4 of 10 will be performed in 00:03:24.
+System.ArgumentNullException: Value cannot be null. (Parameter 'input')
+   at NewsUploader.NewsService.GetAllNewsBody() in C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\NewsUploader\NewsService.cs:line 92
+   at System.Runtime.CompilerServices.TaskAwaiter.GetResult()
+2020-09-20 14:21:09.243 +03:00 [WRN] Failed to process the job '98': an exception occurred. Retry attempt 1 of 10 will be performed in 00:00:32.
+System.ArgumentNullException: Value cannot be null. (Parameter 'input')
+   at NewsUploader.NewsService.GetAllNewsBody() in C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\NewsUploader\NewsService.cs:line 92
+   at System.Runtime.CompilerServices.TaskAwaiter.GetResult()
+2020-09-20 14:21:10.659 +03:00 [WRN] Failed to process the job '48': an exception occurred. Retry attempt 6 of 10 will be performed in 00:12:46.
+System.ArgumentNullException: Value cannot be null. (Parameter 'input')
+   at NewsUploader.NewsService.GetAllNewsBody() in C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\NewsUploader\NewsService.cs:line 92
+   at System.Runtime.CompilerServices.TaskAwaiter.GetResult()
+2020-09-20 14:21:12.859 +03:00 [WRN] Failed to process the job '88': an exception occurred. Retry attempt 1 of 10 will be performed in 00:00:15.
+System.ArgumentNullException: Value cannot be null. (Parameter 'input')
+   at NewsUploader.NewsService.GetAllNewsBody() in C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\NewsUploader\NewsService.cs:line 92
+   at System.Runtime.CompilerServices.TaskAwaiter.GetResult()
+2020-09-20 14:21:14.226 +03:00 [WRN] Failed to process the job '63': an exception occurred. Retry attempt 5 of 10 will be performed in 00:06:16.
+System.ArgumentNullException: Value cannot be null. (Parameter 'input')
+   at NewsUploader.NewsService.GetAllNewsBody() in C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\NewsUploader\NewsService.cs:line 92
+   at System.Runtime.CompilerServices.TaskAwaiter.GetResult()
+2020-09-20 14:21:14.316 +03:00 [WRN] Failed to process the job '58': an exception occurred. Retry attempt 5 of 10 will be performed in 00:06:01.
+System.ArgumentNullException: Value cannot be null. (Parameter 'input')
+   at NewsUploader.NewsService.GetAllNewsBody() in C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\NewsUploader\NewsService.cs:line 92
+   at System.Runtime.CompilerServices.TaskAwaiter.GetResult()
+2020-09-20 14:21:14.316 +03:00 [WRN] Failed to process the job '83': an exception occurred. Retry attempt 2 of 10 will be performed in 00:00:32.
+System.ArgumentNullException: Value cannot be null. (Parameter 'input')
+   at NewsUploader.NewsService.GetAllNewsBody() in C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\NewsUploader\NewsService.cs:line 92
+   at System.Runtime.CompilerServices.TaskAwaiter.GetResult()
+2020-09-20 14:21:14.408 +03:00 [WRN] Failed to process the job '73': an exception occurred. Retry attempt 3 of 10 will be performed in 00:01:19.
+System.ArgumentNullException: Value cannot be null. (Parameter 'input')
+   at NewsUploader.NewsService.GetAllNewsBody() in C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\NewsUploader\NewsService.cs:line 92
+   at System.Runtime.CompilerServices.TaskAwaiter.GetResult()
+2020-09-20 14:21:14.481 +03:00 [WRN] Failed to process the job '78': an exception occurred. Retry attempt 2 of 10 will be performed in 00:01:14.
+System.ArgumentNullException: Value cannot be null. (Parameter 'input')
+   at NewsUploader.NewsService.GetAllNewsBody() in C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\NewsUploader\NewsService.cs:line 92
+   at System.Runtime.CompilerServices.TaskAwaiter.GetResult()

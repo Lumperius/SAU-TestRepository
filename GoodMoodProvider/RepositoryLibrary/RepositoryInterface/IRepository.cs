@@ -14,7 +14,7 @@ namespace RepositoryLibrary.RepositoryInterface
         public Task AddAsync(T obj);
         public Task AddRangeAsync(IEnumerable<T> objs);
         public Task PutAsync(T obj);
-        public Task Clear();
+        public Task ClearAsync();
 
     }
 }

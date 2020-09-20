@@ -7,7 +7,7 @@ using System.Text;
 
 namespace CqsLibrary.Queries
 {
-    public class GetNewsByIdQuery : IQuery 
+    public class GetNewsByIdQuery 
     {
         public  Guid ID { get; } 
         public GetNewsByIdQuery(Guid id)

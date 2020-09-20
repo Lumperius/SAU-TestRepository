@@ -1,1 +1,0 @@
-2020-09-18 15:37:08.614 +03:00 [INF] HTTP POST /api/User/Authenticate responded 200 in 105334.0435 ms

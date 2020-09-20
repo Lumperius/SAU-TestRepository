@@ -46,7 +46,7 @@ namespace RepositoryLibrary
             await _context.SaveChangesAsync();
         }
 
-        public async Task Clear()
+        public async Task ClearAsync()
         {
             _context.News.RemoveRange(_context.News.Where( n => n.ID != null));
             await _context.SaveChangesAsync();

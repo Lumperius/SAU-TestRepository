@@ -36,7 +36,9 @@ namespace NewsUploader
 
         public static string GetPlainText(string htmlText)
         {
-            htmlText = Regex.Replace(htmlText, "@<.+?>", "", RegexOptions.Singleline);  //Remove all tags
+            htmlText = Regex.Replace(htmlText, @"<.+?>", "", RegexOptions.Singleline);  //Remove all tags
+            htmlText = Regex.Replace(htmlText, @"\n[2,]?.[3,0]?", "", RegexOptions.Singleline);  //Remove all tags
+            htmlText = Regex.Replace(htmlText, @"&nbsp;", "", RegexOptions.Singleline);  //Remove all tags
 
             return htmlText;
 

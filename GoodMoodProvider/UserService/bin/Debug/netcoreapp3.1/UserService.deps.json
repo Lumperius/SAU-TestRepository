@@ -9,7 +9,6 @@
       "UserService/1.0.0": {
         "dependencies": {
           "ContextLibrary": "1.0.0",
-          "Logger": "1.0.0",
           "ModelsLibrary": "1.0.0",
           "RepositoryLibrary": "1.0.0"
         },
@@ -1953,14 +1952,6 @@
           "ContextLibrary.dll": {}
         }
       },
-      "Logger/1.0.0": {
-        "dependencies": {
-          "Serilog.AspNetCore": "3.4.0"
-        },
-        "runtime": {
-          "Logger.dll": {}
-        }
-      },
       "ModelsLibrary/1.0.0": {
         "runtime": {
           "ModelsLibrary.dll": {}
@@ -3193,11 +3184,6 @@
       "hashPath": "system.xml.xmlserializer.4.3.0.nupkg.sha512"
     },
     "ContextLibrary/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "Logger/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

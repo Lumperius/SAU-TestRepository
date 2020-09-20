@@ -32,7 +32,7 @@ namespace RepositoryLibrary
             await _context.SaveChangesAsync();
         }
 
-        public Task Clear()
+        public Task ClearAsync()
         {
             throw new NotImplementedException();
         }

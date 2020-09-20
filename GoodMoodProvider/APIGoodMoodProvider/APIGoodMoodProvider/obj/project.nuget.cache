@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "9dc51sa840A8irxWh8sIXBe+2TRM5pUQ9wRrb0IT3Fnb7GuGqrs8eT9/2DsDJqR5nHZIPOqxFeHaTgiTtss2uQ==",
+  "dgSpecHash": "lVzMo880LYpa1Y2YqfNWfqk4rC8tPlTGSueuYc1TXqqQ/o8pp2gmhG8NkOo9G01lUYUGof4A3fdRUcIxce82eA==",
   "success": true,
   "projectFilePath": "C:\\Users\\Lenovo\\Documents\\GitHub\\SAU-TestRepository\\GoodMoodProvider\\APIGoodMoodProvider\\APIGoodMoodProvider\\APIGoodMoodProvider.csproj",
   "expectedPackageFiles": [
@@ -8,6 +8,8 @@
     "C:\\Users\\Lenovo\\.nuget\\packages\\hangfire.core\\1.7.12\\hangfire.core.1.7.12.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\hangfire.sqlserver\\1.7.12\\hangfire.sqlserver.1.7.12.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\htmlagilitypack\\1.11.24\\htmlagilitypack.1.11.24.nupkg.sha512",
+    "C:\\Users\\Lenovo\\.nuget\\packages\\mediatr\\8.1.0\\mediatr.8.1.0.nupkg.sha512",
+    "C:\\Users\\Lenovo\\.nuget\\packages\\mediatr.extensions.microsoft.dependencyinjection\\8.1.0\\mediatr.extensions.microsoft.dependencyinjection.8.1.0.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\microsoft.aspnet.webapi.client\\4.0.20710\\microsoft.aspnet.webapi.client.4.0.20710.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\microsoft.aspnet.webapi.core\\4.0.20710\\microsoft.aspnet.webapi.core.4.0.20710.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\3.1.7\\microsoft.aspnetcore.authentication.jwtbearer.3.1.7.nupkg.sha512",

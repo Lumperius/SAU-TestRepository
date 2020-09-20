@@ -80,6 +80,28 @@
           "lib/netstandard2.0/HtmlAgilityPack.dll": {}
         }
       },
+      "MediatR/8.1.0": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.1/MediatR.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.1/MediatR.dll": {}
+        }
+      },
+      "MediatR.Extensions.Microsoft.DependencyInjection/8.1.0": {
+        "type": "package",
+        "dependencies": {
+          "MediatR": "8.1.0",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "2.0.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/MediatR.Extensions.Microsoft.DependencyInjection.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/MediatR.Extensions.Microsoft.DependencyInjection.dll": {}
+        }
+      },
       "Microsoft.AspNet.WebApi.Client/4.0.20710": {
         "type": "package",
         "dependencies": {
@@ -3119,17 +3141,17 @@
           "Microsoft.AspNetCore.App"
         ]
       },
-      "Logger/1.0.0": {
+      "CqsLibrary/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
         "dependencies": {
-          "Serilog.AspNetCore": "3.4.0"
+          "ContextLibrary": "1.0.0"
         },
         "compile": {
-          "bin/placeholder/Logger.dll": {}
+          "bin/placeholder/CqsLibrary.dll": {}
         },
         "runtime": {
-          "bin/placeholder/Logger.dll": {}
+          "bin/placeholder/CqsLibrary.dll": {}
         },
         "frameworkReferences": [
           "Microsoft.AspNetCore.App"
@@ -3191,7 +3213,6 @@
         "framework": ".NETCoreApp,Version=v3.1",
         "dependencies": {
           "ContextLibrary": "1.0.0",
-          "Logger": "1.0.0",
           "ModelsLibrary": "1.0.0",
           "RepositoryLibrary": "1.0.0"
         },
@@ -3367,6 +3388,37 @@
         "lib/uap10.0/HtmlAgilityPack.dll",
         "lib/uap10.0/HtmlAgilityPack.pdb",
         "lib/uap10.0/HtmlAgilityPack.pri"
+      ]
+    },
+    "MediatR/8.1.0": {
+      "sha512": "KJFnA0MV83bNOhvYbjIX1iDykhwFXoQu0KV7E1SVbNA/CmO2I7SAm2Baly0eS7VJ2GwlmStLajBfeiNgTpvYzQ==",
+      "type": "package",
+      "path": "mediatr/8.1.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "gradient_128x128.png",
+        "lib/net461/MediatR.dll",
+        "lib/net461/MediatR.xml",
+        "lib/netstandard2.0/MediatR.dll",
+        "lib/netstandard2.0/MediatR.xml",
+        "lib/netstandard2.1/MediatR.dll",
+        "lib/netstandard2.1/MediatR.xml",
+        "mediatr.8.1.0.nupkg.sha512",
+        "mediatr.nuspec"
+      ]
+    },
+    "MediatR.Extensions.Microsoft.DependencyInjection/8.1.0": {
+      "sha512": "kKJOHmdFKjd5hpk+RG1NXoGkZj9AYgXDCHui3Sx1OMIeBJEe0luG93JvOdLsghf7VQa2OX0Yi00sE39um4SMEw==",
+      "type": "package",
+      "path": "mediatr.extensions.microsoft.dependencyinjection/8.1.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "gradient_128x128.png",
+        "lib/netstandard2.0/MediatR.Extensions.Microsoft.DependencyInjection.dll",
+        "mediatr.extensions.microsoft.dependencyinjection.8.1.0.nupkg.sha512",
+        "mediatr.extensions.microsoft.dependencyinjection.nuspec"
       ]
     },
     "Microsoft.AspNet.WebApi.Client/4.0.20710": {
@@ -9877,10 +9929,10 @@
       "path": "../../ContextLibrary/ContextLibrary.csproj",
       "msbuildProject": "../../ContextLibrary/ContextLibrary.csproj"
     },
-    "Logger/1.0.0": {
+    "CqsLibrary/1.0.0": {
       "type": "project",
-      "path": "../../Logger/Logger.csproj",
-      "msbuildProject": "../../Logger/Logger.csproj"
+      "path": "../../CqsLibrary/CqsLibrary.csproj",
+      "msbuildProject": "../../CqsLibrary/CqsLibrary.csproj"
     },
     "ModelsLibrary/1.0.0": {
       "type": "project",
@@ -9906,10 +9958,11 @@
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
       "ContextLibrary >= 1.0.0",
+      "CqsLibrary >= 1.0.0",
       "Hangfire.AspNetCore >= 1.7.12",
       "Hangfire.Core >= 1.7.12",
       "Hangfire.SqlServer >= 1.7.12",
-      "Logger >= 1.0.0",
+      "MediatR.Extensions.Microsoft.DependencyInjection >= 8.1.0",
       "Microsoft.AspNetCore.Authentication.JwtBearer >= 3.1.7",
       "Microsoft.AspNetCore.Mvc.NewtonsoftJson >= 3.1.8",
       "Microsoft.EntityFrameworkCore >= 3.1.7",
@@ -9957,8 +10010,8 @@
             "C:\\Users\\Lenovo\\Documents\\GitHub\\SAU-TestRepository\\GoodMoodProvider\\ContextLibrary\\ContextLibrary.csproj": {
               "projectPath": "C:\\Users\\Lenovo\\Documents\\GitHub\\SAU-TestRepository\\GoodMoodProvider\\ContextLibrary\\ContextLibrary.csproj"
             },
-            "C:\\Users\\Lenovo\\Documents\\GitHub\\SAU-TestRepository\\GoodMoodProvider\\Logger\\Logger.csproj": {
-              "projectPath": "C:\\Users\\Lenovo\\Documents\\GitHub\\SAU-TestRepository\\GoodMoodProvider\\Logger\\Logger.csproj"
+            "C:\\Users\\Lenovo\\Documents\\GitHub\\SAU-TestRepository\\GoodMoodProvider\\CqsLibrary\\CqsLibrary.csproj": {
+              "projectPath": "C:\\Users\\Lenovo\\Documents\\GitHub\\SAU-TestRepository\\GoodMoodProvider\\CqsLibrary\\CqsLibrary.csproj"
             },
             "C:\\Users\\Lenovo\\Documents\\GitHub\\SAU-TestRepository\\GoodMoodProvider\\ModelsLibrary\\ModelsLibrary.csproj": {
               "projectPath": "C:\\Users\\Lenovo\\Documents\\GitHub\\SAU-TestRepository\\GoodMoodProvider\\ModelsLibrary\\ModelsLibrary.csproj"
@@ -9995,6 +10048,10 @@
           "Hangfire.SqlServer": {
             "target": "Package",
             "version": "[1.7.12, )"
+          },
+          "MediatR.Extensions.Microsoft.DependencyInjection": {
+            "target": "Package",
+            "version": "[8.1.0, )"
           },
           "Microsoft.AspNetCore.Authentication.JwtBearer": {
             "target": "Package",

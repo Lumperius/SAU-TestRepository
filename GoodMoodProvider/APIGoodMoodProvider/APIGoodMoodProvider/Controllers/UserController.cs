@@ -36,7 +36,11 @@ namespace APIGoodMoodProvider.Controllers
             _userHandler = userHandler;
             _encrypter = encrypter;
         }
-
+        /// <summary>
+        /// Authenticate user and put token and refresh token in database
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
         [AllowAnonymous]
         [HttpPost]
         [Route("Authenticate")]
@@ -62,6 +66,46 @@ namespace APIGoodMoodProvider.Controllers
             catch(Exception ex)
             {
                 Log.Error($"{DateTime.Now}|Error|{ex}");    
+                return BadRequest(ex);
+            }
+        }
+
+        /// <summary>
+        /// Register user and authenticate him and put token and refresh token in database
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        [AllowAnonymous]
+        [HttpPost]
+        [Route("Register")]
+        public async Task<IActionResult> Register(RegistrationRequest request)
+        {
+            try
+            {
+                var users = await _unitOfWork.UserRepository.GetAllAsync();
+                if (users.Any(u => u.Email == request.Email || u.Login == request.Login))
+                    return BadRequest("Login or email is occupied");
+
+                User newUser = new User()
+                {
+                    ID = new Guid(),
+                    Login = request.Login,
+                    Email = request.Email,
+                    Password = _encrypter.EncryptString(request.Password)
+                };
+
+                var response = _userHandler.Authenticate(newUser.ID);
+                newUser.Token = response.Token;
+                newUser.RefreshToken = response.RefreshToken;
+
+                await _unitOfWork.UserRepository.AddAsync(newUser);
+                await _unitOfWork.SaveDBAsync();
+
+                return Ok(response);
+            }
+            catch(Exception ex)
+            {
+                Log.Error($"{DateTime.Now}|Error|{ex}");
                 return BadRequest(ex);
             }
         }

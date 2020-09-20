@@ -126,11 +126,6 @@ namespace APIGoodMoodProvider
                     name: "default",
                     pattern: "{controller=TokenController}/{action=Index}/{id?}");
             });
-
-          //  RecurringJob.AddOrUpdate(
-          //      () => _newsHandler.LoadNewsInDb(),
-          //      Cron.Hourly);
-
         }
     }
 }

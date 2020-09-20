@@ -14,6 +14,7 @@
     <PackageReference Include="Hangfire.AspNetCore" Version="1.7.12" />
     <PackageReference Include="Hangfire.Core" Version="1.7.12" />
     <PackageReference Include="Hangfire.SqlServer" Version="1.7.12" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="8.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.7" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.8" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.7" />
@@ -36,7 +37,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\ContextLibrary\ContextLibrary.csproj" />
-    <ProjectReference Include="..\..\Logger\Logger.csproj" />
+    <ProjectReference Include="..\..\CqsLibrary\CqsLibrary.csproj" />
     <ProjectReference Include="..\..\ModelsLibrary\ModelsLibrary.csproj" />
     <ProjectReference Include="..\..\NewsUploader\NewsUploader.csproj" />
     <ProjectReference Include="..\..\RepositoryLibrary\RepositoryLibrary.csproj" />

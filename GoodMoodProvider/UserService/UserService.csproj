@@ -6,7 +6,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ContextLibrary\ContextLibrary.csproj" />
-    <ProjectReference Include="..\Logger\Logger.csproj" />
     <ProjectReference Include="..\ModelsLibrary\ModelsLibrary.csproj" />
     <ProjectReference Include="..\RepositoryLibrary\RepositoryLibrary.csproj" />
   </ItemGroup>

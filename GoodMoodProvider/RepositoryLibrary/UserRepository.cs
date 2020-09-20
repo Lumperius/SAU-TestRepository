@@ -32,7 +32,7 @@ namespace RepositoryLibrary
             await _context.User.AddRangeAsync(users);
         }
 
-        public Task Clear()
+        public Task ClearAsync()
         {
             throw new NotImplementedException();
         }

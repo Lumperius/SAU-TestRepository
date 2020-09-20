@@ -72,7 +72,7 @@ namespace NewsUploader
             {
                 foreach (News news in await _unitOfWork.NewsRepository.GetAllAsync())
                 {
-                if (news == null) { continue; } 
+                if (news == null && news.Body != null) { continue; } 
                     
                 if (news.Source.Contains("tut.by"))            //Check origin site
                     news.Body = _newsParser.TutByParseNews(news.Source);
@@ -98,12 +98,15 @@ namespace NewsUploader
         {
             try
             {
-                foreach (News news in await _unitOfWork.NewsRepository.GetAllAsync())
+                var newsList = await _unitOfWork.NewsRepository.GetAllAsync();
+
+                foreach (News news in newsList)
                 {
+                    if(news.PlainText == null) { continue; }
                     string simplifiedText = await _newsRater.SimplifyANews(news);
                     news.WordRating = _newsRater.RateANews(simplifiedText);
+                    await _unitOfWork.SaveDBAsync();
                 }
-                await _unitOfWork.SaveDBAsync();
             }
 
             catch(Exception ex)
