@@ -4,25 +4,18 @@
         <name>APIGoodMoodProvider</name>
     </assembly>
     <members>
-        <member name="M:APIGoodMoodProvider.Controllers.TokenController.GetById(System.Guid)">
+        <member name="M:APIGoodMoodProvider.Controllers.UserController.Authenticate(ModelsLibrary.Requests.AuthenticationRequest)">
             <summary>
-            Get method for [User]
+            Authenticate user and put token and refresh token in database
             </summary>
-            <param name="id">Id of user</param>
-            <returns>Nothing yet =(</returns>
-        </member>
-        <member name="M:APIGoodMoodProvider.Controllers.TokenController.Post(System.String)">
-            <summary>
-            Post method for [User]
-            </summary>
-            <param name="id"></param>
+            <param name="request"></param>
             <returns></returns>
         </member>
-        <member name="M:APIGoodMoodProvider.Controllers.TokenController.Delete">
+        <member name="M:APIGoodMoodProvider.Controllers.UserController.Register(ModelsLibrary.Requests.RegistrationRequest)">
             <summary>
-            Delete method for [User]
+            Register user and authenticate him and put token and refresh token in database
             </summary>
-            <param name="id"></param>
+            <param name="request"></param>
             <returns></returns>
         </member>
         <member name="M:APIGoodMoodProvider.Controllers.UserController.Get(System.Guid)">

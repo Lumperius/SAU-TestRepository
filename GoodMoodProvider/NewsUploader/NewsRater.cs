@@ -34,20 +34,39 @@ namespace NewsUploader
                         .MediaTypeWithQualityHeaderValue("application/json"));
                
                     HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post,
-                        "http://api.ispras.ru/texterra/v1/nlp?targetType=lemma&apikey=62808b2dcffffddb817320533e518b6f5e235c6f");
+                        "http://api.ispras.ru/texterra/v1/nlp?targetType=lemma&apikey=e2fdf1d8ad55d95c9185543b3c6547491cc131f8");
                
                     request.Content = new StringContent($"[{{\"text\":\"{targetNews.PlainText}\"}}]",
                         Encoding.UTF8, "application/json");
-                    var a = request.ToString();
                     var requestResult = client.SendAsync(request).Result;
-                    if (requestResult != null)
-                    {
-                        return await requestResult.Content.ReadAsStringAsync(); ;
+                    
+                    var response = await requestResult.Content.ReadAsStringAsync();
+
+
+                    //Remove everything from responce bode aside from lemma tokens
+
+                    var matches = Regex.Matches(response, "\"value\":\".+?\"");
+                        string lemmatizedText = "";
+                        foreach(Match match in matches)
+                        {
+                            string matchValue = match.Value;
+                            matchValue = Regex.Replace(matchValue, "\"value\":\"", "");
+                            matchValue = Regex.Replace(matchValue, "\"", "");
+                            matchValue = Regex.Replace(matchValue, "}", "");
+                            matchValue = Regex.Replace(matchValue, "{", "");
+                            matchValue = Regex.Replace(matchValue, ",", "");
+                            lemmatizedText += matchValue;
+                            lemmatizedText += " ";
                     }
-                    else
-                    {
-                        return targetNews.PlainText;
-                    }
+                    if (lemmatizedText != null || lemmatizedText != "")
+                        {
+                            return lemmatizedText;
+                        }
+                        else
+                        {
+                            return targetNews.PlainText;
+                        }
+                    
                 }
             }
             catch(Exception ex)
@@ -57,37 +76,48 @@ namespace NewsUploader
         }
 
 
-        public double RateANews(string newsBody )
+        public double RateANews(string targetText)
         {
             try
             {
-                using (StreamReader reader = new StreamReader
+                using (StreamReader afinnReader = new StreamReader
                     ("../SideResources/AFINN-ru.json"))
                 {
-                    string[] originWords = newsBody.Split(" ");
-                    string text = reader.ReadToEnd();
+                    string text = afinnReader.ReadToEnd();
 
                     JsonSerializer serializer = new JsonSerializer();
-                    var props = (serializer.Deserialize( new JsonTextReader(new StringReader(text))) as JObject).Properties();
-                   
-                    int totalValue = 0;
-                    foreach (string word in originWords)
+                    var afinnProps = (serializer.Deserialize
+                        (new JsonTextReader(new StringReader(text))) as JObject).Properties();
+
+                        string[] originWords = targetText.Split(" ");
+
+                        int valuedWordsCount = 0;
+                        int totalValue = 0;
+                        int relativeValue = 0;
+
+                        foreach (string word in originWords)
+                        {
+                            var value = (afinnProps.FirstOrDefault(p => p.Name == word)?.Value);
+
+                            int itemValue = 0;
+                            if (value != null)
+                                if (int.TryParse(value.ToString(), out itemValue)) //Checks if it's int convertable value
+                                {
+                                    valuedWordsCount++;
+                                    totalValue += itemValue;
+                                }
+                                else
+                                {
+                                    continue;
+                                }
+                        }
+
+                        if(valuedWordsCount != 0)
                     {
-                        var value = (props.FirstOrDefault(p => p.Name == word)?.Value);
-                       
-                        int itemValue = 0;
-                        if (value != null)
-                            if (int.TryParse(value.ToString(), out itemValue)) //Checks if it's int convertable value
-                            {
-                                totalValue += itemValue;
-                            }
-                            else
-                            {
-                                continue;
-                            }
+                         relativeValue = (int)totalValue * 100 / valuedWordsCount;
                     }
-                    double relativeValue = totalValue / originWords.Length;
                     return relativeValue;
+
                 }
             }
             catch(Exception ex)

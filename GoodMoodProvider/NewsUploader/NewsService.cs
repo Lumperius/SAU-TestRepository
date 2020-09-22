@@ -20,12 +20,6 @@ namespace NewsUploader
         private readonly INewsParser _newsParser;
         private readonly IUnitOfWork _unitOfWork;
         private readonly INewsRater _newsRater;
-        public readonly List<string> urls = new List<string>()
-            {
-              "https://news.tut.by/rss/all.rss",
-    //          "http://Onliner.by/feed",
-    //          "https://S13.ru/rss"
-            };
 
         public NewsService(DataContext context, IUnitOfWork unitOfWork, INewsRater newsRater,
             IRssLoader rssLoader, INewsParser newsParser)
@@ -46,7 +40,7 @@ namespace NewsUploader
                 List<SyndicationItem> newsItems = _rssLoader.ReadRss(url); //Get rss feed
                 foreach (SyndicationItem item in newsItems) //Add item's info to model
                 {
-                    if (_context.News.Any(n => n.ID.ToString() == item.Id.ToString()) || item == null) { continue; }
+                    if (_context.News.Any(n => n.Article == item.Title.Text) || item == null) { continue; }
                     News parsedNews = new News()
                     {
                         ID = new Guid(),

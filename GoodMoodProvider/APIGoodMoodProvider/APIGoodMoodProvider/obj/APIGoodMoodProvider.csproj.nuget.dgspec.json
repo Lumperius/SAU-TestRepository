@@ -69,6 +69,10 @@
               "target": "Package",
               "version": "[1.7.12, )"
             },
+            "MediatR": {
+              "target": "Package",
+              "version": "[8.1.0, )"
+            },
             "MediatR.Extensions.Microsoft.DependencyInjection": {
               "target": "Package",
               "version": "[8.1.0, )"

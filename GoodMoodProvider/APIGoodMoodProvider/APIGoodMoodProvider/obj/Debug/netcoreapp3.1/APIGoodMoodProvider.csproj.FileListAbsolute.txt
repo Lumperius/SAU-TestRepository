@@ -179,10 +179,10 @@ C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\APIGoodMood
 C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\APIGoodMoodProvider\APIGoodMoodProvider\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.JsonPatch.dll
 C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\APIGoodMoodProvider\APIGoodMoodProvider\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\APIGoodMoodProvider\APIGoodMoodProvider\bin\Debug\netcoreapp3.1\Newtonsoft.Json.Bson.dll
-C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\APIGoodMoodProvider\APIGoodMoodProvider\obj\Debug\netcoreapp3.1\APIGoodMoodProvider.csproj.CoreCompileInputs.cache
-C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\APIGoodMoodProvider\APIGoodMoodProvider\obj\Debug\netcoreapp3.1\APIGoodMoodProvider.MvcApplicationPartsAssemblyInfo.cs
-C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\APIGoodMoodProvider\APIGoodMoodProvider\obj\Debug\netcoreapp3.1\APIGoodMoodProvider.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\APIGoodMoodProvider\APIGoodMoodProvider\bin\Debug\netcoreapp3.1\MediatR.dll
 C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\APIGoodMoodProvider\APIGoodMoodProvider\bin\Debug\netcoreapp3.1\MediatR.Extensions.Microsoft.DependencyInjection.dll
 C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\APIGoodMoodProvider\APIGoodMoodProvider\bin\Debug\netcoreapp3.1\CqsLibrary.dll
 C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\APIGoodMoodProvider\APIGoodMoodProvider\bin\Debug\netcoreapp3.1\CqsLibrary.pdb
+C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\APIGoodMoodProvider\APIGoodMoodProvider\obj\Debug\netcoreapp3.1\APIGoodMoodProvider.csproj.CoreCompileInputs.cache
+C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\APIGoodMoodProvider\APIGoodMoodProvider\obj\Debug\netcoreapp3.1\APIGoodMoodProvider.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\APIGoodMoodProvider\APIGoodMoodProvider\obj\Debug\netcoreapp3.1\APIGoodMoodProvider.MvcApplicationPartsAssemblyInfo.cache

@@ -28,6 +28,7 @@ using RepositoryLibrary.RepositoryInterface;
 using Serilog;
 using UserService;
 using UserService.Interfaces;
+using MediatR;
 
 namespace APIGoodMoodProvider
 {
@@ -81,6 +82,7 @@ namespace APIGoodMoodProvider
 
             services.AddScoped<DataContext>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddMediatR(typeof(Startup).GetTypeInfo().Assembly);
 
             services.AddScoped<IEncrypter, Encrypter>();
             services.AddScoped<INewsService, NewsService>();

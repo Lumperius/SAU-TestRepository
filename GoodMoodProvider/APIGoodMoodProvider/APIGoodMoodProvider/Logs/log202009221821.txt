@@ -1,0 +1,9 @@
+2020-09-22 18:21:13.059 +03:00 [WRN] Failed to process the job '346': an exception occurred. Retry attempt 1 of 10 will be performed in 00:00:20.
+System.ArgumentNullException: Value cannot be null. (Parameter 'input')
+   at NewsUploader.NewsService.GetAllNewsBody() in C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\NewsUploader\NewsService.cs:line 86
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+2020-09-22 18:21:51.406 +03:00 [WRN] Failed to process the job '338': an exception occurred. Retry attempt 2 of 10 will be performed in 00:00:38.
+System.ArgumentNullException: Value cannot be null. (Parameter 'input')
+   at NewsUploader.NewsService.GetAllNewsBody() in C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\NewsUploader\NewsService.cs:line 86
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+2020-09-22 18:21:57.090 +03:00 [INF] 1 servers were removed due to timeout

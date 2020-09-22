@@ -58,25 +58,25 @@ namespace APIGoodMoodProvider.Controllers
             RecurringJob.AddOrUpdate(
                 "TutBy",
                 () => _newsService.LoadNewsInDb("https://news.tut.by/rss/all.rss"),
-                "*/5 * * * *");
+                 Cron.Hourly);
             RecurringJob.AddOrUpdate(
                 "Onliner",
                 () => _newsService.LoadNewsInDb("http://Onliner.by/feed"),
-                "*/5 * * * *");
+                 Cron.Hourly);
             RecurringJob.AddOrUpdate(
                 "S13",
                 () => _newsService.LoadNewsInDb("https://S13.ru/rss"),
-                "*/5 * * * *");
+                 Cron.Hourly);
 
             RecurringJob.AddOrUpdate(
                 "BodyParser",
                 () => _newsService.GetAllNewsBody(),
-                "*/10 * * * *");
+                 Cron.Hourly);
 
             RecurringJob.AddOrUpdate(
                 "NewsRater",
                 () => _newsService.RateNewsInDb(),
-                "*/10 * * * *");
+                Cron.Hourly);
 
             //var news = await _unitOfWork.NewsRepository.GetAllAsync();
 
@@ -102,7 +102,7 @@ namespace APIGoodMoodProvider.Controllers
             return Ok();
         }
 
-        [HttpDelete]
+        [HttpPost]
         [AllowAnonymous]
         [Route("ClearNewsDb")]
         public async Task<IActionResult> ClearNewsDb()

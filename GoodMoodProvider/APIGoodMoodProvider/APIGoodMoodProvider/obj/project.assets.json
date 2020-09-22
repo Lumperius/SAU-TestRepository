@@ -9962,6 +9962,7 @@
       "Hangfire.AspNetCore >= 1.7.12",
       "Hangfire.Core >= 1.7.12",
       "Hangfire.SqlServer >= 1.7.12",
+      "MediatR >= 8.1.0",
       "MediatR.Extensions.Microsoft.DependencyInjection >= 8.1.0",
       "Microsoft.AspNetCore.Authentication.JwtBearer >= 3.1.7",
       "Microsoft.AspNetCore.Mvc.NewtonsoftJson >= 3.1.8",
@@ -10048,6 +10049,10 @@
           "Hangfire.SqlServer": {
             "target": "Package",
             "version": "[1.7.12, )"
+          },
+          "MediatR": {
+            "target": "Package",
+            "version": "[8.1.0, )"
           },
           "MediatR.Extensions.Microsoft.DependencyInjection": {
             "target": "Package",
