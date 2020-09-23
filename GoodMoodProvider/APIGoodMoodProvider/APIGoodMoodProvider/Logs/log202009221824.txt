@@ -1,5 +1,0 @@
-2020-09-22 18:24:23.569 +03:00 [WRN] Failed to process the job '346': an exception occurred. Retry attempt 3 of 10 will be performed in 00:00:58.
-System.ArgumentNullException: Value cannot be null. (Parameter 'input')
-   at NewsUploader.NewsService.GetAllNewsBody() in C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\NewsUploader\NewsService.cs:line 86
-   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
-2020-09-22 18:24:56.395 +03:00 [INF] HTTP GET /api/news/switchhangfire responded 200 in 585.0114 ms

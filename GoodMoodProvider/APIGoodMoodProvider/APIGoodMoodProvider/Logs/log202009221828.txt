@@ -1,4 +1,0 @@
-2020-09-22 18:28:16.067 +03:00 [WRN] Failed to process the job '330': an exception occurred. Retry attempt 5 of 10 will be performed in 00:05:51.
-System.ArgumentNullException: Value cannot be null. (Parameter 'input')
-   at NewsUploader.NewsService.GetAllNewsBody() in C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\NewsUploader\NewsService.cs:line 86
-   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)

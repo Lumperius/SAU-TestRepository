@@ -76,7 +76,7 @@ namespace APIGoodMoodProvider.Controllers
             RecurringJob.AddOrUpdate(
                 "NewsRater",
                 () => _newsService.RateNewsInDb(),
-                Cron.Hourly);
+                "*/ 30 * ***");
 
             //var news = await _unitOfWork.NewsRepository.GetAllAsync();
 
@@ -93,8 +93,8 @@ namespace APIGoodMoodProvider.Controllers
             return Ok();
         }
 
-        [HttpGet]
         [AllowAnonymous]
+        [HttpGet]
         [Route("Test")]
         public async Task<IActionResult> Test()
         {
@@ -102,8 +102,8 @@ namespace APIGoodMoodProvider.Controllers
             return Ok();
         }
 
-        [HttpPost]
         [AllowAnonymous]
+        [HttpPost]
         [Route("ClearNewsDb")]
         public async Task<IActionResult> ClearNewsDb()
         {

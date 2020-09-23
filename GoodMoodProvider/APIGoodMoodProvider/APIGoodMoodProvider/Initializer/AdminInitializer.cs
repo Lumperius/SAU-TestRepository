@@ -20,7 +20,10 @@ namespace APIGoodMoodProvider.Initializer
             _context = context;
             _unitOfWork = unitOfWork;
         }
-
+        /// <summary>
+        /// Create admin if not created already
+        /// </summary>
+        /// <returns></returns>
         public async Task InitializeAsync()
         {
             if (!await _context.Role.AnyAsync(R => R.Name == "Admin"))
