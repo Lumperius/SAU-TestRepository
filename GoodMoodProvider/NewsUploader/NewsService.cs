@@ -75,10 +75,16 @@ namespace NewsUploader
                 if (news.Source.Contains("S13.ru"))           
                     news.Body = _newsParser.S13ParseNews(news.Source);
 
-
-                news.Body = HtmlCleaner.CleanHtml(news.Body);
-                news.PlainText = HtmlCleaner.GetPlainText(news.Body);
-                await _unitOfWork.SaveDBAsync();
+                if(news.Body != null)
+                    {
+                        news.Body = HtmlCleaner.CleanHtml(news.Body);
+                        news.PlainText = HtmlCleaner.GetPlainText(news.Body);
+                        await _unitOfWork.SaveDBAsync();
+                    }
+                    else
+                    {
+                        Log.Information($"{DateTime.Now}|Info|Couldnt get body of {news.Source}");
+                    }
                 }
             }
             catch(Exception ex)
@@ -97,7 +103,7 @@ namespace NewsUploader
                 foreach (News news in newsList)
                 {
                     if(news.PlainText == null) { continue; }
-                    string simplifiedText = await _newsRater.SimplifyANews(news);
+                    string simplifiedText = await _newsRater.SimplifyANews(news); 
                     news.WordRating = _newsRater.RateANews(simplifiedText);
                     await _unitOfWork.SaveDBAsync();
                 }

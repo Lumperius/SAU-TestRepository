@@ -28,9 +28,9 @@ namespace NewsUploader
         {
             try
             { 
-                using (var client = new HttpClient())
+                using (var client = new HttpClient()) //Create http client
                 {
-                    client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers
+                    client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers //Constructing request
                         .MediaTypeWithQualityHeaderValue("application/json"));
                
                     HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post,
@@ -38,27 +38,24 @@ namespace NewsUploader
                
                     request.Content = new StringContent($"[{{\"text\":\"{targetNews.PlainText}\"}}]",
                         Encoding.UTF8, "application/json");
-                    var requestResult = client.SendAsync(request).Result;
-                    
-                    var response = await requestResult.Content.ReadAsStringAsync();
+                    var requestResult = client.SendAsync(request).Result;  //Sending request
+                    var response = await requestResult.Content.ReadAsStringAsync(); // Getting body of response as string 
 
-
-                    //Remove everything from responce bode aside from lemma tokens
-
-                    var matches = Regex.Matches(response, "\"value\":\".+?\"");
+                    //Remove everything from responce body leaving just text
+                    var matches = Regex.Matches(response, "\"value\":\".+?\""); //Get matches of word values
                         string lemmatizedText = "";
                         foreach(Match match in matches)
                         {
                             string matchValue = match.Value;
-                            matchValue = Regex.Replace(matchValue, "\"value\":\"", "");
-                            matchValue = Regex.Replace(matchValue, "\"", "");
+                            matchValue = Regex.Replace(matchValue, "\"value\":\"", ""); //Deleting everything exceot the word 
+                            matchValue = Regex.Replace(matchValue, "\"", "");           //and adding space symbol
                             matchValue = Regex.Replace(matchValue, "}", "");
                             matchValue = Regex.Replace(matchValue, "{", "");
                             matchValue = Regex.Replace(matchValue, ",", "");
-                            lemmatizedText += matchValue;
+                            lemmatizedText += matchValue;  //Merge words into text
                             lemmatizedText += " ";
                     }
-                    if (lemmatizedText != null || lemmatizedText != "")
+                    if (lemmatizedText != null || lemmatizedText != "")  //Check state of collected text
                         {
                             return lemmatizedText;
                         }
@@ -80,20 +77,20 @@ namespace NewsUploader
         {
             try
             {
-                using (StreamReader afinnReader = new StreamReader
+                using (StreamReader afinnReader = new StreamReader 
                     ("../SideResources/AFINN-ru.json"))
                 {
-                    string text = afinnReader.ReadToEnd();
+                    string text = afinnReader.ReadToEnd();  //Getting string from jsom file
 
                     JsonSerializer serializer = new JsonSerializer();
                     var afinnProps = (serializer.Deserialize
-                        (new JsonTextReader(new StringReader(text))) as JObject).Properties();
+                        (new JsonTextReader(new StringReader(text))) as JObject).Properties(); //Getting list of properties
 
-                        string[] originWords = targetText.Split(" ");
+                        string[] originWords = targetText.Split(" "); //Split target text into array of words
 
-                        int valuedWordsCount = 0;
-                        int totalValue = 0;
-                        int relativeValue = 0;
+                        int valuedWordsCount = 0; //Number of valued words
+                        int totalValue = 0; //Summ of all values
+                        int relativeValue = 0; //Relative value for whole text
 
                         foreach (string word in originWords)
                         {
@@ -115,9 +112,9 @@ namespace NewsUploader
                         if(valuedWordsCount != 0)
                     {
                          relativeValue = (int)totalValue * 100 / valuedWordsCount;
-                    }
+                    }//Getting relative value(*100 so it could stay int)
+                   
                     return relativeValue;
-
                 }
             }
             catch(Exception ex)
