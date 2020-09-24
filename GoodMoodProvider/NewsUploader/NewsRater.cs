@@ -18,12 +18,6 @@ namespace NewsUploader
 {
     public class NewsRater : INewsRater
     {
-        private readonly IUnitOfWork _unitOfWork;
-        public NewsRater(IUnitOfWork unitOfWork)
-        {
-            _unitOfWork = unitOfWork;
-        }
-
         public async Task<string> SimplifyANews(News targetNews)
         {
             try

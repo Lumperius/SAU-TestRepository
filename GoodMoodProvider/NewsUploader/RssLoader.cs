@@ -11,10 +11,6 @@ namespace NewsUploader
 {
     public class RssLoader : IRssLoader
     {
-        public RssLoader()
-        {
-        }
-
         public List<SyndicationItem> ReadRss( string siteRssUrl)
         {
             List<SyndicationItem> newsItems = new List<SyndicationItem>();

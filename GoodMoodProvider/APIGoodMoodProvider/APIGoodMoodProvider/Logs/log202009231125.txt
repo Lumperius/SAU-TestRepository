@@ -1,3 +1,0 @@
-2020-09-23 11:25:26.577 +03:00 [INF] HTTP GET /v1/swagger.json responded 404 in 5.3771 ms
-2020-09-23 11:25:32.540 +03:00 [INF] HTTP GET /swagger/index.html responded 200 in 2.3558 ms
-2020-09-23 11:25:33.037 +03:00 [INF] HTTP GET /swagger/v1/swagger.json responded 404 in 1.9778 ms

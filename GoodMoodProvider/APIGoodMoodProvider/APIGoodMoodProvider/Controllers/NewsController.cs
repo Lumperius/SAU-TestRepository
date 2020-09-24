@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CqsLibrary.Queries;
+using CqsLibrary.Queries.NewsQueries;
 using Hangfire;
 using Hangfire.Common;
 using MediatR;
@@ -34,15 +35,15 @@ namespace APIGoodMoodProvider.Controllers
         [Route("GetAll")]
         public async Task<IActionResult> GetAll()
         {
-            return Ok(await _unitOfWork.NewsRepository.GetAllAsync());
+            var query = new GetNewsAll();
+            return Ok(await _mediator.Send(query));
         }
 
         [AllowAnonymous]
-        [HttpGet("id")]
+        [HttpGet]
         [Route("GetById")]
         public async Task<IActionResult> GetById(Guid id)
         {
-            _mediator.Send(new GetNewsByIdQuery(new Guid()));
             return Ok(await _unitOfWork.NewsRepository.GetAllAsync());
         }
 

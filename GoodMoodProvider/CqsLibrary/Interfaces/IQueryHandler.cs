@@ -1,10 +1,11 @@
-﻿using System;
+﻿using MediatR;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace CqsLibrary.Interfaces
 {
-    interface IQueryHandler
+    public interface IQueryHandler<T, Q> where Q : IRequest<T>
     {
     }
 }

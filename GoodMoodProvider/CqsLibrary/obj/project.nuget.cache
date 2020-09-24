@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "PRfMnvAjCbMHFIywYn1ir8Hr+4M9LhdA2Ig8ztIsN8SYwfWjVevK9Yh0TzDECYzJQZ51uU38ZK9CbRVfJxQT+Q==",
+  "dgSpecHash": "cB67Ek2z/XRydvu1cgdUZmuoM+BAwlxxvAU8lLp9OIqpBv5VCuSp7pFF4a3y1+iourzzf2rfNfS3CZ7jzObRgg==",
   "success": true,
   "projectFilePath": "C:\\Users\\Lenovo\\Documents\\GitHub\\SAU-TestRepository\\GoodMoodProvider\\CqsLibrary\\CqsLibrary.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Lenovo\\.nuget\\packages\\mediatr\\8.1.0\\mediatr.8.1.0.nupkg.sha512",
+    "C:\\Users\\Lenovo\\.nuget\\packages\\mediatr.extensions.microsoft.dependencyinjection\\8.1.0\\mediatr.extensions.microsoft.dependencyinjection.8.1.0.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\microsoft.aspnetcore.html.abstractions\\2.2.0\\microsoft.aspnetcore.html.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\microsoft.aspnetcore.razor\\2.2.0\\microsoft.aspnetcore.razor.2.2.0.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\microsoft.aspnetcore.razor.language\\3.1.0\\microsoft.aspnetcore.razor.language.3.1.0.nupkg.sha512",

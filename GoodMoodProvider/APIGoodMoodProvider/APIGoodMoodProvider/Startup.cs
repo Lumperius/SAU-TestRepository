@@ -20,6 +20,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.OpenApi.Models;
 using ModelsLibrary;
 using NewsUploader;
 using NewsUploader.Interfaces;
@@ -45,11 +46,11 @@ namespace APIGoodMoodProvider
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers().AddNewtonsoftJson(options =>
-    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
-);
+    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+           
             services.AddSwaggerGen(x =>
             {
-                x.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo() { Title = "GMP API", Version = "v1" });
+                x.SwaggerDoc("v1", new OpenApiInfo() { Title = "GMP API", Version = "v1" });
 
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
@@ -82,8 +83,10 @@ namespace APIGoodMoodProvider
 
             services.AddScoped<DataContext>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
-            services.AddMediatR(typeof(Startup).GetTypeInfo().Assembly);
-
+          
+            var assembly = AppDomain.CurrentDomain.Load("CqsLibrary");
+            services.AddMediatR(assembly);
+           
             services.AddScoped<IEncrypter, Encrypter>();
             services.AddScoped<INewsService, NewsService>();
             services.AddScoped<IHtmlCleaner, HtmlCleaner>();
@@ -113,7 +116,7 @@ namespace APIGoodMoodProvider
             var swaggerOptions = new Options.SwaggerOptions();
             Configuration.GetSection(nameof(SwaggerOptions)).Bind(swaggerOptions);
 
-            app.UseSwagger(options => { options.RouteTemplate = swaggerOptions.JsonRoute; });
+            app.UseSwagger();
             app.UseSwaggerUI(options =>
             {
                 options.SwaggerEndpoint(swaggerOptions.UIEndpoint, swaggerOptions.Description);

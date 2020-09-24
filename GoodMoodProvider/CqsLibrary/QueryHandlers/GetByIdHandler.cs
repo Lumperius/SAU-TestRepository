@@ -1,5 +1,6 @@
 ﻿using ContextLibrary.DataContexts;
 using CqsLibrary.Interfaces;
+using CqsLibrary.Queries.NewsQueries;
 using Microsoft.EntityFrameworkCore;
 using ModelsLibrary;
 using System;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace CqsLibrary.QueryHandlers
 {
-    public class GetByIdHandler : IQueryHandler
+    public class GetByIdHandler : IQueryHandler<News, GetNewsByIdQuery>
     {
         private readonly DataContext _context;
         public GetByIdHandler(DataContext context)
