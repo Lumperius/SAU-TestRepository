@@ -29,7 +29,7 @@ namespace NewsUploader
 
             htmlText = Regex.Replace(htmlText, @"<p>?</p>", "", RegexOptions.Singleline);  //Remove empty blocks
 
-            htmlText = Regex.Replace(htmlText, @"\n{2,}", "", RegexOptions.Singleline);  //Remove empty strings
+            htmlText = Regex.Replace(htmlText, @"\n{2,}", " ", RegexOptions.Singleline);  //Remove empty strings
 
             return htmlText;
         }
@@ -37,12 +37,8 @@ namespace NewsUploader
         public static string GetPlainText(string htmlText)
         {
             htmlText = Regex.Replace(htmlText, @"<.+?>", "", RegexOptions.Singleline);  //Remove all tags
-            htmlText = Regex.Replace(htmlText, @"\n[2,]?.[3,0]?", "", RegexOptions.Singleline);  //Remove all tags
-            htmlText = Regex.Replace(htmlText, @"&nbsp;", "", RegexOptions.Singleline);  //Remove all tags
-
+            htmlText = Regex.Replace(htmlText, @"&.+?;", " ", RegexOptions.Singleline); // Remove garbage
             return htmlText;
-
         }
-
     }
 }

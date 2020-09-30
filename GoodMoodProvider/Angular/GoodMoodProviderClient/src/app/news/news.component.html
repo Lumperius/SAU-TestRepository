@@ -2,9 +2,9 @@
     <li *ngFor="let news of newsList">
      <div class="news-element">
       <h2> {{news.article}}</h2>
-      <h3>     {{news.body}}</h3><hr>
-      <h5><em>{{news.source}}   {{news.datePosted}}</em>  </h5>
-     </div>
+      <h3>     {{news.plainText}}</h3><hr>
+      <h5><a href={{news.source}}><em>Сылка</em></a></h5>
+    </div>
     </li>
   </ul>
 

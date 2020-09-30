@@ -75,6 +75,7 @@ namespace APIGoodMoodProvider
                 .UseSqlServerStorage(connString);
             });
 
+            services.AddCors();
 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                     .AddCookie(options => options.LoginPath = new PathString("/AccountMVC/Login"));
@@ -112,6 +113,7 @@ namespace APIGoodMoodProvider
             app.UseHttpsRedirection();
 
             app.UseRouting();
+            app.UseCors(builder => builder.AllowAnyOrigin());
 
             var swaggerOptions = new Options.SwaggerOptions();
             Configuration.GetSection(nameof(SwaggerOptions)).Bind(swaggerOptions);

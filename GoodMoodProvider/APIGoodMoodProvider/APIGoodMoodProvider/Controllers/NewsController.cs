@@ -8,16 +8,19 @@ using Hangfire;
 using Hangfire.Common;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ModelsLibrary;
+using ModelsLibrary.Responces;
 using NewsUploader.Interfaces;
 using RepositoryLibrary.RepositoryInterface;
 
 namespace APIGoodMoodProvider.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [EnableCors]
+    [Route("api/[controller]")]
     public class NewsController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -33,10 +36,23 @@ namespace APIGoodMoodProvider.Controllers
         [AllowAnonymous]
         [HttpGet]
         [Route("GetAll")]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> GetAll(int count = 50)
         {
+            List<GetNewsResponse> responseList = new List<GetNewsResponse>();
             var query = new GetNewsAll();
-            return Ok(await _mediator.Send(query));
+            foreach ( News news in await _mediator.Send(query))
+            {
+                responseList.Add(new GetNewsResponse
+                {
+                    Id = news.ID,
+                    Article = news.Article,
+                    PlainText = news.PlainText,
+                    Source = news.Source,
+                    Rating = news.FinalRating
+                });
+                if(responseList.Count > 50 ) { break;}
+            }
+            return Ok(responseList);
         }
 
         [AllowAnonymous]

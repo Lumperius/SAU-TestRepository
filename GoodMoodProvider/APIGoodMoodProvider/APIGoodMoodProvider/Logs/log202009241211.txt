@@ -1,6 +1,0 @@
-2020-09-24 12:11:08.549 +03:00 [INF] Server desktop-i8bjooe:8036:90d8fac6 successfully announced in 2070,1375 ms
-2020-09-24 12:11:08.600 +03:00 [INF] Server desktop-i8bjooe:8036:90d8fac6 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
-2020-09-24 12:11:08.776 +03:00 [INF] Server desktop-i8bjooe:8036:90d8fac6 all the dispatchers started
-2020-09-24 12:11:08.782 +03:00 [INF] Execution BackgroundServerProcess recovered from the Failed state after 00:03:54.4188113 and is in the Running state now
-2020-09-24 12:11:10.260 +03:00 [INF] 3 servers were removed due to timeout
-2020-09-24 12:11:30.611 +03:00 [INF] HTTP GET /api/news/getAll responded 200 in 11482.5267 ms
