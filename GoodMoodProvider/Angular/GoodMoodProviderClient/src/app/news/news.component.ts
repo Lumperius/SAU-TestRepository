@@ -1,5 +1,5 @@
 import { GetNewsResponse } from './../responses/getNewsReponse';
-import { News } from './../news';
+import { News } from '../classes/news';
 import { NewsService } from './../services/news.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -19,29 +19,28 @@ export class NewsComponent implements OnInit {
     source: 'tut.by',
     datePosted: '01.02.03',
     rating: 10,
-  }];
-  getResponse: GetNewsResponse[] = [{
+  },
+  {
     id: '2',
-    article: 'qqq',
-    plainText: 'eee',
+    article: 'aaaaaaqqq',
+    plainText: 'eew',
     source: 'tut.by',
-    rating: 11,
+    datePosted: '01.02.03',
+    rating: 21,
   }];
-  test: string;
+
+  selectedNews: News;
+onSelect(news: News): void {
+  this.selectedNews = news;
+}
 
   getNews(): void {
     this.newsService.getNews()
         .subscribe( response => this.newsList = response);
   }
 
-  testy(): void {
-    this.newsService.getTest()
-        .subscribe( response => this.test = response);
-  }
-
   ngOnInit() {
      this.getNews();
-     this.testy();
   }
 
 }

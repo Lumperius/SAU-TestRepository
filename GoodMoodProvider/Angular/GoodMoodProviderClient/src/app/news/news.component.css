@@ -1,6 +1,6 @@
 .news-list{
-  background-color: rgb(80, 131, 173);
-  border: 2px;
+  background-color: rgb(120, 165, 201);
+  border: 3px;
   border-style: solid;
   list-style-type: none;
   padding-left: 10px;
@@ -8,9 +8,15 @@
 
 .news-element{
   background-color: rgb(233, 241, 243);
-  border: 2px;
+  border: 3px;
   border-style: groove;
   border-color: #dbdbdb;
   padding: 20px;
   margin: 15px;
 }
+
+
+.news-element:hover{
+  border: 4px;
+}
+

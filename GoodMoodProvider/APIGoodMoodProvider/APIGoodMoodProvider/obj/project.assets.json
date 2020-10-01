@@ -3173,6 +3173,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
         "dependencies": {
+          "Hangfire.Core": "1.7.12",
           "HtmlAgilityPack": "1.11.24",
           "RepositoryLibrary": "1.0.0",
           "Serilog.AspNetCore": "3.4.0",

@@ -114,7 +114,7 @@ namespace APIGoodMoodProvider.Controllers
         /// Get method for [User]
         /// </summary>
         /// <param name="id"></param>
-        /// <returns>Nothing yet =(</returns>
+        /// <returns>user</returns>
         [HttpGet]
         [Route("Get")]
         public async Task<IActionResult> Get(Guid id)

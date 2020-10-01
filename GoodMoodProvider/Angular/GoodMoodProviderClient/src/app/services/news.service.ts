@@ -1,5 +1,5 @@
 import { GetNewsResponse } from './../responses/getNewsReponse';
-import { News } from './../news';
+import { News } from '../classes/news';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';

@@ -1,10 +1,12 @@
   <ul class="news-list">
-    <li *ngFor="let news of newsList">
+    <li *ngFor="let news of newsList " (click)="onSelect(news)">
      <div class="news-element">
       <h2> {{news.article}}</h2>
       <h3>     {{news.plainText}}</h3><hr>
-      <h5><a href={{news.source}}><em>Сылка</em></a></h5>
+      <div>{{news.rating}}</div> <h5><a href={{news.source}}><em>Сcылка</em></a></h5>
     </div>
+    <div *ngIf="news==selectedNews"></div>
     </li>
   </ul>
+  <app-news-detail [news] = "selectedNews"></app-news-detail>
 

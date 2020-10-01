@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Linq;
 using RepositoryLibrary.RepositoryInterface;
 using Serilog;
+using Hangfire;
 
 namespace NewsUploader
 {
@@ -106,6 +107,52 @@ namespace NewsUploader
                     string simplifiedText = await _newsRater.SimplifyANews(news); 
                     news.WordRating = _newsRater.RateANews(simplifiedText);
                     await _unitOfWork.SaveDBAsync();
+                }
+            }
+
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public void SwitchHangfire(bool switcher)
+        {
+            try
+            {
+                if (switcher)
+                {
+                    RecurringJob.AddOrUpdate(
+                        "TutBy",
+                        () => this.LoadNewsInDb("https://news.tut.by/rss/all.rss"),
+                         Cron.Hourly);
+                    RecurringJob.AddOrUpdate(
+                        "Onliner",
+                        () => this.LoadNewsInDb("http://Onliner.by/feed"),
+                         Cron.Hourly);
+                    RecurringJob.AddOrUpdate(
+                        "S13",
+                        () => this.LoadNewsInDb("https://S13.ru/rss"),
+                         Cron.Hourly);
+
+                    RecurringJob.AddOrUpdate(
+                        "BodyParser",
+                        () => this.GetAllNewsBody(),
+                         Cron.Hourly);
+
+                    RecurringJob.AddOrUpdate(
+                        "NewsRater",
+                        () => this.RateNewsInDb(),
+                        "*/ 30 * ***");
+                }
+
+                else
+                {
+                    RecurringJob.RemoveIfExists("TutBy");
+                    RecurringJob.RemoveIfExists("Onliner");
+                    RecurringJob.RemoveIfExists("S13");
+                    RecurringJob.RemoveIfExists("BodyParser");
+                    RecurringJob.RemoveIfExists("NewsRater");
                 }
             }
 

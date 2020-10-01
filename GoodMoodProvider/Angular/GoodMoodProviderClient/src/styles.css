@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 
 body{
-  background-color: rgb(253, 254, 255);
+  background-color: rgb(117, 121, 138);
   margin: 0%;
 }
 
@@ -30,6 +30,14 @@ body {
 body, input[type="text"], button {
   color: #333;
   font-family: Cambria, Georgia;
+}
+
+.info-block{
+  background-color: rgb(120, 165, 201);
+  border: 2px;
+  border-style: solid;
+  list-style-type: none;
+  padding-left: 10px;
 }
 /* everywhere else */
 * {

@@ -16,3 +16,9 @@
 .top-bar-button:hover{
   background-color: rgb(127, 172, 209);
 }
+
+a{
+  color: rgb(34, 53, 73);
+  text-decoration: none;
+}
+

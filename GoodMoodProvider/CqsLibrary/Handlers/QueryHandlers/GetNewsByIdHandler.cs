@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace CqsLibrary.Handlers.QueryHandlers
 {
-    public class GetNewsByIdHandler :IRequestHandler<GetNewsByIdQuery, News>
+    public class GetNewsByIdHandler :IRequestHandler<GetNewsById, News>
     {
         private readonly DataContext _context;
 
@@ -22,7 +22,7 @@ namespace CqsLibrary.Handlers.QueryHandlers
             _context = context;
         }
 
-        public async Task<News> Handle(GetNewsByIdQuery query, CancellationToken token)
+        public async Task<News> Handle(GetNewsById query, CancellationToken token)
         {
             return await _context.News.Where(n => n.ID == query.ID).FirstOrDefaultAsync();
         }

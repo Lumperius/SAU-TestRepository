@@ -9,10 +9,10 @@ using System.Text;
 
 namespace CqsLibrary.Queries.NewsQueries
 {
-    public class GetNewsByIdQuery : IRequest<News>
+    public class GetNewsById : IRequest<News>
     {
         public  Guid ID { get; } 
-        public GetNewsByIdQuery(Guid id)
+        public GetNewsById(Guid id)
         {
             ID = id;
         }

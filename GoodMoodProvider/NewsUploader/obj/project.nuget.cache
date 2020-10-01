@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "e0i0pFO1xUNV61FrYQ40vRBMZlOQUwqjQj1B9E/7EVZNKFjqdBbsgw11HytxxHybNitSbhFEENjP5vF4FmOyAw==",
+  "dgSpecHash": "uz7JQf0Y53TgoOH75GuXdAH8zhzFBTY7pqrlFwxuGJcjuj2GLKIwPLJAtg8Pk7RfebyHxY4ZxYKRzlwEvxoPUw==",
   "success": true,
   "projectFilePath": "C:\\Users\\Lenovo\\Documents\\GitHub\\SAU-TestRepository\\GoodMoodProvider\\NewsUploader\\NewsUploader.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Lenovo\\.nuget\\packages\\hangfire.core\\1.7.12\\hangfire.core.1.7.12.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\htmlagilitypack\\1.11.24\\htmlagilitypack.1.11.24.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\microsoft.aspnetcore.html.abstractions\\2.2.0\\microsoft.aspnetcore.html.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\microsoft.aspnetcore.razor\\2.2.0\\microsoft.aspnetcore.razor.2.2.0.nupkg.sha512",
