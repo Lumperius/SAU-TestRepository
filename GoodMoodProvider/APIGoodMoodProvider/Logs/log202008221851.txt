@@ -1,1 +1,0 @@
-2020-08-22 18:51:33.899 +03:00 [INF] HTTP GET /favicon.ico responded 404 in 1.9898 ms

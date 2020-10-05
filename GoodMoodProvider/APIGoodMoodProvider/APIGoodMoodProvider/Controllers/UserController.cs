@@ -119,7 +119,17 @@ namespace APIGoodMoodProvider.Controllers
         [Route("Get")]
         public async Task<IActionResult> Get(Guid id)
         {
-            return Ok(await _unitOfWork.UserRepository.GetByIdAsync(id));
+            try
+            {
+                var user = await _unitOfWork.UserRepository.GetByIdAsync(id);
+                if (user == null)
+                    return StatusCode(404);
+                return Ok(user);
+            }
+            catch(Exception ex)
+            {
+                return BadRequest(ex);
+            }
         }
 
         /// <summary>
@@ -131,10 +141,17 @@ namespace APIGoodMoodProvider.Controllers
         [Route("Post")]
         public async Task<IActionResult> Post(User user)
         {
-            if(user == null) { return BadRequest(); }
-            await _unitOfWork.UserRepository.AddAsync(user);
-            Log.Logger.Information($"Info|{DateTime.Now}|User {user.Login} was added to database");
-            return Ok(user);
+            try
+            {
+                if (user == null) { return StatusCode(404); }
+                await _unitOfWork.UserRepository.AddAsync(user);
+                Log.Logger.Information($"Info|{DateTime.Now}|User {user.Login} was added to database");
+                return Ok(user);
+            }
+            catch(Exception ex)
+            {
+                return BadRequest(ex);
+            }
         }
 
         /// <summary>
@@ -146,11 +163,19 @@ namespace APIGoodMoodProvider.Controllers
         [Route("Delete")]
         public async Task<IActionResult> Delete(Guid id)
         {
-            User user = _context.User.FirstOrDefault(u => u.ID == id);
-            if (user == null) { return BadRequest(); }
-            await _unitOfWork.UserRepository.DeleteAsync(id);
-            Log.Logger.Information($"Info|{DateTime.Now}|User {user.Login} was deleted from database");
-            return Ok();
+            try
+            {
+                User user = _context.User.FirstOrDefault(u => u.ID == id);
+                if (user == null) { return StatusCode(404); }
+                await _unitOfWork.UserRepository.DeleteAsync(id);
+                Log.Logger.Information($"Info|{DateTime.Now}|User {user.Login} was deleted from database");
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
+
         }
     }
 }

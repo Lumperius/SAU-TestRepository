@@ -1,15 +1,23 @@
-<h1>Registration</h1>
+<div class="background-block">
+  <div class="info-element">
+    <h1>Регистрация</h1>
 
-<div class="info-block">
-  <input type="text" name="Login" required>
-  <label>Login</label>
-  <hr>
-  <input type="password" , name="Password" required>
-  <label>Password</label>
-  <input type="password" , name="ConfirmPassword" required>
-  <label>Confirm password</label>
-  <hr>
-  <button type="submit">Enter</button>
+    <div *ngIf="!registrationState">
+      <h4 class="error-message">{{errorMessage}}</h4>
+    </div>
+    <input [(ngModel)]="login">
+    <label> Логин</label>
+    <hr>
+    <input [(ngModel)]="password">
+    <label> Пароль     </label>
+    <input [(ngModel)]="confirmPassword">
+    <label> Подтверждение пароля    </label>
+    <hr>
+    <input [(ngModel)]="email">
+    <label> Электронная почта</label>
+    <hr>
+    <button (click)="register(login, password, email)">Enter</button>
+
+    <h3>Уже зарегистрированы? <a routeLink="/login">Залогируйтесь!</a></h3>
+  </div>
 </div>
-
-<h3>Уже зарегистрированы? <a routeLink="/login">Залогируйтесь!</a></h3>

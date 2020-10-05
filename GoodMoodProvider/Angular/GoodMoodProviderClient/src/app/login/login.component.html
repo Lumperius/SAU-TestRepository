@@ -1,0 +1,20 @@
+<div class="background-block">
+  <div class="info-element">
+    <h1>Логин</h1>
+
+    <div *ngIf="!loginState">
+      <h4 class="error-message">{{errorMessage}}</h4>
+    </div>
+    <input [(ngModel)]="login">
+    <label>  Логин</label>
+    <br>
+    <br>
+    <input [(ngModel)]="password">
+    <label>  Пароль</label>
+    <hr>
+    <button (click)="sendLogin(login, password); routerLink='/office'">Enter</button>
+
+    <h3>Нет аккаунта? <a routerLink="/registration">Зарегистрируйтесь!</a></h3>
+  </div>
+</div>
+

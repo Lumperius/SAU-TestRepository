@@ -1,9 +1,0 @@
-C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\Logger\bin\Debug\netcoreapp3.1\Logger.deps.json
-C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\Logger\bin\Debug\netcoreapp3.1\Logger.dll
-C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\Logger\obj\Debug\netcoreapp3.1\Logger.AssemblyInfoInputs.cache
-C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\Logger\obj\Debug\netcoreapp3.1\Logger.AssemblyInfo.cs
-C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\Logger\bin\Debug\netcoreapp3.1\Logger.pdb
-C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\Logger\obj\Debug\netcoreapp3.1\Logger.csproj.CoreCompileInputs.cache
-C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\Logger\obj\Debug\netcoreapp3.1\Logger.dll
-C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\Logger\obj\Debug\netcoreapp3.1\Logger.pdb
-C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\Logger\obj\Debug\netcoreapp3.1\Logger.csprojAssemblyReference.cache

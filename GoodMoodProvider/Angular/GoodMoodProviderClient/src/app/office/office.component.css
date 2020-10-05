@@ -1,9 +1,8 @@
-.news-detail{
+.info-element{
   background-color: rgb(233, 241, 243);
-  border: 2px;
-  border-style: groove;
+  border: 3px;
+  border-style: solid;
   border-color: #dbdbdb;
   padding: 20px;
   margin: 15px;
-  font-size: 14px;
 }

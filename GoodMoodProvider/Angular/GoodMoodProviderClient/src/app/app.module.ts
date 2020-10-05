@@ -9,8 +9,9 @@ import { NewsComponent } from './news/news.component';
 import { TopBarComponent } from './topBar/top-bar.component';
 import { NewsDetailComponent } from './news-detail/news-detail.component';
 import { AppRoutingModule } from './app-routing.module';
-import { UserOfficeComponent } from './user-office/user-office.component';
 import { RegistrationComponent } from './registration/registration.component';
+import { OfficeComponent } from './office/office.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -18,8 +19,9 @@ import { RegistrationComponent } from './registration/registration.component';
     NewsComponent,
     TopBarComponent,
     NewsDetailComponent,
-    UserOfficeComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    OfficeComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

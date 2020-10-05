@@ -1,11 +1,3 @@
-.news-list{
-  background-color: rgb(120, 165, 201);
-  border: 3px;
-  border-style: solid;
-  list-style-type: none;
-  padding-left: 10px;
-}
-
 .news-element{
   background-color: rgb(233, 241, 243);
   border: 3px;
@@ -18,5 +10,12 @@
 
 .news-element:hover{
   border: 4px;
+  border-style: groove;
+}
+
+.rating{
+  font-family: monospace;
+  font-size: 18px;
+  color: rgb(13, 21, 26);
 }
 

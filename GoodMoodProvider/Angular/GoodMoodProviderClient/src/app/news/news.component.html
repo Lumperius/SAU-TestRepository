@@ -1,12 +1,14 @@
-  <ul class="news-list">
-    <li *ngFor="let news of newsList " (click)="onSelect(news)">
-     <div class="news-element">
-      <h2> {{news.article}}</h2>
-      <h3>     {{news.plainText}}</h3><hr>
-      <div>{{news.rating}}</div> <h5><a href={{news.source}}><em>Сcылка</em></a></h5>
+<ul class="background-block">
+  <li *ngFor="let news of newsList " (click)="onSelect(news)">
+   <div class="news-element">
+    <h2> {{news.article}}</h2><hr>
+    Rating: <b class="rating">{{news.rating}} </b>>
+    <a href={{news.source}}><em>Сcылка</em></a>
+    <div *ngIf="news==selectedNews">
+     <app-news-detail [news] = "selectedNews"></app-news-detail>
     </div>
-    <div *ngIf="news==selectedNews"></div>
-    </li>
-  </ul>
-  <app-news-detail [news] = "selectedNews"></app-news-detail>
+  </div>
+  </li>
+</ul>
+
 

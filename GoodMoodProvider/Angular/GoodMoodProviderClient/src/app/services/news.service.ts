@@ -10,27 +10,20 @@ import { catchError, map, tap } from 'rxjs/operators';
 })
 export class NewsService {
 
-  newsUrl = 'https://localhost:44336/api/News/GetAll';
-
+  getRequestUrl = 'https://localhost:44336/api/News/GetAll?count=';
   constructor(private http: HttpClient) { }
 
-  getNews(): Observable<News[]> {
-    return this.http.get<News[]>(this.newsUrl)
-    .pipe(
-      tap(_ => catchError(this.handleError<GetNewsResponse[]>('getHeroes', [])))
+  getNews(count: number): Observable<News[]> {
+    return this.http.get<News[]>(this.getRequestUrl + count)
+    .pipe(tap(_ =>
+       catchError(this.handleError<News[]>('getNews', [])))
     );
   }
 
-  getTest(): Observable<string> {
-    return this.http.get<string>(this.newsUrl);
+  private handleError<T>(operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+      console.error(error);
+      return of(result as T);
+    };
   }
-
-
-    private handleError<T>(operation = 'operation', result?: T) {
-      return (error: any): Observable<T> => {
-        console.error(error);
-        return of(result as T);
-      };
-    }
-
 }

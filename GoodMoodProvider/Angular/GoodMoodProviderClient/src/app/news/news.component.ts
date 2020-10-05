@@ -30,17 +30,17 @@ export class NewsComponent implements OnInit {
   }];
 
   selectedNews: News;
-onSelect(news: News): void {
-  this.selectedNews = news;
+
+  onSelect(news: News): void {
+    this.selectedNews = news;
 }
 
-  getNews(): void {
-    this.newsService.getNews()
+  getNews(count: number): void {
+    this.newsService.getNews(count)
         .subscribe( response => this.newsList = response);
   }
 
   ngOnInit() {
-     this.getNews();
+    this.getNews(20);
   }
-
 }
