@@ -28,7 +28,7 @@ namespace NewsUploader
                         .MediaTypeWithQualityHeaderValue("application/json"));
                
                     HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post,
-                        "http://api.ispras.ru/texterra/v1/nlp?targetType=lemma&apikey=e2fdf1d8ad55d95c9185543b3c6547491cc131f8");
+                        "http://api.ispras.ru/texterra/v1/nlp?targetType=lemma&apikey=644f21a4e67f86af57722e46146ff0f5ac26d702");
                
                     request.Content = new StringContent($"[{{\"text\":\"{targetNews.PlainText}\"}}]",
                         Encoding.UTF8, "application/json");
@@ -49,7 +49,7 @@ namespace NewsUploader
                             lemmatizedText += matchValue;  //Merge words into text
                             lemmatizedText += " ";
                     }
-                    if (lemmatizedText != null || lemmatizedText != "")  //Check state of collected text
+                    if (lemmatizedText != null && lemmatizedText.Length > 10)  //Check state of collected text
                         {
                             return lemmatizedText;
                         }
@@ -105,8 +105,8 @@ namespace NewsUploader
 
                         if(valuedWordsCount != 0)
                     {
-                         relativeValue = (int)totalValue * 100 / valuedWordsCount;
-                    }//Getting relative value(*100 so it could stay int)
+                         relativeValue = (int)totalValue * 10 / valuedWordsCount;
+                    }//Getting relative value(*10 so it could stay int)
                    
                     return relativeValue;
                 }

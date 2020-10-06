@@ -8,8 +8,8 @@ namespace NewsUploader.Interfaces
 {
     public interface INewsService
     {
-        public Task LoadNewsInDb(string url);
-        public Task GetAllNewsBody();
+        public Task LoadNewsIntoDbFromRss(string url);
+        public Task LoadAllNewsBody();
         public Task RateNewsInDb();
     }
 }

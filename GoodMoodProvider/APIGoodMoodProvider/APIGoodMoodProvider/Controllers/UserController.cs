@@ -132,27 +132,6 @@ namespace APIGoodMoodProvider.Controllers
             }
         }
 
-        /// <summary>
-        /// Post method for [User]
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        [HttpPost]
-        [Route("Post")]
-        public async Task<IActionResult> Post(User user)
-        {
-            try
-            {
-                if (user == null) { return StatusCode(404); }
-                await _unitOfWork.UserRepository.AddAsync(user);
-                Log.Logger.Information($"Info|{DateTime.Now}|User {user.Login} was added to database");
-                return Ok(user);
-            }
-            catch(Exception ex)
-            {
-                return BadRequest(ex);
-            }
-        }
 
         /// <summary>
         /// Delete method for [User]

@@ -31,6 +31,8 @@ namespace NewsUploader
 
             htmlText = Regex.Replace(htmlText, @"\n{2,}", " ", RegexOptions.Singleline);  //Remove empty strings
 
+            htmlText = Regex.Replace(htmlText, @"\s{3,}", " ", RegexOptions.Singleline);  //Remove whitespaces
+
             return htmlText;
         }
 

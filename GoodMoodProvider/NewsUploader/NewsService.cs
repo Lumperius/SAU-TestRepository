@@ -32,7 +32,7 @@ namespace NewsUploader
             _newsRater = newsRater;
         }
 
-        public async Task LoadNewsInDb(string url)
+        public async Task LoadNewsIntoDbFromRss(string url)
         {
             try
             {
@@ -61,7 +61,7 @@ namespace NewsUploader
             }
         }
 
-        public async Task GetAllNewsBody()
+        public async Task LoadAllNewsBody()
         {
             try
             {
@@ -103,7 +103,7 @@ namespace NewsUploader
 
                 foreach (News news in newsList)
                 {
-                    if(news.PlainText == null) { continue; }
+                    if(news.PlainText == null && news.WordRating == 0) { continue; }
                     string simplifiedText = await _newsRater.SimplifyANews(news); 
                     news.WordRating = _newsRater.RateANews(simplifiedText);
                     await _unitOfWork.SaveDBAsync();
@@ -124,20 +124,20 @@ namespace NewsUploader
                 {
                     RecurringJob.AddOrUpdate(
                         "TutBy",
-                        () => this.LoadNewsInDb("https://news.tut.by/rss/all.rss"),
+                        () => this.LoadNewsIntoDbFromRss("https://news.tut.by/rss/all.rss"),
                          Cron.Hourly);
                     RecurringJob.AddOrUpdate(
                         "Onliner",
-                        () => this.LoadNewsInDb("http://Onliner.by/feed"),
+                        () => this.LoadNewsIntoDbFromRss("http://Onliner.by/feed"),
                          Cron.Hourly);
                     RecurringJob.AddOrUpdate(
                         "S13",
-                        () => this.LoadNewsInDb("https://S13.ru/rss"),
+                        () => this.LoadNewsIntoDbFromRss("https://S13.ru/rss"),
                          Cron.Hourly);
 
                     RecurringJob.AddOrUpdate(
                         "BodyParser",
-                        () => this.GetAllNewsBody(),
+                        () => this.LoadAllNewsBody(),
                          Cron.Hourly);
 
                     RecurringJob.AddOrUpdate(

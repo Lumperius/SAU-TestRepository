@@ -34,9 +34,10 @@ namespace APIGoodMoodProvider.Controllers
             _mediator = mediator;
         }
 
+
         [AllowAnonymous]
         [HttpGet]
-        [Route("GetAll")]
+        [Route("GetSome")]
         public async Task<IActionResult> GetSome(int count = 50)
         {
             List<GetNewsResponse> responseList = new List<GetNewsResponse>();
@@ -51,33 +52,52 @@ namespace APIGoodMoodProvider.Controllers
                     Source = news.Source,
                     Rating = news.FinalRating
                 });
-                if(responseList.Count > 50 ) { break;}
+                if( responseList.Count > count ) { break;}
             }
             return Ok(responseList);
         }
 
+        /// <summary>
+        /// Get all news from database
+        /// </summary>
+        /// <returns></returns>
         [AllowAnonymous]
         [HttpGet]
         [Route("GetAll")]
         public async Task<IActionResult> GetAll()
         {
-            List<GetNewsResponse> responseList = new List<GetNewsResponse>();
-            var query = new GetNewsAll();
-            foreach (News news in await _mediator.Send(query))
+            try
             {
-                responseList.Add(new GetNewsResponse
+                List<GetNewsResponse> responseList = new List<GetNewsResponse>();
+                var query = new GetNewsAll();
+                foreach (News news in await _mediator.Send(query))
                 {
-                    Id = news.ID,
-                    Article = news.Article,
-                    PlainText = news.PlainText,
-                    Source = news.Source,
-                    Rating = news.FinalRating
-                });
+                    responseList.Add(new GetNewsResponse
+                    {
+                        Id = news.ID,
+                        Article = news.Article,
+                        PlainText = news.PlainText,
+                        Source = news.Source,
+                        Rating = news.FinalRating
+                    });
+                }
+
+                if (responseList.Any())
+                    return Ok(responseList);
+                else
+                    return StatusCode(404);
             }
-            return Ok(responseList);
+            catch(Exception ex)
+            {
+                return BadRequest(ex);
+            }
         }
 
-
+        /// <summary>
+        /// Get news by id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [AllowAnonymous]
         [HttpGet]
         [Route("GetById")]
@@ -87,8 +107,10 @@ namespace APIGoodMoodProvider.Controllers
             {
                 var query = new GetNewsById(id);
                 var user = _mediator.Send(query);
+               
                 if (user == null)
                     return StatusCode(404);
+                
                 return Ok(user);
             }
             catch(Exception ex)
@@ -98,16 +120,10 @@ namespace APIGoodMoodProvider.Controllers
         }
 
 
-
-        [AllowAnonymous]
-        [HttpGet]
-        [Route("SwitchHangFire")]
-        public async Task<IActionResult> SwitchHangFire(bool switcher)
-        {
-
-            return Ok();
-        }
-
+        /// <summary>
+        /// Temporary
+        /// </summary>
+        /// <returns></returns>
         [AllowAnonymous]
         [HttpGet]
         [Route("Test")]
@@ -117,13 +133,24 @@ namespace APIGoodMoodProvider.Controllers
             return Ok();
         }
 
+        /// <summary>
+        /// Clean news table of database
+        /// </summary>
+        /// <returns></returns>
         [AllowAnonymous]
         [HttpPost]
         [Route("ClearNewsDb")]
         public async Task<IActionResult> ClearNewsDb()
         {
-            await _unitOfWork.NewsRepository.ClearAsync();
-            return Ok();
+            try
+            {
+                await _unitOfWork.NewsRepository.ClearAsync();
+                return Ok();
+            }
+            catch(Exception ex)
+            {
+                return BadRequest(ex);
+            }
         }
     }
 }

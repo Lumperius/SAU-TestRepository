@@ -1,5 +1,0 @@
-2020-09-30 09:15:00.551 +03:00 [INF] HTTP POST /Account/Login responded 302 in 1282.5827 ms
-2020-09-30 09:15:00.743 +03:00 [INF] Home was visited
-2020-09-30 09:15:00.768 +03:00 [INF] HTTP GET / responded 302 in 29.5572 ms
-2020-09-30 09:15:00.822 +03:00 [WRN] NewsList was visited
-2020-09-30 09:15:01.928 +03:00 [INF] HTTP GET /News/NewsList responded 200 in 1126.5583 ms

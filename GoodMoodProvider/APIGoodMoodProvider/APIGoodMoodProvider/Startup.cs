@@ -100,11 +100,13 @@ namespace APIGoodMoodProvider
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            var serviceCollection = new ServiceCollection();
+            serviceCollection.FirstOrDefault(sc => sc.ServiceType == typeof(NewsService));
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            
             app.UseHangfireServer();
             app.UseHangfireDashboard();
 
@@ -133,6 +135,8 @@ namespace APIGoodMoodProvider
                     name: "default",
                     pattern: "{controller=TokenController}/{action=Index}/{id?}");
             });
+
+
         }
     }
 }

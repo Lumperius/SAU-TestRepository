@@ -1,1 +1,0 @@
-2020-09-06 15:55:58.563 +03:00 [INF] 98 changes were applied.

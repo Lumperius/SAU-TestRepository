@@ -1,3 +1,0 @@
-2020-09-30 09:14:02.336 +03:00 [INF] Home was visited
-2020-09-30 09:14:11.174 +03:00 [INF] HTTP GET / responded 302 in 10284.5729 ms
-2020-09-30 09:14:12.227 +03:00 [INF] HTTP GET /Account/Login responded 200 in 570.4112 ms

@@ -1,4 +1,0 @@
-2020-09-06 15:56:00.558 +03:00 [INF] 98 changes were applied.
-2020-09-06 15:56:00.598 +03:00 [INF] HTTP GET /News/LoadNews responded 302 in 89306.1126 ms
-2020-09-06 15:56:00.646 +03:00 [WRN] NewsList was visited
-2020-09-06 15:56:02.587 +03:00 [INF] HTTP GET /News/NewsList responded 200 in 1954.3869 ms

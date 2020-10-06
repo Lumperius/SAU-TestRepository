@@ -1,1 +1,0 @@
-2020-09-30 09:39:58.432 +03:00 [INF] HTTP GET /api/news/getall responded 404 in 1798.8491 ms

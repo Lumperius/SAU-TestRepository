@@ -1,2 +1,0 @@
-2020-09-30 17:41:36.106 +03:00 [INF] HTTP GET /api/News/GetAll responded 200 in 2277.6900 ms
-2020-09-30 17:41:36.676 +03:00 [INF] HTTP GET /api/News/GetAll responded 200 in 554.3914 ms

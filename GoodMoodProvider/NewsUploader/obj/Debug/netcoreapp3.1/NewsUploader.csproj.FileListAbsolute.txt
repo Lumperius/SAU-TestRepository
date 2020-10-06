@@ -1,0 +1,16 @@
+C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\NewsUploader\bin\Debug\netcoreapp3.1\NewsUploader.deps.json
+C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\NewsUploader\bin\Debug\netcoreapp3.1\NewsUploader.dll
+C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\NewsUploader\bin\Debug\netcoreapp3.1\NewsUploader.pdb
+C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\NewsUploader\bin\Debug\netcoreapp3.1\ContextLibrary.dll
+C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\NewsUploader\bin\Debug\netcoreapp3.1\ModelsLibrary.dll
+C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\NewsUploader\bin\Debug\netcoreapp3.1\RepositoryLibrary.dll
+C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\NewsUploader\bin\Debug\netcoreapp3.1\RepositoryLibrary.pdb
+C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\NewsUploader\bin\Debug\netcoreapp3.1\ContextLibrary.pdb
+C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\NewsUploader\bin\Debug\netcoreapp3.1\ModelsLibrary.pdb
+C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\NewsUploader\obj\Debug\netcoreapp3.1\NewsUploader.csprojAssemblyReference.cache
+C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\NewsUploader\obj\Debug\netcoreapp3.1\NewsUploader.csproj.CoreCompileInputs.cache
+C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\NewsUploader\obj\Debug\netcoreapp3.1\NewsUploader.AssemblyInfoInputs.cache
+C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\NewsUploader\obj\Debug\netcoreapp3.1\NewsUploader.AssemblyInfo.cs
+C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\NewsUploader\obj\Debug\netcoreapp3.1\NewsUploader.csproj.CopyComplete
+C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\NewsUploader\obj\Debug\netcoreapp3.1\NewsUploader.dll
+C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\NewsUploader\obj\Debug\netcoreapp3.1\NewsUploader.pdb
