@@ -2,13 +2,17 @@
   <li *ngFor="let news of newsList " (click)="onSelect(news)">
    <div class="news-element">
     <h2> {{news.article}}</h2><hr>
-    Rating: <b class="rating">{{news.rating}} </b>>
+    Rating: <b class="rating">{{news.rating}} </b>|||
     <a href={{news.source}}><em>Сcылка</em></a>
     <div *ngIf="news==selectedNews">
      <app-news-detail [news] = "selectedNews"></app-news-detail>
     </div>
   </div>
   </li>
+  <div>
+    <span *ngIf="page!==1" (click)="page = page - 1; getNewsForPage()" class="clickable-button"> Назад </span> {{page}}стр.
+    <span *ngIf="page!==20" (click)="page = page + 1; getNewsForPage()"class="clickable-button"> Вперёд</span>
+  </div>
 </ul>
 
 

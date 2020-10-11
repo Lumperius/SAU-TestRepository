@@ -19,21 +19,21 @@ namespace APIGoodMoodProvider.Initializer
         private readonly IConfiguration _config;
         private readonly IEncrypter _encrypter;
 
-        public AdminInitializer(DataContext context, IUnitOfWork unitOfWork, IConfiguration config)
+        public AdminInitializer(DataContext context, IUnitOfWork unitOfWork, IConfiguration config, IEncrypter encrypter)
         {
             _context = context;
             _unitOfWork = unitOfWork;
             _config = config;
+            _encrypter = encrypter;
         }
         /// <summary>
-        /// Create admin if not created already
+        /// Create admin if not created 
         /// </summary>
         /// <returns></returns>
         public async Task InitializeAsync()
         {
             var adminInfo = new User();
             _config.GetSection("AdminInfo").Bind(adminInfo);
-            var test = adminInfo.Password;
             if (!await _context.Role.AnyAsync(R => R.Name == "Admin"))
             {
                 await _unitOfWork.RoleRepository.AddAsync(new Role() { Name = "Admin", ID = new Guid() });
@@ -48,7 +48,7 @@ namespace APIGoodMoodProvider.Initializer
 
             if (!await _context.User.AnyAsync(U => U.Login == adminInfo.Login))
             {
-                await _unitOfWork.UserRepository.AddAsync(new User() { Login = adminInfo.Login, ID = new Guid(), Password = _encrypter.EncryptString(adminInfo.Password) });
+                await _unitOfWork.UserRepository.AddAsync(new User() { Login = adminInfo.Login, ID = new Guid(), Password = _encrypter.EncryptString(adminInfo.Password), Email = adminInfo.Email });
                 await _unitOfWork.SaveDBAsync();
             }
 

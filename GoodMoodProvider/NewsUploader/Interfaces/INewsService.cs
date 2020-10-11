@@ -11,5 +11,6 @@ namespace NewsUploader.Interfaces
         public Task LoadNewsIntoDbFromRss(string url);
         public Task LoadAllNewsBody();
         public Task RateNewsInDb();
+        public void StartHangfireForNews();
     }
 }

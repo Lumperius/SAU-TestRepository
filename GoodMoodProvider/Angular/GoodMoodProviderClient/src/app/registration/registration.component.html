@@ -1,6 +1,6 @@
 <div class="background-block">
   <div class="info-element">
-    <h1>Регистрация</h1>
+    <h2>Регистрация</h2>
 
     <div *ngIf="!registrationState">
       <h4 class="error-message">{{errorMessage}}</h4>
@@ -8,16 +8,16 @@
     <input [(ngModel)]="login">
     <label> Логин</label>
     <hr>
-    <input [(ngModel)]="password">
+    <input [(ngModel)]="password" type="password">
     <label> Пароль     </label>
-    <input [(ngModel)]="confirmPassword">
+    <input [(ngModel)]="confirmPassword" type="password">
     <label> Подтверждение пароля    </label>
     <hr>
     <input [(ngModel)]="email">
     <label> Электронная почта</label>
     <hr>
-    <button (click)="register(login, password, email)">Enter</button>
+    <button (click)="register()">Enter</button>
 
-    <h3>Уже зарегистрированы? <a routeLink="/login">Залогируйтесь!</a></h3>
+    <h3>Уже зарегистрированы? <a routeLink="/login">Авторизируйтесь!</a></h3>
   </div>
 </div>

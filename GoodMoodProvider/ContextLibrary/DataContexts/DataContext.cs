@@ -20,7 +20,6 @@ namespace ContextLibrary.DataContexts
         public DbSet<News> News { get; set; }
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Role> Role { get; set; }
-        public DbSet<WordRating> WordsRating {get; set;}
         public DbSet<UserRole> UserRoles { get; set; }
     }
 }

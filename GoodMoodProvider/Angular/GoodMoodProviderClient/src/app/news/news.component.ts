@@ -1,5 +1,5 @@
 import { GetNewsResponse } from './../responses/getNewsReponse';
-import { News } from '../classes/news';
+import { News } from '../models/news';
 import { NewsService } from './../services/news.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -12,22 +12,9 @@ export class NewsComponent implements OnInit {
 
   constructor(private newsService: NewsService) { }
 
-  newsList: News[] = [{
-    id: '1',
-    article: 'qqq',
-    plainText: 'eee',
-    source: 'tut.by',
-    datePosted: '01.02.03',
-    rating: 10,
-  },
-  {
-    id: '2',
-    article: 'aaaaaaqqq',
-    plainText: 'eew',
-    source: 'tut.by',
-    datePosted: '01.02.03',
-    rating: 21,
-  }];
+  page = 1;
+  pageSize = 20;
+  newsList: News[];
 
   selectedNews: News;
 
@@ -35,12 +22,11 @@ export class NewsComponent implements OnInit {
     this.selectedNews = news;
 }
 
-  getNews(count: number): void {
-    this.newsService.getNews(count)
-        .subscribe( response => this.newsList = response);
+  getNewsForPage(): void {
+    this.newsService.getNews(this.pageSize * this.page, this.pageSize)
+    .subscribe(response => this.newsList = response);
   }
-
   ngOnInit() {
-    this.getNews(20);
+    this.getNewsForPage();
   }
 }

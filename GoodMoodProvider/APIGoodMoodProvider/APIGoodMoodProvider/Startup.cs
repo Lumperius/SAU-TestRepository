@@ -64,7 +64,7 @@ namespace APIGoodMoodProvider
 
             var connString = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContextPool<DataContext>(options =>
-            options.UseSqlServer(connString));
+            options.UseSqlServer(connString, x => x.MigrationsAssembly("APIGoodMoodProvider")));
 
 
             services.AddHangfire(config =>
@@ -98,10 +98,11 @@ namespace APIGoodMoodProvider
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IServiceProvider provider)
         {
-            var serviceCollection = new ServiceCollection();
-            serviceCollection.FirstOrDefault(sc => sc.ServiceType == typeof(NewsService));
+            var _newsService = provider.GetService<INewsService>();
+            var _dbInitializer = provider.GetService<IAdminInitializer>();
+            _dbInitializer.InitializeAsync();
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -109,13 +110,18 @@ namespace APIGoodMoodProvider
             
             app.UseHangfireServer();
             app.UseHangfireDashboard();
+            _newsService.StartHangfireForNews();
 
             app.UseSerilogRequestLogging();
 
             app.UseHttpsRedirection();
 
             app.UseRouting();
-            app.UseCors(builder => builder.AllowAnyOrigin());
+            app.UseCors(builder =>
+            {
+                builder.AllowAnyOrigin();
+                builder.AllowAnyHeader();
+            });
 
             var swaggerOptions = new Options.SwaggerOptions();
             Configuration.GetSection(nameof(SwaggerOptions)).Bind(swaggerOptions);
@@ -135,8 +141,6 @@ namespace APIGoodMoodProvider
                     name: "default",
                     pattern: "{controller=TokenController}/{action=Index}/{id?}");
             });
-
-
         }
     }
 }

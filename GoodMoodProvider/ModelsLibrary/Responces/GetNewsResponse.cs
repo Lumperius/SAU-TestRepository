@@ -8,7 +8,7 @@ namespace ModelsLibrary.Responces
     {
         public Guid Id { get; set; }
         public string Article { get; set; }
-        public string PlainText { get; set; }
+        public string Body { get; set; }
         public string Source { get; set; }
         public double Rating { get; set; }
     }

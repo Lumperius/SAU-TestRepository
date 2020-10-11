@@ -1,10 +1,10 @@
-import { News } from '../classes/news';
+import { News } from '../models/news';
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-news-detail',
-  templateUrl: './news-detail.component.html',
-  styleUrls: ['./news-detail.component.css']
+  styleUrls: ['./news-detail.component.css'],
+  template: `<div [innerHTML]=news.body></div>`
 })
 export class NewsDetailComponent implements OnInit {
 

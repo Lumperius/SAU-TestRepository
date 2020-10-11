@@ -1,4 +1,6 @@
-import { RegistrationRequest } from './../classes/registrationRequest';
+import { User } from '../models/user';
+import { Router } from '@angular/router';
+import { RegistrationRequest } from '../models/registrationRequest';
 import { UserService } from './../services/user.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -16,24 +18,19 @@ export class RegistrationComponent implements OnInit {
   registrationState: boolean;
   errorMessage: string;
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private router: Router) { }
 
-  register(login: string, password: string, confirmPassword: string): void{
-    if (password === confirmPassword){
+  register(): void{
+    if (this.password === this.confirmPassword){
       const request: RegistrationRequest = {
-        Login: this.login,
-        Password: this.password,
-        Email: this.email,
+        login: this.login,
+        password: this.password,
+        email: this.email,
       };
-      const user = this.userService.registerUser(request);
-      if (user !== undefined){
-        this.registrationState = true;
-        this.errorMessage = undefined;
-      }
-      else{
-        this.registrationState = false;
-        this.errorMessage = 'Регистрация не удалась';
-      }
+      let user: User;
+      this.userService.registerUser(request)
+        .subscribe( response => user = response);
+      this.userService.saveTokenAndIdInLocalStorage(user);
     }
     else {
       this.registrationState = false;

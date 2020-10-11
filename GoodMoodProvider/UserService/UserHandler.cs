@@ -54,7 +54,6 @@ namespace UserService
                     RefreshToken = refreshToken
                 };
 
-                _unitOfWork.UserRepository.PutAsync(user);
                 return response;
             }
             catch(Exception ex)
@@ -72,17 +71,12 @@ namespace UserService
             };
             
             claims.AddRange(user.UserRoles
-    .Select(ur => new Claim(ClaimsIdentity.DefaultRoleClaimType, _context.Role
+    .Select(ur => new Claim("role", _context.Role
     .FirstOrDefault(r => r.ID == ur.RoleID).Name))?
-    
     .ToList());
-
-
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Secret"]));
             var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-
-
 
             var token = new JwtSecurityToken(_config["JWT:Issuer"],
                 _config["JWT:Issuer"],
@@ -130,7 +124,7 @@ namespace UserService
             return new JwtSecurityTokenHandler().WriteToken(refreshToken);
         }
 
-        public async Task RefreshToken(string refreshToken, Guid userId)
+        public async void RefreshToken(string refreshToken, Guid userId)
         {
             try
             {

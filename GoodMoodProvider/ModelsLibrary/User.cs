@@ -15,8 +15,8 @@ namespace ModelsLibrary
         public string Email { get; set; }
         public string Token { get; set; }
         public string RefreshToken { get; set; }
+    
         public List<UserRole> UserRoles { get; set; }
         public List<Comment> Comments { get; set; }
-
     }
 }

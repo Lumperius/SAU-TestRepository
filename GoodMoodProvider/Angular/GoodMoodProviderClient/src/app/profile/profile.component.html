@@ -1,0 +1,18 @@
+<div class="background-block">
+  <div class="info-element">
+    <h2>Профиль</h2>
+    <input [(ngModel)]="CurrentUser.login">
+    <label>  Логин</label>
+    <br>
+    <br>
+    <input [(ngModel)]="CurrentUser.password">
+    <label>  Пароль</label>
+    <br>
+    <br>
+    <input [(ngModel)]="CurrentUser.email">
+    <label>  Почта</label>
+    <hr>
+    <button (click)="saveChanges()">Enter</button>
+
+  </div>
+</div>

@@ -17,12 +17,6 @@
             <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="M:APIGoodMoodProvider.Controllers.NewsController.Test">
-            <summary>
-            Temporary
-            </summary>
-            <returns></returns>
-        </member>
         <member name="M:APIGoodMoodProvider.Controllers.NewsController.ClearNewsDb">
             <summary>
             Clean news table of database
@@ -36,6 +30,13 @@
             <param name="request"></param>
             <returns></returns>
         </member>
+        <member name="M:APIGoodMoodProvider.Controllers.UserController.RefreshToken(System.Guid)">
+            <summary>
+            Cheks if refresh token is expired and refreshes tokens if not
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
         <member name="M:APIGoodMoodProvider.Controllers.UserController.Register(ModelsLibrary.Requests.RegistrationRequest)">
             <summary>
             Register user and authenticate him and put token and refresh token in database
@@ -43,14 +44,14 @@
             <param name="request"></param>
             <returns></returns>
         </member>
-        <member name="M:APIGoodMoodProvider.Controllers.UserController.Get(System.Guid)">
+        <member name="M:APIGoodMoodProvider.Controllers.UserController.GetById(System.Guid)">
             <summary>
             Get method for [User]
             </summary>
             <param name="id"></param>
             <returns>user</returns>
         </member>
-        <member name="M:APIGoodMoodProvider.Controllers.UserController.Delete(System.Guid)">
+        <member name="M:APIGoodMoodProvider.Controllers.UserController.DeleteById(System.Guid)">
             <summary>
             Delete method for [User]
             </summary>
@@ -59,7 +60,7 @@
         </member>
         <member name="M:APIGoodMoodProvider.Initializer.AdminInitializer.InitializeAsync">
             <summary>
-            Create admin if not created already
+            Create admin if not created 
             </summary>
             <returns></returns>
         </member>

@@ -11,6 +11,6 @@ namespace UserService.Interfaces
     {
         public AuthenticationResponse Authenticate(Guid userId);
         public User Register(RegistrationRequest request);
-
+        public void RefreshToken(string refreshToken, Guid userId);
     }
 }

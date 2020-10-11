@@ -43,8 +43,8 @@ namespace GoodMoodProvider.Controllers
         [HttpGet]
         public async Task<IActionResult> LoadNews()
         {
-            await _newsService.LoadNewsInDb("https://news.tut.by/rss/all.rss");
-            await _newsService.GetAllNewsBody();
+            await _newsService.LoadNewsIntoDbFromRss("https://news.tut.by/rss/all.rss");
+            await _newsService.LoadAllNewsBody();
             return RedirectToAction("NewsList");
         }
 
@@ -67,7 +67,6 @@ namespace GoodMoodProvider.Controllers
                 Article = model.Article,
                 Body = model.Body,
                 Source = model.OriginSite,
-                Author = model.Author,
                 DatePosted = DateTime.Now
             };
             _context.News.Add(newNews);
@@ -92,7 +91,6 @@ namespace GoodMoodProvider.Controllers
 
             targetNews.Article = model.Article;
             targetNews.Body = model.Body;
-            targetNews.Author = model.Author;
             targetNews.Source = model.OriginSite;
 
             _context.SaveChanges();

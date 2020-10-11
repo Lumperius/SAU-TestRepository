@@ -9,6 +9,5 @@ namespace NewsUploader.Interfaces
     {
         public string TutByParseNews(string url);
         public string OnlinerParseNews(string newsUrl);
-        public string S13ParseNews(string newsUrl);
     }
 }

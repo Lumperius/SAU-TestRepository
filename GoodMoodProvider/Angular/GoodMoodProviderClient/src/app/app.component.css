@@ -2,5 +2,10 @@
   text-decoration: none;
   font-size: 40px;
   color: rgb(34, 53, 73);
+  border-style: solid;
+  border-width: 2px;
+  background-color: oldlace;
+  padding: 1px;
+  margin: 50px;
 }
 

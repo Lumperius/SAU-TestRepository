@@ -13,6 +13,7 @@ using System.Text.RegularExpressions;
 using System.Runtime.Serialization.Json;
 using Newtonsoft.Json.Linq;
 using System.ComponentModel;
+using System.Net.Http.Headers;
 
 namespace NewsUploader
 {
@@ -28,11 +29,10 @@ namespace NewsUploader
                         .MediaTypeWithQualityHeaderValue("application/json"));
                
                     HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post,
-                        "http://api.ispras.ru/texterra/v1/nlp?targetType=lemma&apikey=644f21a4e67f86af57722e46146ff0f5ac26d702");
-               
+                        "http://api.ispras.ru/texterra/v1/nlp?targetType=lemma&apikey=e2fdf1d8ad55d95c9185543b3c6547491cc131f8");
                     request.Content = new StringContent($"[{{\"text\":\"{targetNews.PlainText}\"}}]",
                         Encoding.UTF8, "application/json");
-                    var requestResult = client.SendAsync(request).Result;  //Sending request
+                    var requestResult = await client.SendAsync(request);  //Sending request
                     var response = await requestResult.Content.ReadAsStringAsync(); // Getting body of response as string 
 
                     //Remove everything from responce body leaving just text

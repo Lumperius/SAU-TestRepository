@@ -37,24 +37,39 @@ namespace APIGoodMoodProvider.Controllers
 
         [AllowAnonymous]
         [HttpGet]
-        [Route("GetSome")]
-        public async Task<IActionResult> GetSome(int count = 50)
+        [Route("from={from}count={count}")]
+        public async Task<IActionResult> Get(int from = 0, int count = 20)
         {
-            List<GetNewsResponse> responseList = new List<GetNewsResponse>();
-            var query = new GetNewsAll();
-            foreach ( News news in await _mediator.Send(query))
+            try
             {
-                responseList.Add(new GetNewsResponse
+                List<GetNewsResponse> responseList = new List<GetNewsResponse>();
+                var query = new GetNewsAll();
+                foreach (News news in await _mediator.Send(query))
                 {
-                    Id = news.ID,
-                    Article = news.Article,
-                    PlainText = news.PlainText,
-                    Source = news.Source,
-                    Rating = news.FinalRating
-                });
-                if( responseList.Count > count ) { break;}
+                    if(news.PlainText != null)
+                    {
+                        responseList.Add(new GetNewsResponse
+                        {
+                            Id = news.ID,
+                            Article = news.Article,
+                            Body = news.Body,
+                            Source = news.Source,
+                            Rating = news.WordRating
+                        });
+                    }
+                } 
+                return Ok(
+                    responseList
+                    .OrderByDescending(rl => rl.Rating)
+                    .Skip(from).ToList()
+                    .Take(count)
+                        );
             }
-            return Ok(responseList);
+
+            catch(Exception ex)
+            {
+                throw ex;
+            }
         }
 
         /// <summary>
@@ -63,7 +78,6 @@ namespace APIGoodMoodProvider.Controllers
         /// <returns></returns>
         [AllowAnonymous]
         [HttpGet]
-        [Route("GetAll")]
         public async Task<IActionResult> GetAll()
         {
             try
@@ -76,9 +90,9 @@ namespace APIGoodMoodProvider.Controllers
                     {
                         Id = news.ID,
                         Article = news.Article,
-                        PlainText = news.PlainText,
+                        Body = news.Body,
                         Source = news.Source,
-                        Rating = news.FinalRating
+                        Rating = news.WordRating
                     });
                 }
 
@@ -100,18 +114,18 @@ namespace APIGoodMoodProvider.Controllers
         /// <returns></returns>
         [AllowAnonymous]
         [HttpGet]
-        [Route("GetById")]
+        [Route("GetById/{id}")]
         public async Task<IActionResult> GetById(Guid id)
         {
             try
             {
                 var query = new GetNewsById(id);
-                var user = _mediator.Send(query);
+                var newsList = _mediator.Send(query);
                
-                if (user == null)
+                if (newsList == null)
                     return StatusCode(404);
                 
-                return Ok(user);
+                return Ok(newsList);
             }
             catch(Exception ex)
             {
@@ -121,25 +135,12 @@ namespace APIGoodMoodProvider.Controllers
 
 
         /// <summary>
-        /// Temporary
-        /// </summary>
-        /// <returns></returns>
-        [AllowAnonymous]
-        [HttpGet]
-        [Route("Test")]
-        public async Task<IActionResult> Test()
-        {
-            await _newsService.RateNewsInDb();
-            return Ok();
-        }
-
-        /// <summary>
         /// Clean news table of database
         /// </summary>
         /// <returns></returns>
         [AllowAnonymous]
         [HttpPost]
-        [Route("ClearNewsDb")]
+        [Route("Clear")]
         public async Task<IActionResult> ClearNewsDb()
         {
             try

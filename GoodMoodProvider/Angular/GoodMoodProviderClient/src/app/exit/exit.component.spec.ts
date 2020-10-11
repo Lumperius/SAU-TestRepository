@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { OfficeComponent } from './office.component';
+import { ExitComponent } from './exit.component';
 
-describe('OfficeComponent', () => {
-  let component: OfficeComponent;
-  let fixture: ComponentFixture<OfficeComponent>;
+describe('ExitComponent', () => {
+  let component: ExitComponent;
+  let fixture: ComponentFixture<ExitComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ OfficeComponent ]
+      declarations: [ ExitComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(OfficeComponent);
+    fixture = TestBed.createComponent(ExitComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

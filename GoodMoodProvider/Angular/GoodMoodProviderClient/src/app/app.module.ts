@@ -10,8 +10,10 @@ import { TopBarComponent } from './topBar/top-bar.component';
 import { NewsDetailComponent } from './news-detail/news-detail.component';
 import { AppRoutingModule } from './app-routing.module';
 import { RegistrationComponent } from './registration/registration.component';
-import { OfficeComponent } from './office/office.component';
 import { LoginComponent } from './login/login.component';
+import { ProfileComponent } from './profile/profile.component';
+import { AdminComponent } from './admin/admin.component';
+import { ExitComponent } from './exit/exit.component';
 
 @NgModule({
   declarations: [
@@ -20,8 +22,10 @@ import { LoginComponent } from './login/login.component';
     TopBarComponent,
     NewsDetailComponent,
     RegistrationComponent,
-    OfficeComponent,
-    LoginComponent
+    LoginComponent,
+    ProfileComponent,
+    AdminComponent,
+    ExitComponent
   ],
   imports: [
     BrowserModule,

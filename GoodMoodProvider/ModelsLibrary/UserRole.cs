@@ -10,9 +10,5 @@ namespace ModelsLibrary
         public Guid ID { get; set; }
         public Guid UserID { get; set; }
         public Guid RoleID { get; set; }
-
-        public User User;
-
-        public Role Role;
     }
 }

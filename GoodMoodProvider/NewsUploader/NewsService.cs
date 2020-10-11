@@ -67,14 +67,12 @@ namespace NewsUploader
             {
                 foreach (News news in await _unitOfWork.NewsRepository.GetAllAsync())
                 {
-                if (news == null && news.Body != null) { continue; } 
-                    
-                if (news.Source.Contains("tut.by"))            //Check origin site
-                    news.Body = _newsParser.TutByParseNews(news.Source);
-                if (news.Source.Contains("onliner.by"))      
-                    news.Body = _newsParser.OnlinerParseNews(news.Source);
-                if (news.Source.Contains("S13.ru"))           
-                    news.Body = _newsParser.S13ParseNews(news.Source);
+                if (news == null && news.Body != null) { continue; }
+
+                    if (news.Source.Contains("tut.by"))            //Check origin site
+                        try { news.Body = _newsParser.TutByParseNews(news.Source); } catch { continue; }
+                    if (news.Source.Contains("onliner.by"))
+                        try { news.Body = _newsParser.OnlinerParseNews(news.Source); } catch { continue; }
 
                 if(news.Body != null)
                     {
@@ -116,12 +114,10 @@ namespace NewsUploader
             }
         }
 
-        public void SwitchHangfire(bool switcher)
+        public void StartHangfireForNews()
         {
             try
             {
-                if (switcher)
-                {
                     RecurringJob.AddOrUpdate(
                         "TutBy",
                         () => this.LoadNewsIntoDbFromRss("https://news.tut.by/rss/all.rss"),
@@ -138,22 +134,12 @@ namespace NewsUploader
                     RecurringJob.AddOrUpdate(
                         "BodyParser",
                         () => this.LoadAllNewsBody(),
-                         Cron.Hourly);
+                         "5 * * * *");
 
                     RecurringJob.AddOrUpdate(
                         "NewsRater",
                         () => this.RateNewsInDb(),
-                        "*/ 30 * ***");
-                }
-
-                else
-                {
-                    RecurringJob.RemoveIfExists("TutBy");
-                    RecurringJob.RemoveIfExists("Onliner");
-                    RecurringJob.RemoveIfExists("S13");
-                    RecurringJob.RemoveIfExists("BodyParser");
-                    RecurringJob.RemoveIfExists("NewsRater");
-                }
+                        "*/15 * * * *");
             }
 
             catch(Exception ex)
