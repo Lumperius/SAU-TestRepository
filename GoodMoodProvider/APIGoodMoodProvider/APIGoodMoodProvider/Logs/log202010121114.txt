@@ -1,0 +1,1 @@
+2020-10-12 11:14:39.395 +03:00 [INF] HTTP GET /api/User/refresh/99e79530-87e5-435b-1ca0-08d86d1f4ec1 responded 200 in 1038.1428 ms

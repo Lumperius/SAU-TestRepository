@@ -13,7 +13,8 @@ export class RoleGuardService {
    const expectedRole = route.data.expectedRole;
    const tokenPayload = this.authServide.getDecodedAccessToken(localStorage.getItem('token'));
    const roles: string[] = tokenPayload.role;
-   if (!this.authServide.isAuthenticated() || roles.find(expectedRole) !== undefined){
+
+   if (!this.authServide.isAuthenticated() || roles.find(result => expectedRole === result) === undefined){
      this.router.navigate(['login']);
      return false;
    }

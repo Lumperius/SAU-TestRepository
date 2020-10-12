@@ -9,13 +9,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminComponent implements OnInit {
 
-  message: string;
-
   constructor(private newsServive: NewsService) { }
 
   clearDb(): void{
     this.newsServive.clearNewsInDatabase();
-    this.message = 'Завершено';
   }
 
   ngOnInit(): void {

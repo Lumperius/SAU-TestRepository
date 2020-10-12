@@ -93,8 +93,8 @@ namespace APIGoodMoodProvider.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [AllowAnonymous]
-        [HttpPost]
-        [Route("refresh/id")]
+        [HttpGet]
+        [Route("refresh/{id}")]
         public async Task<IActionResult> RefreshToken(Guid id)
         {
             var user = await _unitOfWork.UserRepository.GetByIdAsync(id);
@@ -163,6 +163,7 @@ namespace APIGoodMoodProvider.Controllers
         /// <param name="id"></param>
         /// <returns>user</returns>
         [HttpGet]
+        [AllowAnonymous]
         [Route("{id}")]
         public async Task<IActionResult> GetById(Guid id)
         {
@@ -186,6 +187,7 @@ namespace APIGoodMoodProvider.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpDelete]
+        [AllowAnonymous]
         [Route("{id}")]
         public async Task<IActionResult> DeleteById(Guid id)
         {

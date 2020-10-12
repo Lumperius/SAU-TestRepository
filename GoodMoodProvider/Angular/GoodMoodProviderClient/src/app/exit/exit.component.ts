@@ -14,7 +14,7 @@ export class ExitComponent implements OnInit {
   deauthorize(){
     localStorage.removeItem('id');
     localStorage.removeItem('token');
-    this.router.navigate[('news')];
+    this.router.navigate(['news']);
   }
 
   ngOnInit(): void {

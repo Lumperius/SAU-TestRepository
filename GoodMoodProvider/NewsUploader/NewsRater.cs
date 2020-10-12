@@ -22,19 +22,19 @@ namespace NewsUploader
         public async Task<string> SimplifyANews(News targetNews)
         {
             try
-            { 
+            {
+                string response;
                 using (var client = new HttpClient()) //Create http client
                 {
                     client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers //Constructing request
                         .MediaTypeWithQualityHeaderValue("application/json"));
-               
                     HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post,
                         "http://api.ispras.ru/texterra/v1/nlp?targetType=lemma&apikey=e2fdf1d8ad55d95c9185543b3c6547491cc131f8");
                     request.Content = new StringContent($"[{{\"text\":\"{targetNews.PlainText}\"}}]",
                         Encoding.UTF8, "application/json");
                     var requestResult = await client.SendAsync(request);  //Sending request
-                    var response = await requestResult.Content.ReadAsStringAsync(); // Getting body of response as string 
-
+                    response = await requestResult.Content.ReadAsStringAsync(); // Getting body of response as string 
+                }
                     //Remove everything from responce body leaving just text
                     var matches = Regex.Matches(response, "\"value\":\".+?\""); //Get matches of word values
                         string lemmatizedText = "";
@@ -57,8 +57,6 @@ namespace NewsUploader
                         {
                             return targetNews.PlainText;
                         }
-                    
-                }
             }
             catch(Exception ex)
             {
@@ -105,8 +103,9 @@ namespace NewsUploader
 
                         if(valuedWordsCount != 0)
                     {
-                         relativeValue = (int)totalValue * 10 / valuedWordsCount;
-                    }//Getting relative value(*10 so it could stay int)
+                         relativeValue = (int)totalValue * 10 / valuedWordsCount;//Getting relative value(*10 so it could stay int)
+                        if (relativeValue == 0) { relativeValue++; }
+                    }
                    
                     return relativeValue;
                 }

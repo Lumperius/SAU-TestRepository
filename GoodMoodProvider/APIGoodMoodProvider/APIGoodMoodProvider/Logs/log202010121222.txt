@@ -1,0 +1,5 @@
+2020-10-12 12:22:12.759 +03:00 [INF] HTTP POST /api/News/Clear responded 200 in 1038.7954 ms
+2020-10-12 12:22:13.734 +03:00 [WRN] Failed to process the job '166': an exception occurred. Retry attempt 1 of 10 will be performed in 00:00:23.
+Microsoft.EntityFrameworkCore.DbUpdateConcurrencyException: Database operation expected to affect 1 row(s) but actually affected 0 row(s). Data may have been modified or deleted since entities were loaded. See http://go.microsoft.com/fwlink/?LinkId=527962 for information on understanding and handling optimistic concurrency exceptions.
+   at NewsUploader.NewsService.LoadAllNewsBody() in C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\NewsUploader\NewsService.cs:line 91
+   at System.Runtime.CompilerServices.TaskAwaiter.GetResult()

@@ -12,7 +12,7 @@ export class AuthGuardService {
 
   canActivate(): boolean {
     if (!this.authService.isAuthenticated()){
-      if (!this.authService.refreshToken){
+      if (!this.authService.refreshToken()){
      this.router.navigate(['login']);
      return false;
     }}

@@ -1,0 +1,2 @@
+2020-10-12 11:16:22.331 +03:00 [INF] HTTP GET /api/News/from=0count=20 responded 200 in 6130.3745 ms
+2020-10-12 11:16:57.665 +03:00 [INF] HTTP GET /api/News/from=0count=20 responded 200 in 7392.8460 ms

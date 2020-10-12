@@ -49,9 +49,9 @@ export class UserService {
     if (localStorage.getItem('id') === undefined) {
       return undefined;
     }
-    return this.http.post<string>(this.refreshUrl + localStorage.getItem('id'), localStorage.getItem('id'))
+    return this.http.get<string>(this.refreshUrl + localStorage.getItem('id'))
       .pipe(tap(_ =>
-       catchError(this.handleError<User>('refreshUser'))
+       catchError(this.handleError<string>('refreshUser'))
       ));
   }
 

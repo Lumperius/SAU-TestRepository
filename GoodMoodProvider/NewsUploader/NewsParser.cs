@@ -12,10 +12,6 @@ namespace NewsUploader
 {
     public class NewsParser : INewsParser
     {
-        public NewsParser()
-        {
-        }
-
         public string TutByParseNews(string newsUrl)
         {
             try
@@ -35,7 +31,6 @@ namespace NewsUploader
                 throw ex;
             }
         }
-
 
         public string OnlinerParseNews(string newsUrl)
         {
@@ -57,7 +52,6 @@ namespace NewsUploader
             {
                 throw ex;
             }
-
         }
     }
 }

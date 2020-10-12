@@ -20,15 +20,13 @@ export class AuthenticationService {
   }
 
   refreshToken(): boolean {
-    let token;
+    let token: string;
     this.userService.httpRefreshToken().subscribe( response => token = response);
     if ( token === undefined ) {
-      localStorage.setItem('wow', 'ie');
       return false;
     }
     else{
     localStorage.setItem('token', token);
-    localStorage.setItem('ooo', 'ie');
     return true;
   }
    }

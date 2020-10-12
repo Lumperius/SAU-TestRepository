@@ -1,0 +1,17 @@
+2020-10-12 11:03:01.633 +03:00 [WRN] Failed to process the job '140': an exception occurred. Retry attempt 4 of 10 will be performed in 00:02:36.
+System.Threading.Tasks.TaskCanceledException: The operation was canceled.
+ ---> System.IO.IOException: Unable to read data from the transport connection: Операция ввода/вывода была прервана из-за завершения потока команд или по запросу приложения..
+ ---> System.Net.Sockets.SocketException (995): Операция ввода/вывода была прервана из-за завершения потока команд или по запросу приложения.
+   --- End of inner exception stack trace ---
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.GetResult(Int16 token)
+   at System.Net.Http.HttpConnection.FillAsync()
+   at System.Net.Http.HttpConnection.CopyToContentLengthAsync(Stream destination, UInt64 length, Int32 bufferSize, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnection.ContentLengthReadStream.CompleteCopyToAsync(Task copyTask, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at NewsUploader.NewsService.RateNewsInDb() in C:\Users\Lenovo\Documents\GitHub\SAU-TestRepository\GoodMoodProvider\NewsUploader\NewsService.cs:line 115
+   at System.Runtime.CompilerServices.TaskAwaiter.GetResult()
+2020-10-12 11:03:14.147 +03:00 [INF] HTTP GET /api/News/from=0count=20 responded 200 in 309.0195 ms
+2020-10-12 11:03:52.920 +03:00 [INF] HTTP OPTIONS /api/user/authenticate responded 204 in 0.8270 ms
+2020-10-12 11:03:53.414 +03:00 [INF] HTTP POST /api/user/authenticate responded 200 in 486.8225 ms
+2020-10-12 11:03:55.339 +03:00 [INF] HTTP GET /api/News/from=0count=20 responded 200 in 1857.7612 ms

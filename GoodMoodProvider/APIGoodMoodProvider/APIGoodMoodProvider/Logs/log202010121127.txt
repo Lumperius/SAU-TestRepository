@@ -1,0 +1,5 @@
+2020-10-12 11:27:40.002 +03:00 [INF] HTTP GET /api/user/refresh/null responded 400 in 10207.1258 ms
+2020-10-12 11:27:41.214 +03:00 [INF] HTTP GET /api/user/refresh/null responded 400 in 144.2816 ms
+2020-10-12 11:27:41.231 +03:00 [INF] HTTP GET /api/user/refresh/null responded 400 in 7.5614 ms
+2020-10-12 11:27:41.243 +03:00 [INF] HTTP GET /api/user/refresh/null responded 400 in 3.7867 ms
+2020-10-12 11:27:41.251 +03:00 [INF] HTTP GET /api/user/refresh/null responded 400 in 5.6452 ms

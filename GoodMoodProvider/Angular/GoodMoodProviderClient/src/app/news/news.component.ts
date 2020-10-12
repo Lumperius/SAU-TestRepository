@@ -23,9 +23,10 @@ export class NewsComponent implements OnInit {
 }
 
   getNewsForPage(): void {
-    this.newsService.getNews(this.pageSize * this.page, this.pageSize)
+    this.newsService.getNews(this.pageSize * (this.page - 1), this.pageSize)
     .subscribe(response => this.newsList = response);
   }
+
   ngOnInit() {
     this.getNewsForPage();
   }

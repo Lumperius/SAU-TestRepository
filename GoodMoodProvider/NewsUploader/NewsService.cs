@@ -98,13 +98,15 @@ namespace NewsUploader
             try
             {
                 var newsList = await _unitOfWork.NewsRepository.GetAllAsync();
-
+                int i = 0; //counter
                 foreach (News news in newsList)
                 {
-                    if(news.PlainText == null && news.WordRating == 0) { continue; }
+                    if(news.PlainText == null || news.WordRating != 0) { continue; }
+                    i++;
                     string simplifiedText = await _newsRater.SimplifyANews(news); 
                     news.WordRating = _newsRater.RateANews(simplifiedText);
                     await _unitOfWork.SaveDBAsync();
+                    if(i >= 30) { break; }
                 }
             }
 
@@ -127,11 +129,6 @@ namespace NewsUploader
                         () => this.LoadNewsIntoDbFromRss("http://Onliner.by/feed"),
                          Cron.Hourly);
                     RecurringJob.AddOrUpdate(
-                        "S13",
-                        () => this.LoadNewsIntoDbFromRss("https://S13.ru/rss"),
-                         Cron.Hourly);
-
-                    RecurringJob.AddOrUpdate(
                         "BodyParser",
                         () => this.LoadAllNewsBody(),
                          "5 * * * *");
@@ -139,7 +136,7 @@ namespace NewsUploader
                     RecurringJob.AddOrUpdate(
                         "NewsRater",
                         () => this.RateNewsInDb(),
-                        "*/15 * * * *");
+                        "*/5 * * * *");
             }
 
             catch(Exception ex)
